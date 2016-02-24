@@ -6,11 +6,11 @@ package ch.gibmit.m226.todo.gui;
 
 import javax.swing.*;
 
-public class guiMainImpl extends JFrame{
+public class GuiMainImpl extends JFrame{
 
     private JTabbedPane mainPane;
 
-    public guiMainImpl() {
+    public GuiMainImpl() {
 
         this.setVisible(true);
         this.setSize(300, 300);

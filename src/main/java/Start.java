@@ -7,7 +7,7 @@ import ch.gibmit.m226.todo.gui.*;
 public class Start {
 
     public static void main(String[] args) {
-        new guiMainImpl();
+        new GuiMainImpl();
     }
 
 }
