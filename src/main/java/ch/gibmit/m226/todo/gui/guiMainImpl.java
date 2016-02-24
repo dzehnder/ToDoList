@@ -27,9 +27,6 @@ public class GuiMainImpl extends JFrame{
 
     public GuiMainImpl() {
 
-        this.setVisible(true);
-        this.setSize(800, 500);
-
         mainPane = new JTabbedPane();
         gtm = new GuiToDoMainImpl();
 
@@ -37,8 +34,12 @@ public class GuiMainImpl extends JFrame{
         this.mainPane.addTab("Kalender", new JPanel());
 
         this.add(mainPane);
-        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        this.pack();
+        this.setSize(800, 500);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
 
     }
 }
