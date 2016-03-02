@@ -1,11 +1,9 @@
-package ch.gibmit.m226.todo.ch.gibmit.m266.todo.guiToDoLeft;
+package ch.gibmit.m226.todo.guiToDoLeft;
 
-import ch.gibmit.m226.todo.ch.gibmit.m226.todo.todo.Todo;
+import ch.gibmit.m226.todo.todo.Todo;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * Created by colin on 24.02.16.
