@@ -21,7 +21,7 @@ public class GuiToDoMainImpl implements GuiToDoMain {
         pnlToDoMain = new JPanel(new BorderLayout());
 
         sptPnToDoMain = new JSplitPane();
-        sptPnToDoMain.setDividerLocation(0.25);
+        sptPnToDoMain.setDividerLocation(0.5);
 
         gtl = new GuiToDoLeftImpl();
         sptPnToDoMain.setLeftComponent(gtl.getToDoLeft());
