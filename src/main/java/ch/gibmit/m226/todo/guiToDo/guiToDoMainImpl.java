@@ -1,7 +1,8 @@
 package ch.gibmit.m226.todo.guiToDo;
 
-import ch.gibmit.m226.todo.ch.gibmit.m266.todo.guiToDoLeft.GuiToDoLeft;
-import ch.gibmit.m226.todo.ch.gibmit.m266.todo.guiToDoLeft.GuiToDoLeftImpl;
+
+import ch.gibmit.m226.todo.guiToDoLeft.GuiToDoLeft;
+import ch.gibmit.m226.todo.guiToDoLeft.GuiToDoLeftImpl;
 
 import javax.swing.*;
 import java.awt.*;
