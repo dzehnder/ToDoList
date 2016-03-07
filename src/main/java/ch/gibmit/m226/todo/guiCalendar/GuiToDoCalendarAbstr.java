@@ -56,7 +56,5 @@ public abstract class GuiToDoCalendarAbstr implements ActionListener {
      * This method catches all performed actions in the calendar
      * @param e Action Event
      */
-    public void actionPerformed(ActionEvent e) {
-
-    }
+    public abstract void actionPerformed(ActionEvent e);
 }

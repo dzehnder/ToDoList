@@ -4,6 +4,7 @@ import ch.gibmit.m226.todo.guiCalendar.GuiToDoCalendarAbstr;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 /**
  * @author Damian Zehnder
@@ -28,5 +29,15 @@ public class GuiToDoCalendarYearImpl extends GuiToDoCalendarAbstr implements Gui
      */
     public JPanel getCalendarYear() {
         return pnlYear;
+    }
+
+    /**
+     * This method catches the action event of the tool bar buttons
+     * @param e Action Event of the tool bar buttons
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+
     }
 }
