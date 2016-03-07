@@ -13,7 +13,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Created by zehnder on 05/03/16.
+ * @author Damian Zehnder
+ * This class is the main calendar class. It adds all calendar components to the main frame.
  */
 public class GuiToDoCalendarImpl implements GuiToDoCalendar {
 
@@ -23,6 +24,8 @@ public class GuiToDoCalendarImpl implements GuiToDoCalendar {
     private GuiToDoCalendarWeek gtcw;
     private GuiToDoCalendarMonth gtcm;
     private GuiToDoCalendarYear gtcy;
+
+
 
 
     public GuiToDoCalendarImpl() {
@@ -46,8 +49,12 @@ public class GuiToDoCalendarImpl implements GuiToDoCalendar {
 
 
 
-
+    /**
+     * Interface method that returns the main calendar panel
+     * @return the main Calendar Panel
+     */
     public JPanel getCalendarPanel() {
         return pnlCalendarMain;
     }
+
 }
