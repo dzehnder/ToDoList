@@ -1,13 +1,13 @@
-package ch.gibmit.m226.todo.guiCalendar;
+package ch.gibmit.m226.todo.gui.guiCalendar;
 
-import ch.gibmit.m226.todo.guiCalendar.day.GuiToDoCalendarDay;
-import ch.gibmit.m226.todo.guiCalendar.day.GuiToDoCalendarDayimpl;
-import ch.gibmit.m226.todo.guiCalendar.month.GuiToDoCalendarMonth;
-import ch.gibmit.m226.todo.guiCalendar.month.GuiToDoCalendarMonthImpl;
-import ch.gibmit.m226.todo.guiCalendar.week.GuiToDoCalendarWeek;
-import ch.gibmit.m226.todo.guiCalendar.week.GuiToDoCalendarWeekImpl;
-import ch.gibmit.m226.todo.guiCalendar.year.GuiToDoCalendarYear;
-import ch.gibmit.m226.todo.guiCalendar.year.GuiToDoCalendarYearImpl;
+import ch.gibmit.m226.todo.gui.guiCalendar.day.GuiToDoCalendarDay;
+import ch.gibmit.m226.todo.gui.guiCalendar.day.GuiToDoCalendarDayimpl;
+import ch.gibmit.m226.todo.gui.guiCalendar.month.GuiToDoCalendarMonth;
+import ch.gibmit.m226.todo.gui.guiCalendar.month.GuiToDoCalendarMonthImpl;
+import ch.gibmit.m226.todo.gui.guiCalendar.week.GuiToDoCalendarWeek;
+import ch.gibmit.m226.todo.gui.guiCalendar.week.GuiToDoCalendarWeekImpl;
+import ch.gibmit.m226.todo.gui.guiCalendar.year.GuiToDoCalendarYear;
+import ch.gibmit.m226.todo.gui.guiCalendar.year.GuiToDoCalendarYearImpl;
 
 import javax.swing.*;
 import java.awt.*;

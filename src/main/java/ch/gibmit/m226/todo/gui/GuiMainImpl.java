@@ -4,10 +4,10 @@ package ch.gibmit.m226.todo.gui;
  * Created by colin on 24.02.16.
  */
 
-import ch.gibmit.m226.todo.guiCalendar.GuiToDoCalendar;
-import ch.gibmit.m226.todo.guiCalendar.GuiToDoCalendarImpl;
-import ch.gibmit.m226.todo.guiToDo.GuiToDoMain;
-import ch.gibmit.m226.todo.guiToDo.GuiToDoMainImpl;
+import ch.gibmit.m226.todo.gui.guiCalendar.GuiToDoCalendar;
+import ch.gibmit.m226.todo.gui.guiCalendar.GuiToDoCalendarImpl;
+import ch.gibmit.m226.todo.gui.guiToDo.GuiToDoMain;
+import ch.gibmit.m226.todo.gui.guiToDo.GuiToDoMainImpl;
 
 import javax.swing.*;
 

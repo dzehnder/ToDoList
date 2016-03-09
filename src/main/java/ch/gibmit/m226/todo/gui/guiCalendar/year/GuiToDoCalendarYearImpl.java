@@ -1,6 +1,6 @@
-package ch.gibmit.m226.todo.guiCalendar.year;
+package ch.gibmit.m226.todo.gui.guiCalendar.year;
 
-import ch.gibmit.m226.todo.guiCalendar.GuiToDoCalendarAbstr;
+import ch.gibmit.m226.todo.gui.guiCalendar.GuiToDoCalendarAbstr;
 
 import javax.swing.*;
 import java.awt.*;

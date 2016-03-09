@@ -1,4 +1,4 @@
-package ch.gibmit.m226.todo.guiCalendar.month;
+package ch.gibmit.m226.todo.gui.guiCalendar.month;
 
 import javax.swing.*;
 
