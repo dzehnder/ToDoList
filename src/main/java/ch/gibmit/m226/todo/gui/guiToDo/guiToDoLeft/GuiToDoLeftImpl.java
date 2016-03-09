@@ -1,4 +1,4 @@
-package ch.gibmit.m226.todo.gui.guiToDoLeft;
+package ch.gibmit.m226.todo.gui.guiToDo.guiToDoLeft;
 
 import ch.gibmit.m226.todo.todo.Todo;
 

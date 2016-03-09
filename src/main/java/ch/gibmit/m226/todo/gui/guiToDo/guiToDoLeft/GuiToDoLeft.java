@@ -1,4 +1,4 @@
-package ch.gibmit.m226.todo.gui.guiToDoLeft;
+package ch.gibmit.m226.todo.gui.guiToDo.guiToDoLeft;
 
 import javax.swing.*;
 
