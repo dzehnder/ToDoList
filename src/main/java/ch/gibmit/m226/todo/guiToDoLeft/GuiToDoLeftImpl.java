@@ -30,7 +30,7 @@ public class GuiToDoLeftImpl implements GuiToDoLeft {
         scrPnListToDo = new JScrollPane(lstToDos);
 
         lstToDos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
+
 
         pnlToDoLeftTop.add(txtFldSearchToDo);
         pnlToDoLeftTop.add(cmbxToDoSort);
