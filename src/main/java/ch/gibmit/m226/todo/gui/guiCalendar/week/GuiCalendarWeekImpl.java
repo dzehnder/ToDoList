@@ -1,6 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar.week;
 
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiToDoCalendarAbstr;
+import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
  * @author Damian Zehnder
  * This class implements the calendar view of the year
  */
-public class GuiToDoCalendarWeekImpl extends GuiToDoCalendarAbstr implements GuiToDoCalendarWeek {
+public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendarWeek {
 
     private JPanel pnlWeek;
     private JToolBar tlBrCalWeek;
 
-    public GuiToDoCalendarWeekImpl() {
+    public GuiCalendarWeekImpl() {
         pnlWeek = new JPanel(new BorderLayout());
         tlBrCalWeek = new JToolBar();
         addButtonsToToolBar(tlBrCalWeek);

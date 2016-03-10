@@ -6,6 +6,6 @@ import javax.swing.*;
  * Interface of the calendar week view
  * @author Damian Zehnder
  */
-public interface GuiToDoCalendarWeek {
+public interface GuiCalendarWeek {
     JPanel getCalendarWeek();
 }

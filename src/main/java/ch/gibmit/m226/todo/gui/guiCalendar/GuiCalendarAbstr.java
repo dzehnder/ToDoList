@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
  * @author Damian Zehnder
  * This abstract class generates the navigation buttons and adds them to the calendar
  */
-public abstract class GuiToDoCalendarAbstr implements ActionListener {
+public abstract class GuiCalendarAbstr implements ActionListener {
 
     private static final String BCKIMGNAME = "backButtonIcon";
     private static final String FWDIMGNAME = "forwardButtonIcon";

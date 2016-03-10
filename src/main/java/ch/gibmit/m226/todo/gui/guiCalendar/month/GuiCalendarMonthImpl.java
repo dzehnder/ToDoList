@@ -1,6 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar.month;
 
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiToDoCalendarAbstr;
+import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
  * @author Damian Zehnder
  * This class implements the calendar view of the month
  */
-public class GuiToDoCalendarMonthImpl extends GuiToDoCalendarAbstr implements GuiToDoCalendarMonth {
+public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalendarMonth {
 
     private JPanel pnlMonth;
     private JToolBar tlBrCalMonth;
 
-    public GuiToDoCalendarMonthImpl() {
+    public GuiCalendarMonthImpl() {
         pnlMonth = new JPanel(new BorderLayout());
         tlBrCalMonth = new JToolBar();
         addButtonsToToolBar(tlBrCalMonth);

@@ -6,6 +6,6 @@ import javax.swing.*;
  * @author Damian Zehnder
  * Interface of the calendar day view
  */
-public interface GuiToDoCalendarDay {
+public interface GuiCalendarDay {
     JPanel getCalendarDay();
 }

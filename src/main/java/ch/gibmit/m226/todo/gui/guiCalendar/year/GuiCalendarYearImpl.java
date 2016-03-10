@@ -1,6 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar.year;
 
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiToDoCalendarAbstr;
+import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
  * @author Damian Zehnder
  * This class implements the calendar view of the year
  */
-public class GuiToDoCalendarYearImpl extends GuiToDoCalendarAbstr implements GuiToDoCalendarYear {
+public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendarYear {
 
     private JPanel pnlYear;
     private JToolBar tlBrCalYear;
 
-    public GuiToDoCalendarYearImpl() {
+    public GuiCalendarYearImpl() {
         pnlYear = new JPanel(new BorderLayout());
         tlBrCalYear = new JToolBar();
         addButtonsToToolBar(tlBrCalYear);

@@ -6,6 +6,6 @@ import javax.swing.*;
  * Interface of the calendar month view
  * @author Damian Zehnder
  */
-public interface GuiToDoCalendarMonth {
+public interface GuiCalendarMonth {
     JPanel getCalendarMonth();
 }

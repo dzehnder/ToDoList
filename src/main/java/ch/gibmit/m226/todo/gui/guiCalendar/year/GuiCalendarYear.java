@@ -6,6 +6,6 @@ import javax.swing.*;
  * Interface of the calendar year view
  * @author Damian Zehhder
  */
-public interface GuiToDoCalendarYear {
+public interface GuiCalendarYear {
     JPanel getCalendarYear();
 }
