@@ -14,12 +14,22 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
 
     private JPanel pnlWeek;
     private JToolBar tlBrCalWeek;
+    private GuiCalendarWeekComp weekComp;
+    private JPanel pnlTools;
 
     public GuiCalendarWeekImpl() {
         pnlWeek = new JPanel(new BorderLayout());
+        pnlTools = new JPanel(new BorderLayout());
+
         tlBrCalWeek = new JToolBar();
+        weekComp = new GuiCalendarWeekComp();
         addButtonsToToolBar(tlBrCalWeek);
-        pnlWeek.add(tlBrCalWeek, BorderLayout.PAGE_START);
+
+        pnlTools.add(tlBrCalWeek, BorderLayout.PAGE_START);
+
+        pnlWeek.add(pnlTools, BorderLayout.PAGE_START);
+        pnlWeek.add(weekComp, BorderLayout.CENTER);
+
     }
 
     /**
