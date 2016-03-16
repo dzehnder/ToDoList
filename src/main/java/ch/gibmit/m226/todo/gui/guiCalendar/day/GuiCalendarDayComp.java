@@ -15,6 +15,13 @@ public class GuiCalendarDayComp extends JComponent {
         int height = getHeight()-2 ;
 
 
+        /**
+         * Background
+         */
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, width, height);
+
+        g.setColor(Color.BLACK);
         g.drawRect(0, 0, width, height);
     }
 }

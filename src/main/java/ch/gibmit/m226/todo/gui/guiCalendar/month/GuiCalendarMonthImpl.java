@@ -14,12 +14,21 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
 
     private JPanel pnlMonth;
     private JToolBar tlBrCalMonth;
+    private GuiCalendarMonthComp monthComp;
+    private JPanel pnlTools;
 
     public GuiCalendarMonthImpl() {
         pnlMonth = new JPanel(new BorderLayout());
+        pnlTools = new JPanel(new BorderLayout());
+
         tlBrCalMonth = new JToolBar();
+        monthComp = new GuiCalendarMonthComp();
         addButtonsToToolBar(tlBrCalMonth);
-        pnlMonth.add(tlBrCalMonth, BorderLayout.PAGE_START);
+
+        pnlTools.add(tlBrCalMonth, BorderLayout.LINE_START);
+
+        pnlMonth.add(pnlTools, BorderLayout.PAGE_START);
+        pnlMonth.add(monthComp, BorderLayout.CENTER);
     }
 
     /**

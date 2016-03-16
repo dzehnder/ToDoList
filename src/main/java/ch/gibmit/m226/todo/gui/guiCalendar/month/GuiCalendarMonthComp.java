@@ -1,22 +1,17 @@
-package ch.gibmit.m226.todo.gui.guiCalendar.week;
+package ch.gibmit.m226.todo.gui.guiCalendar.month;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author Damian Zehnder
- * This class paints the week view of the calendar
+ * @author Damian Zender
  */
-public class GuiCalendarWeekComp extends JComponent {
+public class GuiCalendarMonthComp extends JComponent {
 
     private static final String[] WEEKDAYS = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
-    /**
-     * @param g Graphics object
-     */
     @Override
     protected void paintComponent(Graphics g) {
-
         int width = getWidth()-2;
         int height = getHeight()-2 ;
         int dayWidth = width/7;
@@ -53,7 +48,5 @@ public class GuiCalendarWeekComp extends JComponent {
         for (int i = 0; i<WEEKDAYS.length; i++) {
             g2d.drawString(WEEKDAYS[i], (dayWidth*i)+(dayWidth/8), (dayLabelHeight/2)+dayLabelHeight/4);
         }
-
-
     }
 }
