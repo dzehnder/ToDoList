@@ -15,7 +15,6 @@ public class GuiToDoLeftImpl implements GuiToDoLeft {
     private JTextField txtFldSearchToDo;
     private JButton btnAddToDo;
     private JButton btnRemoveToDo;
-    private JScrollPane scrPnListToDo;
 
     public GuiToDoLeftImpl() {
 
@@ -27,7 +26,6 @@ public class GuiToDoLeftImpl implements GuiToDoLeft {
         cmbxToDoSort = new JComboBox();
         btnAddToDo = new JButton("+");
         btnRemoveToDo = new JButton("-");
-        scrPnListToDo = new JScrollPane(lstToDos);
 
         lstToDos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 

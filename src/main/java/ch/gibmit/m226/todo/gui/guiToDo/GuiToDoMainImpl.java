@@ -3,6 +3,8 @@ package ch.gibmit.m226.todo.gui.guiToDo;
 
 import ch.gibmit.m226.todo.gui.guiToDo.guiToDoLeft.GuiToDoLeft;
 import ch.gibmit.m226.todo.gui.guiToDo.guiToDoLeft.GuiToDoLeftImpl;
+import ch.gibmit.m226.todo.gui.guiToDo.guiToDoRight.GuiToDoRight;
+import ch.gibmit.m226.todo.gui.guiToDo.guiToDoRight.GuiToDoRightImpl;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +17,7 @@ public class GuiToDoMainImpl implements GuiToDoMain {
     JPanel pnlToDoMain;
     JSplitPane sptPnToDoMain;
     GuiToDoLeft gtl;
+    GuiToDoRight gtr;
 
     public GuiToDoMainImpl() {
 
@@ -25,6 +28,9 @@ public class GuiToDoMainImpl implements GuiToDoMain {
 
         gtl = new GuiToDoLeftImpl();
         sptPnToDoMain.setLeftComponent(gtl.getToDoLeft());
+
+        gtr = new GuiToDoRightImpl();
+        sptPnToDoMain.setRightComponent(gtr.getToDoRight());
 
         pnlToDoMain.add(sptPnToDoMain);
 
