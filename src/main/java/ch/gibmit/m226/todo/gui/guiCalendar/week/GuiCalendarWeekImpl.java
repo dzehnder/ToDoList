@@ -4,8 +4,12 @@ import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendar;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * @author Damian Zehnder
@@ -17,6 +21,9 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
     private JToolBar tlBrCalWeek;
     private GuiCalendarWeekComp weekComp;
     private JPanel pnlTools;
+    private SimpleDateFormat sdf = new SimpleDateFormat("d. MMM");
+    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private JLabel lblWeek;
 
     public GuiCalendarWeekImpl() {
         pnlWeek = new JPanel(new BorderLayout());
@@ -25,8 +32,12 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
         tlBrCalWeek = new JToolBar();
         weekComp = new GuiCalendarWeekComp();
         addButtonsToToolBar(tlBrCalWeek);
+        lblWeek = new JLabel();
+        lblWeek.setBorder(new EmptyBorder(5, 10, 5, 10));
+        updateDateLabel();
 
-        pnlTools.add(tlBrCalWeek, BorderLayout.PAGE_START);
+        pnlTools.add(tlBrCalWeek, BorderLayout.LINE_START);
+        pnlTools.add(lblWeek, BorderLayout.LINE_END);
 
         pnlWeek.add(pnlTools, BorderLayout.PAGE_START);
         pnlWeek.add(weekComp, BorderLayout.CENTER);
@@ -39,7 +50,22 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "back":
+                cal.add(Calendar.WEEK_OF_YEAR, -1);
+                updateDateLabel();
+                break;
 
+            case "forward":
+                cal.add(Calendar.WEEK_OF_YEAR, 1);
+                updateDateLabel();
+                break;
+
+            case "today":
+                cal = Calendar.getInstance(Locale.GERMANY);
+                updateDateLabel();
+                break;
+        }
     }
 
     /**
@@ -48,5 +74,15 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
      */
     public JPanel getCalendar() {
         return pnlWeek;
+    }
+
+    private void updateDateLabel() {
+        Calendar first = (Calendar) cal.clone();
+        first.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+        Calendar last = (Calendar) cal.clone();
+        last.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+
+        lblWeek.setText(sdf.format(first.getTime())+" - "+sdf.format(last.getTime())+" (Week "+cal.get(Calendar.WEEK_OF_YEAR)+")");
     }
 }

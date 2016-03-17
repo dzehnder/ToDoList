@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 /**
  * @author Damian Zehnder
@@ -22,7 +22,7 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
     private GuiCalendarDayComp dayComp;
     private JPanel pnlTools;
     private SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d. MMMM yyyy");
-    private Calendar cal = Calendar.getInstance();
+    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
     private JLabel lblDay;
 
     public GuiCalendarDayImpl() {
@@ -35,7 +35,7 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
         addButtonsToToolBar(tlBrCalDay);
         lblDay = new JLabel();
         lblDay.setBorder(new EmptyBorder(5, 10, 5, 10));
-        updateDatelabel();
+        updateDateLabel();
 
 
 
@@ -55,17 +55,17 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
         switch (e.getActionCommand()) {
             case "back":
                 cal.add(Calendar.DATE, -1);
-                updateDatelabel();
+                updateDateLabel();
                 break;
 
             case "forward":
                 cal.add(Calendar.DATE, 1);
-                updateDatelabel();
+                updateDateLabel();
                 break;
 
             case "today":
-                cal = Calendar.getInstance();
-                updateDatelabel();
+                cal = Calendar.getInstance(Locale.GERMANY);
+                updateDateLabel();
                 break;
         }
 
@@ -80,7 +80,7 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
 
     }
 
-    private void updateDatelabel() {
+    private void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));
     }
 }

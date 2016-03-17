@@ -4,8 +4,12 @@ import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendar;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * @author Damian Zehnder
@@ -17,6 +21,9 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
     private JToolBar tlBrCalMonth;
     private GuiCalendarMonthComp monthComp;
     private JPanel pnlTools;
+    private SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy");
+    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private JLabel lblMonth;
 
     public GuiCalendarMonthImpl() {
         pnlMonth = new JPanel(new BorderLayout());
@@ -25,8 +32,13 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
         tlBrCalMonth = new JToolBar();
         monthComp = new GuiCalendarMonthComp();
         addButtonsToToolBar(tlBrCalMonth);
+        lblMonth = new JLabel();
+        lblMonth.setBorder(new EmptyBorder(5, 10, 5, 10));
+        updateDateLabel();
+
 
         pnlTools.add(tlBrCalMonth, BorderLayout.LINE_START);
+        pnlTools.add(lblMonth, BorderLayout.LINE_END);
 
         pnlMonth.add(pnlTools, BorderLayout.PAGE_START);
         pnlMonth.add(monthComp, BorderLayout.CENTER);
@@ -38,7 +50,22 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "back":
+                cal.add(Calendar.MONTH, -1);
+                updateDateLabel();
+                break;
 
+            case "forward":
+                cal.add(Calendar.MONTH, 1);
+                updateDateLabel();
+                break;
+
+            case "today":
+                cal = Calendar.getInstance(Locale.GERMANY);
+                updateDateLabel();
+                break;
+        }
     }
 
     /**
@@ -47,5 +74,9 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
      */
     public JPanel getCalendar() {
         return pnlMonth;
+    }
+
+    private void updateDateLabel() {
+        lblMonth.setText(sdf.format(cal.getTime()));
     }
 }

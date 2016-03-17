@@ -4,8 +4,12 @@ import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendar;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * @author Damian Zehnder
@@ -17,6 +21,8 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
     private JToolBar tlBrCalYear;
     private GuiCalendarYearComp yearComp;
     private JPanel pnlTools;
+    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private JLabel lblYear;
 
     public GuiCalendarYearImpl() {
         pnlYear = new JPanel(new BorderLayout());
@@ -25,8 +31,12 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
         tlBrCalYear = new JToolBar();
         yearComp = new GuiCalendarYearComp();
         addButtonsToToolBar(tlBrCalYear);
+        lblYear = new JLabel();
+        lblYear.setBorder(new EmptyBorder(5, 10, 5, 10));
+        updateDateLabel();
 
-        pnlTools.add(tlBrCalYear, BorderLayout.PAGE_START);
+        pnlTools.add(tlBrCalYear, BorderLayout.LINE_START);
+        pnlTools.add(lblYear, BorderLayout.LINE_END);
 
         pnlYear.add(pnlTools, BorderLayout.PAGE_START);
         pnlYear.add(yearComp, BorderLayout.CENTER);
@@ -39,7 +49,22 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "back":
+                cal.add(Calendar.YEAR, -1);
+                updateDateLabel();
+                break;
 
+            case "forward":
+                cal.add(Calendar.YEAR, 1);
+                updateDateLabel();
+                break;
+
+            case "today":
+                cal = Calendar.getInstance(Locale.GERMANY);
+                updateDateLabel();
+                break;
+        }
 
     }
 
@@ -49,5 +74,9 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
      */
     public JPanel getCalendar() {
         return pnlYear;
+    }
+
+    private void updateDateLabel() {
+        lblYear.setText(String.valueOf(cal.get(Calendar.YEAR)));
     }
 }
