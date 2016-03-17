@@ -35,7 +35,7 @@ public class GuiMainImpl extends JFrame{
         gtc = new GuiCalendarImpl();
 
         this.mainPane.addTab("ToDos", gtm.getToDoMain());
-        this.mainPane.addTab("Kalender", gtc.getCalendarPanel());
+        this.mainPane.addTab("Calendar", gtc.getCalendarPanel());
 
         this.add(mainPane);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

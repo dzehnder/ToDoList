@@ -76,6 +76,9 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
         return pnlWeek;
     }
 
+    /**
+     * updates the date label of the week
+     */
     private void updateDateLabel() {
         Calendar first = (Calendar) cal.clone();
         first.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);

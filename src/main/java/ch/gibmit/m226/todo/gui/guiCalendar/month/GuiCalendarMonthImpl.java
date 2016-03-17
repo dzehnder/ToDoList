@@ -76,6 +76,9 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
         return pnlMonth;
     }
 
+    /**
+     * updates the date label of the month
+     */
     private void updateDateLabel() {
         lblMonth.setText(sdf.format(cal.getTime()));
     }

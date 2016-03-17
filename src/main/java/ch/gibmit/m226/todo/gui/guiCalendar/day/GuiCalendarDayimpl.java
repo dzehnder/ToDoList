@@ -80,6 +80,9 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
 
     }
 
+    /**
+     * updates the date label of the day
+     */
     private void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));
     }

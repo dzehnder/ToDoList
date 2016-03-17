@@ -76,6 +76,9 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
         return pnlYear;
     }
 
+    /**
+     * updates the date label of the year
+     */
     private void updateDateLabel() {
         lblYear.setText(String.valueOf(cal.get(Calendar.YEAR)));
     }

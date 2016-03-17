@@ -28,16 +28,16 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
 
 
         tbdPnCalendars = new JTabbedPane();
-        tbdPnCalendars.addTab("Tag", gtc.getCalendar());
+        tbdPnCalendars.addTab("Day", gtc.getCalendar());
 
         gtc = new GuiCalendarWeekImpl();
-        tbdPnCalendars.addTab("Woche", gtc.getCalendar());
+        tbdPnCalendars.addTab("Week", gtc.getCalendar());
 
         gtc = new GuiCalendarMonthImpl();
-        tbdPnCalendars.addTab("Monat", gtc.getCalendar());
+        tbdPnCalendars.addTab("Month", gtc.getCalendar());
 
         gtc = new GuiCalendarYearImpl();
-        tbdPnCalendars.addTab("Jahr", gtc.getCalendar());
+        tbdPnCalendars.addTab("Year", gtc.getCalendar());
 
         pnlCalendarMain.add(tbdPnCalendars);
 
