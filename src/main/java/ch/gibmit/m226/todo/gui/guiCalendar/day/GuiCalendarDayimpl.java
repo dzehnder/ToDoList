@@ -43,7 +43,7 @@ public class GuiCalendarDayimpl extends GuiCalendarAbstr implements GuiCalendar 
 
     /**
      * Interface method that returns the day view panel of the calendar
-     * @return the calendar panel of the day view
+     * @return the calendar panel of the day
      */
     public JPanel getCalendar() {
         return pnlDay;

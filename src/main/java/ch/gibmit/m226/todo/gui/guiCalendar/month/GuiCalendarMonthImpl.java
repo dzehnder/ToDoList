@@ -43,7 +43,7 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
 
     /**
      * Interface method that returns the week view panel of the clanedar
-     * @return the calendar panel of the week view
+     * @return the calendar panel of the week
      */
     public JPanel getCalendar() {
         return pnlMonth;

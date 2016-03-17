@@ -44,7 +44,7 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
 
     /**
      * Interface method that returns the week view panel of the calendar
-     * @return the calendar panel of the week view
+     * @return the calendar panel of the week
      */
     public JPanel getCalendar() {
         return pnlWeek;

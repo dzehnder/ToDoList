@@ -16,6 +16,7 @@ public class GuiCalendarMonthComp extends JComponent {
         int height = getHeight()-2 ;
         int dayWidth = width/7;
         int dayLabelHeight = 30;
+        int weekHeight = (height-dayLabelHeight)/6;
 
         /**
          * Graphics2D object for antialiasing
@@ -36,7 +37,14 @@ public class GuiCalendarMonthComp extends JComponent {
         g.drawLine(0, dayLabelHeight, width, dayLabelHeight);
 
         /**
-         * Week day lines
+         * Week lines
+         */
+        for (int i = dayLabelHeight; i<=height-weekHeight; i+=weekHeight) {
+            g.drawLine(0,i, width, i);
+        }
+
+        /**
+         * Day lines
          */
         for (int i = dayWidth; i<=width-dayWidth; i+=dayWidth) {
             g.drawLine(i, 0, i, height);

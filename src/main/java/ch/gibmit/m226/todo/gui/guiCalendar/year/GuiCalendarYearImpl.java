@@ -15,12 +15,21 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
 
     private JPanel pnlYear;
     private JToolBar tlBrCalYear;
+    private GuiCalendarYearComp yearComp;
+    private JPanel pnlTools;
 
     public GuiCalendarYearImpl() {
         pnlYear = new JPanel(new BorderLayout());
+        pnlTools = new JPanel(new BorderLayout());
+
         tlBrCalYear = new JToolBar();
+        yearComp = new GuiCalendarYearComp();
         addButtonsToToolBar(tlBrCalYear);
-        pnlYear.add(tlBrCalYear, BorderLayout.PAGE_START);
+
+        pnlTools.add(tlBrCalYear, BorderLayout.PAGE_START);
+
+        pnlYear.add(pnlTools, BorderLayout.PAGE_START);
+        pnlYear.add(yearComp, BorderLayout.CENTER);
 
     }
 
@@ -36,7 +45,7 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
 
     /**
      * Interface method that returns the year view panel of the calendar
-     * @return the calendar panel of the year view
+     * @return the calendar panel of the year
      */
     public JPanel getCalendar() {
         return pnlYear;
