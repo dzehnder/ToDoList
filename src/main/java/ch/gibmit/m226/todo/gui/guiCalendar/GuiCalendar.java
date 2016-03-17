@@ -4,9 +4,9 @@ import javax.swing.*;
 
 /**
  * @author Damian Zehnder
- * Interface of the main calendar class
+ * Interface of the calendar views
  */
 public interface GuiCalendar {
-    JPanel getCalendarPanel();
 
+    JPanel getCalendar();
 }
