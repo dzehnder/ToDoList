@@ -4,29 +4,43 @@ import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendar;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Damian Zehnder
  * This class implements the calendar view of the day
  */
-public class GuiCalendarDayimpl extends GuiCalendarAbstr implements GuiCalendar {
+public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar {
 
     private JPanel pnlDay;
     private JToolBar tlBrCalDay;
     private GuiCalendarDayComp dayComp;
     private JPanel pnlTools;
+    private SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d. MMMM yyyy");
+    private Calendar cal = Calendar.getInstance();
+    private JLabel lblDay;
 
-    public GuiCalendarDayimpl() {
+    public GuiCalendarDayImpl() {
+
         pnlDay = new JPanel(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalDay = new JToolBar();
         dayComp = new GuiCalendarDayComp();
         addButtonsToToolBar(tlBrCalDay);
+        lblDay = new JLabel();
+        lblDay.setBorder(new EmptyBorder(5, 10, 5, 10));
+        updateDatelabel();
+
+
 
         pnlTools.add(tlBrCalDay, BorderLayout.LINE_START);
+        pnlTools.add(lblDay, BorderLayout.LINE_END);
 
         pnlDay.add(pnlTools, BorderLayout.PAGE_START);
         pnlDay.add(dayComp, BorderLayout.CENTER);
@@ -38,6 +52,22 @@ public class GuiCalendarDayimpl extends GuiCalendarAbstr implements GuiCalendar 
      */
     @Override
     public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()) {
+            case "back":
+                cal.add(Calendar.DATE, -1);
+                updateDatelabel();
+                break;
+
+            case "forward":
+                cal.add(Calendar.DATE, 1);
+                updateDatelabel();
+                break;
+
+            case "today":
+                cal = Calendar.getInstance();
+                updateDatelabel();
+                break;
+        }
 
     }
 
@@ -48,5 +78,9 @@ public class GuiCalendarDayimpl extends GuiCalendarAbstr implements GuiCalendar 
     public JPanel getCalendar() {
         return pnlDay;
 
+    }
+
+    private void updateDatelabel() {
+        lblDay.setText(sdf.format(cal.getTime()));
     }
 }

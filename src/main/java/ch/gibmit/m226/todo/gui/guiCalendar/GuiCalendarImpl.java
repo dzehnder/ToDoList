@@ -1,6 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
-import ch.gibmit.m226.todo.gui.guiCalendar.day.GuiCalendarDayimpl;
+import ch.gibmit.m226.todo.gui.guiCalendar.day.GuiCalendarDayImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.month.GuiCalendarMonthImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.week.GuiCalendarWeekImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.year.GuiCalendarYearImpl;
@@ -23,7 +23,7 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
 
     public GuiCalendarImpl() {
         pnlCalendarMain = new JPanel(new BorderLayout());
-        gtc = new GuiCalendarDayimpl();
+        gtc = new GuiCalendarDayImpl();
 
 
 

@@ -46,6 +46,8 @@ public abstract class GuiCalendarAbstr implements ActionListener {
         tlBrCal.add(btn);
 
         btn = new JButton("Today");
+        btn.setActionCommand("today");
+        btn.addActionListener(this);
         tlBrCal.add(btn);
 
         btn = navButton(FWDIMGNAME, "forward");
