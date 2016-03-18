@@ -1,5 +1,6 @@
-package ch.gibmit.m226.todo.gui.guiToDo.guiToDoRight;
+package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
+import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
 import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.util.Calendar;
 /**
  * Created by colin on 16.03.16.
  */
-public class GuiToDoRightImpl implements GuiToDoRight {
+public class GuiToDoRightImpl implements GuiToDo {
 
     private JPanel pnlToDoRight;
     private JPanel pnlToDoRightTop;
@@ -75,7 +76,8 @@ public class GuiToDoRightImpl implements GuiToDoRight {
         pnlToDoRight.add(pnlToDoRightCenter, BorderLayout.CENTER);
     }
 
-    public JPanel getToDoRight() {
+    @Override
+    public JPanel getPanel() {
         return pnlToDoRight;
     }
 

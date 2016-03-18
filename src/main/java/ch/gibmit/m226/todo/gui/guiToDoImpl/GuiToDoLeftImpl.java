@@ -1,11 +1,12 @@
-package ch.gibmit.m226.todo.gui.guiToDo.guiToDoLeft;
+package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
+import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
 import ch.gibmit.m226.todo.todo.Todo;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GuiToDoLeftImpl implements GuiToDoLeft {
+public class GuiToDoLeftImpl implements GuiToDo {
 
     private JPanel pnlToDoLeft;
     private JPanel pnlToDoLeftTop;
@@ -43,7 +44,8 @@ public class GuiToDoLeftImpl implements GuiToDoLeft {
 
     }
 
-    public JPanel getToDoLeft() {
+    @Override
+    public JPanel getPanel() {
         return pnlToDoLeft;
     }
 }

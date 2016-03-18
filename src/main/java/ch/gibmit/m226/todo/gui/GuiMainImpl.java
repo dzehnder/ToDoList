@@ -4,10 +4,10 @@ package ch.gibmit.m226.todo.gui;
  * Created by colin on 24.02.16.
  */
 
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarPanel;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
-import ch.gibmit.m226.todo.gui.guiToDo.GuiToDoMain;
-import ch.gibmit.m226.todo.gui.guiToDo.GuiToDoMainImpl;
+import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarPanel;
+import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
+import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
 
 import javax.swing.*;
 
@@ -25,7 +25,7 @@ public class GuiMainImpl extends JFrame{
     /**
      * This is the class for the left tab.
      */
-    private GuiToDoMain gtm;
+    private GuiToDo gtm;
     private GuiCalendarPanel gtc;
 
     public GuiMainImpl() {
@@ -34,7 +34,7 @@ public class GuiMainImpl extends JFrame{
         gtm = new GuiToDoMainImpl();
         gtc = new GuiCalendarImpl();
 
-        this.mainPane.addTab("ToDos", gtm.getToDoMain());
+        this.mainPane.addTab("ToDos", gtm.getPanel());
         this.mainPane.addTab("Calendar", gtc.getCalendarPanel());
 
         this.add(mainPane);
