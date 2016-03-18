@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -22,7 +23,7 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
     private GuiCalendarMonthComp monthComp;
     private JPanel pnlTools;
     private SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy");
-    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private Calendar cal = getCal();
     private JLabel lblMonth;
 
     public GuiCalendarMonthImpl() {
@@ -30,7 +31,7 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalMonth = new JToolBar();
-        monthComp = new GuiCalendarMonthComp();
+        monthComp = new GuiCalendarMonthComp(cal);
         addButtonsToToolBar(tlBrCalMonth);
         lblMonth = new JLabel();
         lblMonth.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -62,10 +63,11 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
                 break;
 
             case "today":
-                cal = Calendar.getInstance(Locale.GERMANY);
+                cal.setTime(new Date());
                 updateDateLabel();
                 break;
         }
+        monthComp.repaint();
     }
 
     /**
@@ -81,5 +83,6 @@ public class GuiCalendarMonthImpl extends GuiCalendarAbstr implements GuiCalenda
      */
     private void updateDateLabel() {
         lblMonth.setText(sdf.format(cal.getTime()));
+        setCal(cal);
     }
 }

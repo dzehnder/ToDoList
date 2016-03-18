@@ -22,7 +22,7 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
     private GuiCalendarDayComp dayComp;
     private JPanel pnlTools;
     private SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d. MMMM yyyy");
-    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private Calendar cal = getCal();
     private JLabel lblDay;
 
     public GuiCalendarDayImpl() {
@@ -85,5 +85,6 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
      */
     private void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));
+        setCal(cal);
     }
 }

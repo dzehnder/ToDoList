@@ -6,6 +6,8 @@ import ch.gibmit.m226.todo.gui.guiCalendar.week.GuiCalendarWeekImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.year.GuiCalendarYearImpl;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 /**
@@ -17,9 +19,6 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
     private JPanel pnlCalendarMain;
     private JTabbedPane tbdPnCalendars;
     private GuiCalendar gtc;
-
-
-
 
     public GuiCalendarImpl() {
         pnlCalendarMain = new JPanel(new BorderLayout());
@@ -42,9 +41,6 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
         pnlCalendarMain.add(tbdPnCalendars);
 
     }
-
-
-
 
     /**
      * Interface method that returns the main calendar panel
