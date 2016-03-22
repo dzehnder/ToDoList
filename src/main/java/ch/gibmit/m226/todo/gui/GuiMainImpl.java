@@ -1,5 +1,7 @@
 package ch.gibmit.m226.todo.gui;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
@@ -44,6 +46,7 @@ public class GuiMainImpl extends JFrame{
 
         this.pack();
         this.setSize(800, 500);
+        this.setMinimumSize(new Dimension(500, 300));
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
