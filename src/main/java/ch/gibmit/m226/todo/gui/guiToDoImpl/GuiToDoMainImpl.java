@@ -1,9 +1,12 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
-import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
+import java.awt.BorderLayout;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.border.EmptyBorder;
+
+import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
 
 /**
  * Created by colin on 24.02.16.
@@ -31,7 +34,7 @@ public class GuiToDoMainImpl implements GuiToDo {
 
 	private void setUpComponents() {
 		sptPnToDoMain = new JSplitPane();
-		sptPnToDoMain.setDividerLocation(0.5);
+		sptPnToDoMain.setDividerLocation(0.3);
 
 		gtl = new GuiToDoLeftImpl();
 		sptPnToDoMain.setLeftComponent(gtl.getPanel());
