@@ -1,5 +1,9 @@
 package ch.gibmit.m226.todo.gui;
 
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.WindowConstants;
+
 /**
  * Created by colin on 24.02.16.
  */
@@ -8,8 +12,6 @@ import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarPanel;
 import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
-
-import javax.swing.*;
 
 /**
  * @author Colin Herzog

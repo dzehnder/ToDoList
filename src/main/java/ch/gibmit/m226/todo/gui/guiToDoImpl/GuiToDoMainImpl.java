@@ -1,6 +1,5 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
-
 import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
 
 import javax.swing.*;
@@ -11,30 +10,42 @@ import java.awt.*;
  */
 public class GuiToDoMainImpl implements GuiToDo {
 
-    JPanel pnlToDoMain;
-    JSplitPane sptPnToDoMain;
-    GuiToDo gtl;
-    GuiToDo gtr;
+	JPanel pnlToDoMain;
+	JSplitPane sptPnToDoMain;
+	GuiToDo gtl;
+	GuiToDo gtr;
 
-    public GuiToDoMainImpl() {
+	public GuiToDoMainImpl() {
 
-        pnlToDoMain = new JPanel(new BorderLayout());
+		setUpPanels();
 
-        sptPnToDoMain = new JSplitPane();
-        sptPnToDoMain.setDividerLocation(0.5);
+		setUpComponents();
 
-        gtl = new GuiToDoLeftImpl();
-        sptPnToDoMain.setLeftComponent(gtl.getPanel());
+		placeComponents();
 
-        gtr = new GuiToDoRightImpl();
-        sptPnToDoMain.setRightComponent(gtr.getPanel());
+	}
 
-        pnlToDoMain.add(sptPnToDoMain);
+	private void setUpPanels() {
+		pnlToDoMain = new JPanel(new BorderLayout());
+	}
 
-    }
+	private void setUpComponents() {
+		sptPnToDoMain = new JSplitPane();
+		sptPnToDoMain.setDividerLocation(0.5);
 
-    @Override
-    public JPanel getPanel() {
-        return pnlToDoMain;
-    }
+		gtl = new GuiToDoLeftImpl();
+		sptPnToDoMain.setLeftComponent(gtl.getPanel());
+
+		gtr = new GuiToDoRightImpl();
+		sptPnToDoMain.setRightComponent(gtr.getPanel());
+	}
+
+	private void placeComponents() {
+		pnlToDoMain.add(sptPnToDoMain);
+	}
+
+	@Override
+	public JPanel getPanel() {
+		return pnlToDoMain;
+	}
 }
