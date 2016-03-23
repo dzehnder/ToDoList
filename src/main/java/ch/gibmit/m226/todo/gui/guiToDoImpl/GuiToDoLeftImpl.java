@@ -19,7 +19,7 @@ public class GuiToDoLeftImpl implements GuiToDo {
 	private JPanel pnlToDoLeft;
 	private JPanel pnlToDoLeftTop;
 	private JPanel pnlToDoLeftBottom;
-	private JComboBox cmbxToDoSort;
+	private JComboBox<String> cmbxToDoSort;
 	private JList<Todo> lstToDos;
 	private JTextField txtFldSearchToDo;
 	private JButton btnAddToDo;
@@ -44,7 +44,10 @@ public class GuiToDoLeftImpl implements GuiToDo {
 	private void setUpComponents() {
 		lstToDos = new JList<Todo>();
 		txtFldSearchToDo = new JTextField();
-		cmbxToDoSort = new JComboBox();
+		cmbxToDoSort = new JComboBox<String>();
+		cmbxToDoSort.addItem("Sortieren");
+		cmbxToDoSort.addItem("Prio");
+		cmbxToDoSort.addItem("Erstellungsdatum");
 		btnAddToDo = new JButton("+");
 		btnRemoveToDo = new JButton("-");
 

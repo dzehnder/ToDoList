@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.border.EmptyBorder;
 
 import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
 
