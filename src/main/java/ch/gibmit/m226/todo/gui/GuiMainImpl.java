@@ -31,16 +31,20 @@ public class GuiMainImpl extends JFrame{
      */
     private GuiToDo gtm;
     private GuiCalendarPanel gtc;
+    
+    private GuiMenu gm;
 
     public GuiMainImpl() {
 
         mainPane = new JTabbedPane();
         gtm = new GuiToDoMainImpl();
         gtc = new GuiCalendarImpl();
-
+        gm = new GuiMenu();
+        
         this.mainPane.addTab("ToDos", gtm.getPanel());
         this.mainPane.addTab("Calendar", gtc.getCalendarPanel());
-
+        this.setJMenuBar(gm.getMenuBar());
+        
         this.add(mainPane);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

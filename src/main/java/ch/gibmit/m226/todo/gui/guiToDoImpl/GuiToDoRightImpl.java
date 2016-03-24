@@ -2,6 +2,7 @@ package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -41,7 +42,7 @@ public class GuiToDoRightImpl implements GuiToDo {
 	private JPanel pnlToDoRightCenterBottomLeftTop;
 	private JPanel pnlToDoRightCenterBottomLeftMid;
 	private JPanel pnlToDoRightCenterBottomLeftBottom;
-	
+
 	private JLabel lblTitle;
 	private JLabel lblDate;
 	private JLabel lblTime;
@@ -49,7 +50,7 @@ public class GuiToDoRightImpl implements GuiToDo {
 	private JLabel lblCategory;
 	private JLabel lblPriority;
 	private JLabel lblDone;
-	
+
 	private JButton btnRepeat;
 	private JTextField txtFldTitle;
 	private JXDatePicker xdpDate;
@@ -63,7 +64,7 @@ public class GuiToDoRightImpl implements GuiToDo {
 	private Hashtable<Integer, JLabel> hstbl;
 	private JCheckBox chbxDone;
 	private JTextArea txtAraNotes;
-	
+
 	private static final int MIN_PRIO = 5;
 	private static final int MAX_PRIO = 1;
 
@@ -84,19 +85,19 @@ public class GuiToDoRightImpl implements GuiToDo {
 		pnlToDoRightCenter = new JPanel(new GridLayout(2, 2));
 
 		pnlToDoRightCenterTopLeft = new JPanel(new BorderLayout());
-		pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5,5,5,5));
+		pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
 		pnlToDoRightCenterTopLeftTop = new JPanel(new GridLayout(1, 2));
 		pnlToDoRightCenterTopRight = new JPanel(new GridLayout(2, 1));
-		pnlToDoRightCenterTopRight.setBorder(new EmptyBorder(5,5,5,5));
+		pnlToDoRightCenterTopRight.setBorder(new EmptyBorder(5, 5, 5, 5));
 		pnlToDoRightCenterTopRightTop = new JPanel(new GridLayout(1, 2));
 		pnlToDoRightCenterTopRightBottom = new JPanel(new GridLayout(1, 2));
 		pnlToDoRightCenterBottomLeft = new JPanel(new GridLayout(3, 1));
-		pnlToDoRightCenterBottomLeft.setBorder(new EmptyBorder(5,5,5,5));
+		pnlToDoRightCenterBottomLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
 		pnlToDoRightCenterBottomLeftTop = new JPanel(new BorderLayout());
 		pnlToDoRightCenterBottomLeftMid = new JPanel(new BorderLayout());
 		pnlToDoRightCenterBottomLeftBottom = new JPanel(new BorderLayout());
 		pnlToDoRightCenterBottomRight = new JPanel(new BorderLayout());
-		pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(5,5,5,5));
+		pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(5, 5, 5, 5));
 		pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(10, 30, 10, 30));
 	}
 
@@ -116,18 +117,18 @@ public class GuiToDoRightImpl implements GuiToDo {
 		dfFormatter.setOverwriteMode(true);
 
 		jspTime.setEditor(editor);
-		
-		//Create the slider
+
+		// Create the slider
 		sldrPriority = new JSlider(JSlider.HORIZONTAL, MAX_PRIO, MIN_PRIO, 3);
-		//sldrPriority.addChangeListener(this);
+		// sldrPriority.addChangeListener(this);
 		sldrPriority.setMajorTickSpacing(10);
 		sldrPriority.setPaintTicks(true);
 
-		//Create the label table
+		// Create the label table
 		hstbl = new Hashtable<Integer, JLabel>();
-		hstbl.put( new Integer( MIN_PRIO ), new JLabel("Unwichtig") );
-		hstbl.put( new Integer( MAX_PRIO ), new JLabel("Sehr wichtig") );
-		sldrPriority.setLabelTable( hstbl );
+		hstbl.put(new Integer(MIN_PRIO), new JLabel("Unwichtig"));
+		hstbl.put(new Integer(MAX_PRIO), new JLabel("Sehr wichtig"));
+		sldrPriority.setLabelTable(hstbl);
 		sldrPriority.setPaintLabels(true);
 
 		lblTitle = new JLabel("Titel:");
@@ -137,7 +138,7 @@ public class GuiToDoRightImpl implements GuiToDo {
 		lblCategory = new JLabel("Kategorie:");
 		lblPriority = new JLabel("Priorität:");
 		lblDone = new JLabel("Erledigt:");
-		
+
 		txtFldTitle = new JTextField();
 		xdpDate = new JXDatePicker();
 		btnRepeat = new JButton("Wiederholen");
@@ -146,8 +147,8 @@ public class GuiToDoRightImpl implements GuiToDo {
 		cmbxCategory.addItem("testkat 2");
 		chbxDone = new JCheckBox();
 		txtAraNotes = new JTextArea();
+		txtAraNotes.setText("Notiz..");
 		txtAraNotes.setBackground(Color.YELLOW);
-		txtAraNotes.setToolTipText("Notiz...");
 	}
 
 	private void placeComponents() {
@@ -170,17 +171,17 @@ public class GuiToDoRightImpl implements GuiToDo {
 		pnlToDoRightCenterBottomLeftTop.add(lblCategory, BorderLayout.WEST);
 		pnlToDoRightCenterBottomLeftTop.add(cmbxCategory, BorderLayout.CENTER);
 		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftTop);
-		
+
 		pnlToDoRightCenterBottomLeftMid.add(lblPriority, BorderLayout.WEST);
 		pnlToDoRightCenterBottomLeftMid.add(sldrPriority, BorderLayout.CENTER);
 		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftMid);
-		
+
 		pnlToDoRightCenterBottomLeftBottom.add(lblDone, BorderLayout.WEST);
 		pnlToDoRightCenterBottomLeftBottom.add(chbxDone, BorderLayout.CENTER);
 		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftBottom);
-		
+
 		pnlToDoRightCenter.add(pnlToDoRightCenterBottomLeft);
-		
+
 		pnlToDoRightCenterBottomRight.add(txtAraNotes, BorderLayout.CENTER);
 		pnlToDoRightCenter.add(pnlToDoRightCenterBottomRight);
 
