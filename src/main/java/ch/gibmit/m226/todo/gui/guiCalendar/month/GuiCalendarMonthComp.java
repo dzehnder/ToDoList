@@ -2,6 +2,7 @@ package ch.gibmit.m226.todo.gui.guiCalendar.month;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.util.*;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class GuiCalendarMonthComp extends JComponent {
              */
             g.setColor(Color.decode("#BDBDBD"));
             for (int i = prevMonth.get(Calendar.DAY_OF_MONTH); i<=prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-                g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+15);
+                g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
                 index++;
             }
         }
@@ -97,13 +98,37 @@ public class GuiCalendarMonthComp extends JComponent {
         /**
          * selected month date numbers
          */
-        g.setColor(Color.BLACK);
+        Calendar today = Calendar.getInstance();
+
         for (int i = thisMonth.get(Calendar.DAY_OF_MONTH); i<= thisMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-            g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+15);
+            g.setColor(Color.BLACK);
+
+            /**
+             * color today
+             */
+            if (today.get(Calendar.YEAR) == thisMonth.get(Calendar.YEAR) && today.get(Calendar.MONTH) == thisMonth.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) == i) {
+                g.setColor(Color.decode("#DD5238"));
+                g2d.fill(new Ellipse2D.Double(days.get(index).getX()+3, days.get(index).getY()+3, 20, 20));
+                g.setColor(Color.WHITE);
+            }
+
+            g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
             index++;
         }
 
+        /**
+         * next month date numbers
+         */
+        g.setColor(Color.decode("#BDBDBD"));
+        Calendar nextMonth = (Calendar) cal.clone();
+        nextMonth.add(Calendar.MONTH, 1);
+        nextMonth.set(Calendar.DAY_OF_MONTH, 1);
+        for (int i = nextMonth.get(Calendar.DAY_OF_MONTH); index<days.size(); i++) {
+            g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
+            index++;
+        }
 
+        g.setColor(Color.BLACK);
         /**
          * Week day labels
          */
