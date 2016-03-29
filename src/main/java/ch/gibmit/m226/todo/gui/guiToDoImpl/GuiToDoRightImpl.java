@@ -2,7 +2,6 @@ package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Calendar;
 import java.util.Hashtable;
@@ -22,7 +21,7 @@ import javax.swing.text.DateFormatter;
 
 import org.jdesktop.swingx.JXDatePicker;
 
-import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiToDo;
 
 /**
  * Created by colin on 16.03.16.
@@ -136,7 +135,7 @@ public class GuiToDoRightImpl implements GuiToDo {
 		lblTime = new JLabel("Uhrzeit:");
 		lblRepeat = new JLabel("---");
 		lblCategory = new JLabel("Kategorie:");
-		lblPriority = new JLabel("Priorität:");
+		lblPriority = new JLabel("Prioritï¿½t:");
 		lblDone = new JLabel("Erledigt:");
 
 		txtFldTitle = new JTextField();

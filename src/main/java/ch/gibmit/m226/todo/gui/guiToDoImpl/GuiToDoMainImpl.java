@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiToDo;
 
 /**
  * Created by colin on 24.02.16.

@@ -12,7 +12,7 @@ import javax.swing.WindowConstants;
 
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarPanel;
-import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiToDo;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
 
 /**

@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import ch.gibmit.m226.todo.gui.guiToDo.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiToDo;
 import ch.gibmit.m226.todo.todo.Todo;
 
 public class GuiToDoLeftImpl implements GuiToDo {
