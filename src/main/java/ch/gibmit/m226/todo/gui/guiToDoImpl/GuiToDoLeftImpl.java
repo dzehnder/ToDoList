@@ -11,10 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import ch.gibmit.m226.todo.gui.gui.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiPanel;
 import ch.gibmit.m226.todo.todo.Todo;
 
-public class GuiToDoLeftImpl implements GuiToDo {
+public class GuiToDoLeftImpl implements GuiPanel {
 
 	private JPanel pnlToDoLeft;
 	private JPanel pnlToDoLeftTop;

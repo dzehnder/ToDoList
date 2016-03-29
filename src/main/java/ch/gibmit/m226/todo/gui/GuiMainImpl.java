@@ -12,7 +12,8 @@ import javax.swing.WindowConstants;
 
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarPanel;
-import ch.gibmit.m226.todo.gui.gui.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiPanel;
+import ch.gibmit.m226.todo.gui.guiMenu.GuiMenuImpl;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
 
 /**
@@ -29,17 +30,17 @@ public class GuiMainImpl extends JFrame{
     /**
      * This is the class for the left tab.
      */
-    private GuiToDo gtm;
+    private GuiPanel gtm;
     private GuiCalendarPanel gtc;
     
-    private GuiMenu gm;
+    private GuiPanel gm;
 
     public GuiMainImpl() {
 
         mainPane = new JTabbedPane();
         gtm = new GuiToDoMainImpl();
         gtc = new GuiCalendarImpl();
-        gm = new GuiMenu();
+        gm = new GuiMenuImpl();
         
         this.mainPane.addTab("ToDos", gtm.getPanel());
         this.mainPane.addTab("Calendar", gtc.getCalendarPanel());

@@ -5,17 +5,17 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
-import ch.gibmit.m226.todo.gui.gui.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiPanel;
 
 /**
  * Created by colin on 24.02.16.
  */
-public class GuiToDoMainImpl implements GuiToDo {
+public class GuiToDoMainImpl implements GuiPanel {
 
 	JPanel pnlToDoMain;
 	JSplitPane sptPnToDoMain;
-	GuiToDo gtl;
-	GuiToDo gtr;
+	GuiPanel gtl;
+	GuiPanel gtr;
 
 	public GuiToDoMainImpl() {
 

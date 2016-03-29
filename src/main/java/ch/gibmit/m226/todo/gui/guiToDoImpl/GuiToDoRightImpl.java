@@ -21,12 +21,12 @@ import javax.swing.text.DateFormatter;
 
 import org.jdesktop.swingx.JXDatePicker;
 
-import ch.gibmit.m226.todo.gui.gui.GuiToDo;
+import ch.gibmit.m226.todo.gui.gui.GuiPanel;
 
 /**
  * Created by colin on 16.03.16.
  */
-public class GuiToDoRightImpl implements GuiToDo {
+public class GuiToDoRightImpl implements GuiPanel {
 
 	private JPanel pnlToDoRight;
 	private JPanel pnlToDoRightTop;
