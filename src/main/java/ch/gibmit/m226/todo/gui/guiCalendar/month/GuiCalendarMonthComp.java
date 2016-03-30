@@ -14,6 +14,7 @@ public class GuiCalendarMonthComp extends JComponent {
     private static final String[] WEEKDAYS = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private Calendar cal;
     private List<Rectangle> days;
+    private Graphics2D g2d;
 
     public GuiCalendarMonthComp(Calendar cal) {
         this.cal = cal;
@@ -33,7 +34,7 @@ public class GuiCalendarMonthComp extends JComponent {
         /**
          * Graphics2D object for antialiasing
          */
-        Graphics2D g2d = (Graphics2D) g;
+        g2d = (Graphics2D) g;
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT);
@@ -48,7 +49,7 @@ public class GuiCalendarMonthComp extends JComponent {
         g.drawLine(0, dayLabelHeight, width, dayLabelHeight);
 
         /**
-         * draw day cells
+         * create day cells
          */
         days.clear();
 
@@ -59,7 +60,6 @@ public class GuiCalendarMonthComp extends JComponent {
             }
         }
 
-        days.forEach(g2d::draw);
 
         /**
          * draw date numbers
@@ -90,6 +90,8 @@ public class GuiCalendarMonthComp extends JComponent {
              */
             g.setColor(Color.decode("#BDBDBD"));
             for (int i = prevMonth.get(Calendar.DAY_OF_MONTH); i<=prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+                g.setColor(Color.BLACK);
+                checkForWeekend(index);
                 g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
                 index++;
             }
@@ -102,7 +104,7 @@ public class GuiCalendarMonthComp extends JComponent {
 
         for (int i = thisMonth.get(Calendar.DAY_OF_MONTH); i<= thisMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
             g.setColor(Color.BLACK);
-
+            checkForWeekend(index);
             /**
              * color today
              */
@@ -124,16 +126,38 @@ public class GuiCalendarMonthComp extends JComponent {
         nextMonth.add(Calendar.MONTH, 1);
         nextMonth.set(Calendar.DAY_OF_MONTH, 1);
         for (int i = nextMonth.get(Calendar.DAY_OF_MONTH); index<days.size(); i++) {
+            g.setColor(Color.BLACK);
+            checkForWeekend(index);
             g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
             index++;
         }
-
         g.setColor(Color.BLACK);
         /**
          * Week day labels
          */
         for (int i = 0; i<WEEKDAYS.length; i++) {
             g2d.drawString(WEEKDAYS[i], (dayWidth*i)+(dayWidth/8), (dayLabelHeight/2)+dayLabelHeight/4);
+        }
+
+
+        /**
+         * draw day cells.
+         * This needs to be done at the end, so that the backgrounds can't be painted over it.
+         */
+        days.forEach(g2d::draw);
+    }
+
+
+    /**
+     * Checks, if the specified index is at the position of a weekend (Saturday or Sunday). Colors the background
+     * and the date label accordingly.
+     * @param index the index of the day cell to check
+     */
+    private void checkForWeekend(int index) {
+        if ((index+1)%7==0 || (index+2)%7==0) {
+            g2d.setColor(Color.decode("#F5F5F5"));
+            g2d.fill(days.get(index));
+            g2d.setColor(Color.decode("#878787"));
         }
     }
 }
