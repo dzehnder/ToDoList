@@ -88,10 +88,10 @@ public class GuiCalendarMonthComp extends JComponent {
             /**
              * previous month date numbers
              */
-            g.setColor(Color.decode("#BDBDBD"));
+
             for (int i = prevMonth.get(Calendar.DAY_OF_MONTH); i<=prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-                g.setColor(Color.BLACK);
                 checkForWeekend(index);
+                g.setColor(Color.decode("#BDBDBD"));
                 g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
                 index++;
             }
@@ -121,17 +121,18 @@ public class GuiCalendarMonthComp extends JComponent {
         /**
          * next month date numbers
          */
-        g.setColor(Color.decode("#BDBDBD"));
+
         Calendar nextMonth = (Calendar) cal.clone();
         nextMonth.add(Calendar.MONTH, 1);
         nextMonth.set(Calendar.DAY_OF_MONTH, 1);
         for (int i = nextMonth.get(Calendar.DAY_OF_MONTH); index<days.size(); i++) {
-            g.setColor(Color.BLACK);
             checkForWeekend(index);
+            g.setColor(Color.decode("#BDBDBD"));
             g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
             index++;
         }
         g.setColor(Color.BLACK);
+
         /**
          * Week day labels
          */
@@ -139,14 +140,12 @@ public class GuiCalendarMonthComp extends JComponent {
             g2d.drawString(WEEKDAYS[i], (dayWidth*i)+(dayWidth/8), (dayLabelHeight/2)+dayLabelHeight/4);
         }
 
-
         /**
          * draw day cells.
          * This needs to be done at the end, so that the backgrounds can't be painted over it.
          */
         days.forEach(g2d::draw);
     }
-
 
     /**
      * Checks, if the specified index is at the position of a weekend (Saturday or Sunday). Colors the background
