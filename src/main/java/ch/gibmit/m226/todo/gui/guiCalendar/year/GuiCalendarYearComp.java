@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * @author Damian Zehnder
+ * This class paints the year view component of the calendar
  */
 public class GuiCalendarYearComp extends JComponent {
 
@@ -59,7 +60,6 @@ public class GuiCalendarYearComp extends JComponent {
             }
         }
 
-        //months.forEach(g2d::draw);
         /**
          * draw month labels
          */
@@ -88,21 +88,38 @@ public class GuiCalendarYearComp extends JComponent {
             g.drawLine(xPos+monthWidth/28, yPos+monthLabelHeight, xPos+monthWidth-monthWidth/28, yPos+monthLabelHeight);
         }
 
+        /**
+         * draw date labels
+         */
         Calendar today = Calendar.getInstance(Locale.GERMANY);
-
         Calendar yearCal = (Calendar) cal.clone();
 
+        /**
+         * loop through the months
+         */
         for (int m = 0; m <months.size(); m++) {
             yearCal.set(Calendar.MONTH, m);
             yearCal.set(Calendar.DAY_OF_MONTH, 1);
             yearCal.getTime();
             yearCal.set(Calendar.DAY_OF_WEEK, 2);
+            /**
+             * loop through the weeks
+             */
             for (int w = 1; w < 7; w++) {
+                /**
+                 * loop through every day
+                 */
                 for (int d = 0; d < WEEKDAYS.length; d++) {
                     g.setColor(Color.BLACK);
+                    /**
+                     * check for last and next month to gray out the date labels
+                     */
                     if (yearCal.get(Calendar.MONTH) > m || yearCal.get(Calendar.MONTH) < m) {
                         g.setColor(Color.decode("#BDBDBD"));
                     }
+                    /**
+                     * check for today to circle the date red
+                     */
                     else if (today.get(Calendar.YEAR) == yearCal.get(Calendar.YEAR) && today.get(Calendar.MONTH) == yearCal.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) == yearCal.get(Calendar.DAY_OF_MONTH)) {
                         g.setColor(Color.decode("#DD5238"));
                         g2d.fill(new Ellipse2D.Double(months.get(m).getX()+ (d * (monthWidth / 7))  + ((monthWidth / 7) / 3)-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));

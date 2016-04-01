@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * @author Damian Zender
+ * This class paints the month view component of the calendar
  */
 public class GuiCalendarMonthComp extends JComponent {
 

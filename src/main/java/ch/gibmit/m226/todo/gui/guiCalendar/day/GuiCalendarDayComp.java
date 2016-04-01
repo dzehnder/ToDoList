@@ -5,6 +5,7 @@ import java.awt.*;
 
 /**
  * @author Damian Zehnder
+ * This class paints the day view of the calendar
  */
 public class GuiCalendarDayComp extends JComponent {
 

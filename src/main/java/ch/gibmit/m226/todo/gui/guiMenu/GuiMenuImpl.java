@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**
  * Created by colin on 29.03.16.
- */
+ *//*
 public class GuiMenuImpl implements GuiPanel {
 
     private JMenuItem uiMenuDelTodo;
@@ -227,3 +227,4 @@ public class GuiMenuImpl implements GuiPanel {
         return menuBar;
     }
 }
+*/

@@ -13,7 +13,7 @@ import javax.swing.WindowConstants;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarPanel;
 import ch.gibmit.m226.todo.gui.gui.GuiPanel;
-import ch.gibmit.m226.todo.gui.guiMenu.GuiMenuImpl;
+//import ch.gibmit.m226.todo.gui.guiMenu.GuiMenuImpl;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
 
 /**
@@ -40,11 +40,11 @@ public class GuiMainImpl extends JFrame{
         mainPane = new JTabbedPane();
         gtm = new GuiToDoMainImpl();
         gtc = new GuiCalendarImpl();
-        gm = new GuiMenuImpl();
+        //gm = new GuiMenuImpl();
         
         this.mainPane.addTab("ToDos", gtm.getPanel());
         this.mainPane.addTab("Calendar", gtc.getCalendarPanel());
-        this.setJMenuBar(gm.getMenuBar());
+        //this.setJMenuBar(gm.getMenuBar());
         
         this.add(mainPane);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

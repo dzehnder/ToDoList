@@ -63,11 +63,20 @@ public abstract class GuiCalendarAbstr implements ActionListener {
      */
     public abstract void actionPerformed(ActionEvent e);
 
+    /**
+     * @return the selected calendar date in the calendar view
+     */
     public Calendar getCal() {
         return cal;
     }
 
+    /**
+     * set the selected calendar date in the calendar view
+     * @param cal the selected calendar date in the calendar view
+     */
     public void setCal(Calendar cal) {
         this.cal = cal;
     }
+
+
 }
