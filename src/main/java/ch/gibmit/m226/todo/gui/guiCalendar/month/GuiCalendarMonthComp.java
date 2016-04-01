@@ -46,7 +46,6 @@ public class GuiCalendarMonthComp extends JComponent {
         g.fillRect(0, 0, width, height);
 
         g.setColor(Color.BLACK);
-        g.drawLine(0, dayLabelHeight, width, dayLabelHeight);
 
         /**
          * create day cells
@@ -100,7 +99,7 @@ public class GuiCalendarMonthComp extends JComponent {
         /**
          * selected month date numbers
          */
-        Calendar today = Calendar.getInstance();
+        Calendar today = Calendar.getInstance(Locale.GERMANY);
 
         for (int i = thisMonth.get(Calendar.DAY_OF_MONTH); i<= thisMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
             g.setColor(Color.BLACK);

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -29,7 +30,7 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalYear = new JToolBar();
-        yearComp = new GuiCalendarYearComp();
+        yearComp = new GuiCalendarYearComp(cal);
         addButtonsToToolBar(tlBrCalYear);
         lblYear = new JLabel();
         lblYear.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -61,11 +62,11 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
                 break;
 
             case "today":
-                cal = Calendar.getInstance(Locale.GERMANY);
+                cal.setTime(new Date());
                 updateDateLabel();
                 break;
         }
-
+        yearComp.repaint();
     }
 
     /**
@@ -81,5 +82,6 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
      */
     private void updateDateLabel() {
         lblYear.setText(String.valueOf(cal.get(Calendar.YEAR)));
+        setCal(cal);
     }
 }
