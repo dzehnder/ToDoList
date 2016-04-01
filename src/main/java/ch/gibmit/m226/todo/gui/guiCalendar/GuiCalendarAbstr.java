@@ -3,6 +3,7 @@ package ch.gibmit.m226.todo.gui.guiCalendar;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -24,13 +25,20 @@ public abstract class GuiCalendarAbstr implements ActionListener {
      * @return the button with the specified icon
      */
     public JButton navButton(String imgName, String action) {
-        String imgLocation = "images/"+imgName+".png";
+
+
 
         JButton btn = new JButton();
 
+        try {
+            URL pic = this.getClass().getClassLoader().getResource(imgName+".png");
+            Icon img = new ImageIcon(pic);
+            btn.setIcon(img);
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
-        Icon img = new ImageIcon(imgLocation);
-        btn.setIcon(img);
         btn.setActionCommand(action);
         btn.addActionListener(this);
 
