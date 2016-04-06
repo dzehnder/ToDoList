@@ -31,6 +31,8 @@ public class GuiToDoRightImpl implements GuiPanel {
 	private JPanel pnlToDoRight;
 	private JPanel pnlToDoRightTop;
 	private JPanel pnlToDoRightCenter;
+	private JPanel pnlToDoRightCenterNorth;
+	private JPanel pnlToDoRightCenterCenter;
 	private JPanel pnlToDoRightCenterTopLeft;
 	private JPanel pnlToDoRightCenterTopLeftTop;
 	private JPanel pnlToDoRightCenterTopRight;
@@ -81,7 +83,9 @@ public class GuiToDoRightImpl implements GuiPanel {
 		pnlToDoRight = new JPanel(new BorderLayout());
 		pnlToDoRight.setBorder(new EmptyBorder(30, 30, 30, 30));
 		pnlToDoRightTop = new JPanel(new BorderLayout());
-		pnlToDoRightCenter = new JPanel(new GridLayout(2, 2));
+		pnlToDoRightCenter = new JPanel(new BorderLayout());
+		pnlToDoRightCenterNorth = new JPanel(new GridLayout(1,2));
+		pnlToDoRightCenterCenter = new JPanel(new GridLayout(1,2));
 
 		pnlToDoRightCenterTopLeft = new JPanel(new BorderLayout());
 		pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -154,10 +158,13 @@ public class GuiToDoRightImpl implements GuiPanel {
 		pnlToDoRightTop.add(lblTitle, BorderLayout.WEST);
 		pnlToDoRightTop.add(txtFldTitle, BorderLayout.CENTER);
 
+		pnlToDoRightCenter.add(pnlToDoRightCenterNorth, BorderLayout.NORTH);
+		pnlToDoRightCenter.add(pnlToDoRightCenterCenter, BorderLayout.CENTER);
+
 		pnlToDoRightCenterTopLeftTop.add(lblDate, BorderLayout.WEST);
 		pnlToDoRightCenterTopLeftTop.add(xdpDate, BorderLayout.CENTER);
 		pnlToDoRightCenterTopLeft.add(pnlToDoRightCenterTopLeftTop);
-		pnlToDoRightCenter.add(pnlToDoRightCenterTopLeft);
+		pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopLeft);
 
 		pnlToDoRightCenterTopRightTop.add(lblTime);
 		pnlToDoRightCenterTopRightTop.add(jspTime);
@@ -165,7 +172,7 @@ public class GuiToDoRightImpl implements GuiPanel {
 		pnlToDoRightCenterTopRightBottom.add(btnRepeat);
 		pnlToDoRightCenterTopRightBottom.add(lblRepeat);
 		pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightBottom);
-		pnlToDoRightCenter.add(pnlToDoRightCenterTopRight);
+		pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopRight);
 
 		pnlToDoRightCenterBottomLeftTop.add(lblCategory, BorderLayout.WEST);
 		pnlToDoRightCenterBottomLeftTop.add(cmbxCategory, BorderLayout.CENTER);
@@ -179,10 +186,10 @@ public class GuiToDoRightImpl implements GuiPanel {
 		pnlToDoRightCenterBottomLeftBottom.add(chbxDone, BorderLayout.CENTER);
 		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftBottom);
 
-		pnlToDoRightCenter.add(pnlToDoRightCenterBottomLeft);
+		pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomLeft);
 
 		pnlToDoRightCenterBottomRight.add(txtAraNotes, BorderLayout.CENTER);
-		pnlToDoRightCenter.add(pnlToDoRightCenterBottomRight);
+		pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomRight);
 
 		pnlToDoRight.add(pnlToDoRightTop, BorderLayout.NORTH);
 		pnlToDoRight.add(pnlToDoRightCenter, BorderLayout.CENTER);
