@@ -22,8 +22,6 @@ public class Start {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-
-
         new GuiMainImpl();
     }
 
