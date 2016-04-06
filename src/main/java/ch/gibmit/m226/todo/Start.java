@@ -22,6 +22,9 @@ public class Start {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+
+        System.getProperties().put("apple.laf.useScreenMenuBar", "true");
+        
         new GuiMainImpl();
     }
 
