@@ -153,6 +153,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         txtFldTitle = new JTextField();
         xdpDate = new JXDatePicker();
         btnRepeat = new JButton("Repeat");
+		btnRepeat.addActionListener(this);
         btnAddCategory = new JButton("...");
         btnAddCategory.addActionListener(this);
         cmbxCategory = new JComboBox<String>();
@@ -222,5 +223,8 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         if (e.getSource() == this.btnAddCategory) {
             new GuiToDoAddCategory();
         }
+		if (e.getSource() == this.btnRepeat) {
+			new GuiToDoRepeatImpl();
+		}
     }
 }
