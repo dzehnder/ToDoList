@@ -45,9 +45,9 @@ public class GuiToDoLeftImpl implements GuiPanel {
 		lstToDos = new JList<Todo>();
 		txtFldSearchToDo = new JTextField();
 		cmbxToDoSort = new JComboBox<String>();
-		cmbxToDoSort.addItem("Sortieren");
-		cmbxToDoSort.addItem("Prio");
-		cmbxToDoSort.addItem("Erstellungsdatum");
+		cmbxToDoSort.addItem("Name");
+		cmbxToDoSort.addItem("Priority");
+		cmbxToDoSort.addItem("Date");
 		btnAddToDo = new JButton("+");
 		btnRemoveToDo = new JButton("-");
 

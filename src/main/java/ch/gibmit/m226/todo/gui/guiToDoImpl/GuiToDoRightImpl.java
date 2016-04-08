@@ -28,176 +28,183 @@ import ch.gibmit.m226.todo.gui.gui.GuiPanel;
  */
 public class GuiToDoRightImpl implements GuiPanel {
 
-	private JPanel pnlToDoRight;
-	private JPanel pnlToDoRightTop;
-	private JPanel pnlToDoRightCenter;
-	private JPanel pnlToDoRightCenterNorth;
-	private JPanel pnlToDoRightCenterCenter;
-	private JPanel pnlToDoRightCenterTopLeft;
-	private JPanel pnlToDoRightCenterTopLeftTop;
-	private JPanel pnlToDoRightCenterTopRight;
-	private JPanel pnlToDoRightCenterTopRightTop;
-	private JPanel pnlToDoRightCenterTopRightBottom;
-	private JPanel pnlToDoRightCenterBottomLeft;
-	private JPanel pnlToDoRightCenterBottomRight;
-	private JPanel pnlToDoRightCenterBottomLeftTop;
-	private JPanel pnlToDoRightCenterBottomLeftMid;
-	private JPanel pnlToDoRightCenterBottomLeftBottom;
+    private JPanel pnlToDoRight;
+    private JPanel pnlToDoRightTop;
+    private JPanel pnlToDoRightCenter;
+    private JPanel pnlToDoRightCenterNorth;
+    private JPanel pnlToDoRightCenterCenter;
+    private JPanel pnlToDoRightCenterTopLeft;
+    private JPanel pnlToDoRightCenterTopLeftTop;
+    private JPanel pnlToDoRightCenterTopRight;
+    private JPanel pnlToDoRightCenterTopRightTop;
+    private JPanel pnlToDoRightCenterTopRightBottom;
+    private JPanel pnlToDoRightCenterBottomLeft;
+    private JPanel pnlToDoRightCenterBottomRight;
+    private JPanel pnlToDoRightCenterBottomLeftTop;
+    private JPanel pnlToDoRightCenterBottomLeftTopTop;
+    private JPanel pnlToDoRightCenterBottomLeftMid;
+    private JPanel pnlToDoRightCenterBottomLeftBottom;
 
-	private JLabel lblTitle;
-	private JLabel lblDate;
-	private JLabel lblTime;
-	private JLabel lblRepeat;
-	private JLabel lblCategory;
-	private JLabel lblPriority;
-	private JLabel lblDone;
+    private JLabel lblTitle;
+    private JLabel lblDate;
+    private JLabel lblTime;
+    private JLabel lblRepeat;
+    private JLabel lblCategory;
+    private JLabel lblPriority;
+    private JLabel lblDone;
 
-	private JButton btnRepeat;
-	private JTextField txtFldTitle;
-	private JXDatePicker xdpDate;
-	private Calendar cdrCalendar;
-	private DateFormatter dfFormatter;
-	private JSpinner jspTime;
-	private JSpinner.DateEditor editor;
-	private SpinnerDateModel model;
-	private JComboBox<String> cmbxCategory;
-	private JSlider sldrPriority;
-	private Hashtable<Integer, JLabel> hstbl;
-	private JCheckBox chbxDone;
-	private JTextArea txtAraNotes;
+    private JButton btnRepeat;
+    private JTextField txtFldTitle;
+    private JXDatePicker xdpDate;
+    private Calendar cdrCalendar;
+    private DateFormatter dfFormatter;
+    private JSpinner jspTime;
+    private JSpinner.DateEditor editor;
+    private SpinnerDateModel model;
+    private JComboBox<String> cmbxCategory;
+    private JSlider sldrPriority;
+    private Hashtable<Integer, JLabel> hstbl;
+    private JCheckBox chbxDone;
+    private JTextArea txtAraNotes;
 
-	private static final int MIN_PRIO = 5;
-	private static final int MAX_PRIO = 1;
+    private static final int MIN_PRIO = 5;
+    private static final int MAX_PRIO = 1;
 
-	public GuiToDoRightImpl() {
+    public GuiToDoRightImpl() {
 
-		setUpPanels();
+        setUpPanels();
 
-		setUpComponents();
+        setUpComponents();
 
-		placeComponents();
+        placeComponents();
 
-	}
+    }
 
-	private void setUpPanels() {
-		pnlToDoRight = new JPanel(new BorderLayout());
-		pnlToDoRight.setBorder(new EmptyBorder(30, 30, 30, 30));
-		pnlToDoRightTop = new JPanel(new BorderLayout());
-		pnlToDoRightCenter = new JPanel(new BorderLayout());
-		pnlToDoRightCenterNorth = new JPanel(new GridLayout(1,2));
-		pnlToDoRightCenterCenter = new JPanel(new GridLayout(1,2));
+    private void setUpPanels() {
+        pnlToDoRight = new JPanel(new BorderLayout());
+        pnlToDoRight.setBorder(new EmptyBorder(30, 30, 30, 30));
+        pnlToDoRightTop = new JPanel(new BorderLayout());
+        pnlToDoRightCenter = new JPanel(new BorderLayout());
+        pnlToDoRightCenterNorth = new JPanel(new GridLayout(1, 2));
+        pnlToDoRightCenterCenter = new JPanel(new GridLayout(1, 2));
 
-		pnlToDoRightCenterTopLeft = new JPanel(new BorderLayout());
-		pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
-		pnlToDoRightCenterTopLeftTop = new JPanel(new GridLayout(1, 2));
-		pnlToDoRightCenterTopRight = new JPanel(new GridLayout(2, 1));
-		pnlToDoRightCenterTopRight.setBorder(new EmptyBorder(5, 5, 5, 5));
-		pnlToDoRightCenterTopRightTop = new JPanel(new GridLayout(1, 2));
-		pnlToDoRightCenterTopRightBottom = new JPanel(new GridLayout(1, 2));
-		pnlToDoRightCenterBottomLeft = new JPanel(new GridLayout(3, 1));
-		pnlToDoRightCenterBottomLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
-		pnlToDoRightCenterBottomLeftTop = new JPanel(new BorderLayout());
-		pnlToDoRightCenterBottomLeftMid = new JPanel(new BorderLayout());
-		pnlToDoRightCenterBottomLeftBottom = new JPanel(new BorderLayout());
-		pnlToDoRightCenterBottomRight = new JPanel(new BorderLayout());
-		pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(5, 5, 5, 5));
-		pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(10, 30, 10, 30));
-	}
+        pnlToDoRightCenterTopLeft = new JPanel(new BorderLayout());
+        pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
+        pnlToDoRightCenterTopLeftTop = new JPanel(new GridLayout(1, 2));
+        pnlToDoRightCenterTopRight = new JPanel(new GridLayout(2, 1));
+        pnlToDoRightCenterTopRight.setBorder(new EmptyBorder(5, 5, 5, 5));
+        pnlToDoRightCenterTopRightTop = new JPanel(new GridLayout(1, 2));
+        pnlToDoRightCenterTopRightBottom = new JPanel(new GridLayout(1, 2));
+        pnlToDoRightCenterBottomLeft = new JPanel(new GridLayout(3, 1));
+        pnlToDoRightCenterBottomLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
+        pnlToDoRightCenterBottomLeftTop = new JPanel(new BorderLayout());
+        pnlToDoRightCenterBottomLeftTopTop = new JPanel(new BorderLayout());
+        pnlToDoRightCenterBottomLeftTopTop.setBorder(new EmptyBorder(60, 0, 0, 0));
+        pnlToDoRightCenterBottomLeftMid = new JPanel(new BorderLayout());
+        pnlToDoRightCenterBottomLeftBottom = new JPanel(new BorderLayout());
+        pnlToDoRightCenterBottomRight = new JPanel(new BorderLayout());
+        pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(5, 5, 5, 5));
+        pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(10, 30, 10, 30));
+    }
 
-	private void setUpComponents() {
-		cdrCalendar = Calendar.getInstance();
-		cdrCalendar.set(Calendar.HOUR_OF_DAY, 24); // 24 == 12 PM == 00:00:00
-		cdrCalendar.set(Calendar.MINUTE, 0);
+    private void setUpComponents() {
+        cdrCalendar = Calendar.getInstance();
+        cdrCalendar.set(Calendar.HOUR_OF_DAY, 24); // 24 == 12 PM == 00:00:00
+        cdrCalendar.set(Calendar.MINUTE, 0);
 
-		model = new SpinnerDateModel();
-		model.setValue(cdrCalendar.getTime());
+        model = new SpinnerDateModel();
+        model.setValue(cdrCalendar.getTime());
 
-		jspTime = new JSpinner(model);
+        jspTime = new JSpinner(model);
 
-		editor = new JSpinner.DateEditor(jspTime, "HH:mm");
-		dfFormatter = (DateFormatter) editor.getTextField().getFormatter();
-		dfFormatter.setAllowsInvalid(false);
-		dfFormatter.setOverwriteMode(true);
+        editor = new JSpinner.DateEditor(jspTime, "HH:mm");
+        dfFormatter = (DateFormatter) editor.getTextField().getFormatter();
+        dfFormatter.setAllowsInvalid(false);
+        dfFormatter.setOverwriteMode(true);
 
-		jspTime.setEditor(editor);
+        jspTime.setEditor(editor);
 
-		// Create the slider
-		sldrPriority = new JSlider(JSlider.HORIZONTAL, MAX_PRIO, MIN_PRIO, 3);
-		// sldrPriority.addChangeListener(this);
-		sldrPriority.setMajorTickSpacing(10);
-		sldrPriority.setPaintTicks(true);
+        // Create the slider
+        sldrPriority = new JSlider(JSlider.HORIZONTAL, MAX_PRIO, MIN_PRIO, 3);
+        // sldrPriority.addChangeListener(this);
+        sldrPriority.setMajorTickSpacing(10);
+        sldrPriority.setPaintTicks(true);
 
-		// Create the label table
-		hstbl = new Hashtable<Integer, JLabel>();
-		hstbl.put(new Integer(MIN_PRIO), new JLabel("Unwichtig"));
-		hstbl.put(new Integer(MAX_PRIO), new JLabel("Sehr wichtig"));
-		sldrPriority.setLabelTable(hstbl);
-		sldrPriority.setPaintLabels(true);
+        // Create the label table
+        hstbl = new Hashtable<Integer, JLabel>();
+        hstbl.put(new Integer(MIN_PRIO), new JLabel("Unimportant"));
+        hstbl.put(new Integer(MAX_PRIO), new JLabel("Important"));
+        sldrPriority.setLabelTable(hstbl);
+        sldrPriority.setPaintLabels(true);
 
-		lblTitle = new JLabel("Titel:");
-		lblDate = new JLabel("Datum:");
-		lblTime = new JLabel("Uhrzeit:");
-		lblRepeat = new JLabel("---");
-		lblCategory = new JLabel("Kategorie:");
-		lblPriority = new JLabel("Priorit�t:");
-		lblDone = new JLabel("Erledigt:");
+        lblTitle = new JLabel("Title:");
+        lblDate = new JLabel("Date:");
+        lblTime = new JLabel("Time:");
+        lblRepeat = new JLabel("---");
+        lblCategory = new JLabel("Category:");
+        lblPriority = new JLabel("Priority:");
+        lblDone = new JLabel("Done:");
 
-		txtFldTitle = new JTextField();
-		xdpDate = new JXDatePicker();
-		btnRepeat = new JButton("Wiederholen");
-		cmbxCategory = new JComboBox<String>();
-		cmbxCategory.addItem("testkat 1");
-		cmbxCategory.addItem("testkat 2");
-		chbxDone = new JCheckBox();
-		txtAraNotes = new JTextArea();
-		txtAraNotes.setText("Notiz..");
-		txtAraNotes.setBackground(Color.YELLOW);
-	}
+        txtFldTitle = new JTextField();
+        xdpDate = new JXDatePicker();
+        btnRepeat = new JButton("Repeat");
+        cmbxCategory = new JComboBox<String>();
+        cmbxCategory.addItem("Work");
+        cmbxCategory.addItem("School");
+        cmbxCategory.addItem("Theater");
+        cmbxCategory.addItem("Movies");
+        chbxDone = new JCheckBox();
+        txtAraNotes = new JTextArea();
+        txtAraNotes.setText("Note..");
+        Color randomColor = new Color(255,255,154);
+        txtAraNotes.setBackground(randomColor);
+    }
 
-	private void placeComponents() {
-		pnlToDoRightTop.add(lblTitle, BorderLayout.WEST);
-		pnlToDoRightTop.add(txtFldTitle, BorderLayout.CENTER);
+    private void placeComponents() {
+        pnlToDoRightTop.add(lblTitle, BorderLayout.WEST);
+        pnlToDoRightTop.add(txtFldTitle, BorderLayout.CENTER);
 
-		pnlToDoRightCenter.add(pnlToDoRightCenterNorth, BorderLayout.NORTH);
-		pnlToDoRightCenter.add(pnlToDoRightCenterCenter, BorderLayout.CENTER);
+        pnlToDoRightCenter.add(pnlToDoRightCenterNorth, BorderLayout.NORTH);
+        pnlToDoRightCenter.add(pnlToDoRightCenterCenter, BorderLayout.CENTER);
 
-		pnlToDoRightCenterTopLeftTop.add(lblDate, BorderLayout.WEST);
-		pnlToDoRightCenterTopLeftTop.add(xdpDate, BorderLayout.CENTER);
-		pnlToDoRightCenterTopLeft.add(pnlToDoRightCenterTopLeftTop);
-		pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopLeft);
+        pnlToDoRightCenterTopLeftTop.add(lblDate, BorderLayout.WEST);
+        pnlToDoRightCenterTopLeftTop.add(xdpDate, BorderLayout.CENTER);
+        pnlToDoRightCenterTopLeft.add(pnlToDoRightCenterTopLeftTop);
+        pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopLeft);
 
-		pnlToDoRightCenterTopRightTop.add(lblTime);
-		pnlToDoRightCenterTopRightTop.add(jspTime);
-		pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightTop);
-		pnlToDoRightCenterTopRightBottom.add(btnRepeat);
-		pnlToDoRightCenterTopRightBottom.add(lblRepeat);
-		pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightBottom);
-		pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopRight);
+        pnlToDoRightCenterTopRightTop.add(lblTime);
+        pnlToDoRightCenterTopRightTop.add(jspTime);
+        pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightTop);
+        pnlToDoRightCenterTopRightBottom.add(btnRepeat);
+        pnlToDoRightCenterTopRightBottom.add(lblRepeat);
+        pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightBottom);
+        pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopRight);
 
-		pnlToDoRightCenterBottomLeftTop.add(lblCategory, BorderLayout.WEST);
-		pnlToDoRightCenterBottomLeftTop.add(cmbxCategory, BorderLayout.CENTER);
-		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftTop);
+        pnlToDoRightCenterBottomLeftTop.add(pnlToDoRightCenterBottomLeftTopTop, BorderLayout.NORTH);
+        pnlToDoRightCenterBottomLeftTopTop.add(lblCategory, BorderLayout.WEST);
+        pnlToDoRightCenterBottomLeftTopTop.add(cmbxCategory, BorderLayout.CENTER);
+        pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftTop);
 
-		pnlToDoRightCenterBottomLeftMid.add(lblPriority, BorderLayout.WEST);
-		pnlToDoRightCenterBottomLeftMid.add(sldrPriority, BorderLayout.CENTER);
-		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftMid);
+        pnlToDoRightCenterBottomLeftMid.add(lblPriority, BorderLayout.WEST);
+        pnlToDoRightCenterBottomLeftMid.add(sldrPriority, BorderLayout.CENTER);
+        pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftMid);
 
-		pnlToDoRightCenterBottomLeftBottom.add(lblDone, BorderLayout.WEST);
-		pnlToDoRightCenterBottomLeftBottom.add(chbxDone, BorderLayout.CENTER);
-		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftBottom);
+        pnlToDoRightCenterBottomLeftBottom.add(lblDone, BorderLayout.WEST);
+        pnlToDoRightCenterBottomLeftBottom.add(chbxDone, BorderLayout.CENTER);
+        pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftBottom);
 
-		pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomLeft);
+        pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomLeft);
 
-		pnlToDoRightCenterBottomRight.add(txtAraNotes, BorderLayout.CENTER);
-		pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomRight);
+        pnlToDoRightCenterBottomRight.add(txtAraNotes, BorderLayout.CENTER);
+        pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomRight);
 
-		pnlToDoRight.add(pnlToDoRightTop, BorderLayout.NORTH);
-		pnlToDoRight.add(pnlToDoRightCenter, BorderLayout.CENTER);
-	}
+        pnlToDoRight.add(pnlToDoRightTop, BorderLayout.NORTH);
+        pnlToDoRight.add(pnlToDoRightCenter, BorderLayout.CENTER);
+    }
 
-	@Override
-	public JPanel getPanel() {
-		return pnlToDoRight;
-	}
+    @Override
+    public JPanel getPanel() {
+        return pnlToDoRight;
+    }
 
 }
