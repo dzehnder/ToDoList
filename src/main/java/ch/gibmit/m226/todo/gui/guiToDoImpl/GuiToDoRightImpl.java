@@ -3,6 +3,8 @@ package ch.gibmit.m226.todo.gui.guiToDoImpl;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Hashtable;
 
@@ -26,7 +28,7 @@ import ch.gibmit.m226.todo.gui.gui.GuiPanel;
 /**
  * Created by colin on 16.03.16.
  */
-public class GuiToDoRightImpl implements GuiPanel {
+public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
     private JPanel pnlToDoRight;
     private JPanel pnlToDoRightTop;
@@ -54,6 +56,7 @@ public class GuiToDoRightImpl implements GuiPanel {
     private JLabel lblDone;
 
     private JButton btnRepeat;
+    private JButton btnAddCategory;
     private JTextField txtFldTitle;
     private JXDatePicker xdpDate;
     private Calendar cdrCalendar;
@@ -65,7 +68,7 @@ public class GuiToDoRightImpl implements GuiPanel {
     private JSlider sldrPriority;
     private Hashtable<Integer, JLabel> hstbl;
     private JCheckBox chbxDone;
-    private JTextArea txtAraNotes;
+    private JTextArea txtAreaNotes;
 
     private static final int MIN_PRIO = 5;
     private static final int MAX_PRIO = 1;
@@ -132,6 +135,9 @@ public class GuiToDoRightImpl implements GuiPanel {
         // label table for priority
         hstbl = new Hashtable<Integer, JLabel>();
         hstbl.put(new Integer(MIN_PRIO), new JLabel("Important"));
+        hstbl.put(new Integer(4), new JLabel("|"));
+        hstbl.put(new Integer(3), new JLabel("|"));
+        hstbl.put(new Integer(2), new JLabel("|"));
         hstbl.put(new Integer(MAX_PRIO), new JLabel("Unimportant"));
         sldrPriority.setLabelTable(hstbl);
         sldrPriority.setPaintLabels(true);
@@ -147,16 +153,20 @@ public class GuiToDoRightImpl implements GuiPanel {
         txtFldTitle = new JTextField();
         xdpDate = new JXDatePicker();
         btnRepeat = new JButton("Repeat");
+        btnAddCategory = new JButton("...");
+        btnAddCategory.addActionListener(this);
         cmbxCategory = new JComboBox<String>();
         cmbxCategory.addItem("Work");
         cmbxCategory.addItem("School");
         cmbxCategory.addItem("Theater");
         cmbxCategory.addItem("Movies");
         chbxDone = new JCheckBox();
-        txtAraNotes = new JTextArea();
-        txtAraNotes.setText("Note..");
-        Color randomColor = new Color(255,255,154);
-        txtAraNotes.setBackground(randomColor);
+        txtAreaNotes = new JTextArea();
+        txtAreaNotes.setText("Note..");
+        txtAreaNotes.setLineWrap(true);
+        txtAreaNotes.setWrapStyleWord(true);
+        Color randomColor = new Color(255, 255, 154);
+        txtAreaNotes.setBackground(randomColor);
     }
 
     private void placeComponents() {
@@ -182,6 +192,7 @@ public class GuiToDoRightImpl implements GuiPanel {
         pnlToDoRightCenterBottomLeftTop.add(pnlToDoRightCenterBottomLeftTopTop, BorderLayout.NORTH);
         pnlToDoRightCenterBottomLeftTopTop.add(lblCategory, BorderLayout.WEST);
         pnlToDoRightCenterBottomLeftTopTop.add(cmbxCategory, BorderLayout.CENTER);
+        pnlToDoRightCenterBottomLeftTopTop.add(btnAddCategory, BorderLayout.EAST);
         pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftTop);
 
         pnlToDoRightCenterBottomLeftMid.add(lblPriority, BorderLayout.WEST);
@@ -194,7 +205,7 @@ public class GuiToDoRightImpl implements GuiPanel {
 
         pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomLeft);
 
-        pnlToDoRightCenterBottomRight.add(txtAraNotes, BorderLayout.CENTER);
+        pnlToDoRightCenterBottomRight.add(txtAreaNotes, BorderLayout.CENTER);
         pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomRight);
 
         pnlToDoRight.add(pnlToDoRightTop, BorderLayout.NORTH);
@@ -206,4 +217,10 @@ public class GuiToDoRightImpl implements GuiPanel {
         return pnlToDoRight;
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.btnAddCategory) {
+            new GuiToDoAddCategory();
+        }
+    }
 }
