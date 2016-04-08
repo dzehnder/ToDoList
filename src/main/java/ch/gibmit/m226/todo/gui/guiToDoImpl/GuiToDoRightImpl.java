@@ -129,11 +129,10 @@ public class GuiToDoRightImpl implements GuiPanel {
         // sldrPriority.addChangeListener(this);
         sldrPriority.setMajorTickSpacing(10);
         sldrPriority.setPaintTicks(true);
-
-        // Create the label table
+        // label table for priority
         hstbl = new Hashtable<Integer, JLabel>();
-        hstbl.put(new Integer(MIN_PRIO), new JLabel("Unimportant"));
-        hstbl.put(new Integer(MAX_PRIO), new JLabel("Important"));
+        hstbl.put(new Integer(MIN_PRIO), new JLabel("Important"));
+        hstbl.put(new Integer(MAX_PRIO), new JLabel("Unimportant"));
         sldrPriority.setLabelTable(hstbl);
         sldrPriority.setPaintLabels(true);
 
