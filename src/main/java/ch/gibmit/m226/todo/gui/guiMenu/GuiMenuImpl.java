@@ -1,230 +1,121 @@
 package ch.gibmit.m226.todo.gui.guiMenu;
 
-import ch.gibmit.m226.todo.gui.gui.GuiPanel;
+import ch.gibmit.m226.todo.gui.gui.GuiMenu;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by colin on 29.03.16.
- *//*
-public class GuiMenuImpl implements GuiPanel {
+ */
+public class GuiMenuImpl implements GuiMenu {
 
-    private JMenuItem uiMenuDelTodo;
-    private JMenuItem uiMenuSelectUp;
-    private JMenuItem uiMenuSelectDown;
-    private JMenu uiMenuWindow;
-    private JCheckBoxMenuItem uiChckBxMenuSortItems;
+    //Where the GUI is created:
+    JMenuBar menuBar;
+    JMenu mnuMenu, submenu;
+    JMenuItem menuItem;
+    JRadioButtonMenuItem rbMenuItem;
+    JCheckBoxMenuItem cbMenuItem;
 
-    JMenuBar menuBar = new JMenuBar();
+    public GuiMenuImpl() {
+        setUpPanels();
 
-    JMenu menuFile = new JMenu("Datei");
-    menuBar.add(menuFile);
+        setUpComponents();
 
-    JMenuItem menuOpenTodo = new JMenuItem("TODO Liste √∂ffnen...");
-    menuOpenTodo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuFile.add(menuOpenTodo);
-    menuOpenTodo.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            openList();
-        }
-    });
-
-    JMenuItem menuSaveTodo = new JMenuItem("TODO speichern");
-    menuSaveTodo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuFile.add(menuSaveTodo);
-    menuSaveTodo.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            saveList();
-        }
-    });
-
-    JMenuItem menuSaveAsTodo = new JMenuItem("TODO speichern unter...");
-    menuSaveAsTodo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,
-            (InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
-    menuFile.add(menuSaveAsTodo);
-    menuSaveAsTodo.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            savaAsList();
-        }
-    });
-
-    menuFile.addSeparator();
-
-    JMenuItem menuNewTodo = new JMenuItem("Neues Fenster");
-    menuNewTodo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuFile.add(menuNewTodo);
-    menuNewTodo.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            new TodoWindow().setVisible(true);
-            Frame[] frames = JFrame.getFrames();
-            for (Frame frame : frames) {
-                JCheckBoxMenuItem menuWindows = new JCheckBoxMenuItem(frame.getTitle());
-                uiMenuWindow.add(menuWindows);
-            }
-        }
-    });
-
-    JMenuItem menuCloseWindow = new JMenuItem("Fenster Schliessen");
-    menuCloseWindow.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuFile.add(menuCloseWindow);
-    menuCloseWindow.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setVisible(false);
-            dispose();
-        }
-    });
-
-    JMenu menuEdit = new JMenu("Bearbeiten");
-    menuBar.add(menuEdit);
-
-    JMenuItem menuCopy = new JMenuItem("Kopieren");
-    menuCopy.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuEdit.add(menuCopy);
-
-    JMenuItem menuCut = new JMenuItem("Ausschneiden");
-    menuCut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuEdit.add(menuCut);
-
-    JMenuItem menuPaste = new JMenuItem("Einf√ºgen");
-    menuPaste.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuEdit.add(menuPaste);
-
-    JMenuItem menuSelectAll = new JMenuItem("Alle Ausw√§hlen");
-    menuSelectAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    menuEdit.add(menuSelectAll);
-
-    menuEdit.addSeparator();
-
-    final JMenuItem menuAddTodo = new JMenuItem("Neues TODO");
-    menuAddTodo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
-            (InputEvent.ALT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
-    menuEdit.add(menuAddTodo);
-    menuAddTodo.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            addTodo();
-        }
-    });
-
-    uiMenuDelTodo = new JMenuItem("Ausgew√§hltes TODO l√∂schen");
-    menuEdit.add(uiMenuDelTodo);
-    uiMenuDelTodo.setEnabled(false);
-    uiMenuDelTodo.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            deleteTodo();
-        }
-    });
-
-    JMenu menuView = new JMenu("Ansicht");
-    menuBar.add(menuView);
-
-    JMenu menuArrangeBy = new JMenu("Sortieren nach");
-    menuView.add(menuArrangeBy);
-    for (int i = 1; i < sort.length; i++) {
-        uiChckBxMenuSortItems = new JCheckBoxMenuItem(sort[i]);
-        menuArrangeBy.add(uiChckBxMenuSortItems);
+        placeComponents();
     }
-    uiChckBxMenuSortItems.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("Item Selected");
-        }
-    });
 
-    menuView.addSeparator();
+    private void setUpPanels() {
+//Create the mnuMenu bar.
+        menuBar = new JMenuBar();
 
-    uiMenuSelectUp = new JMenuItem("Liste Aufw√§rts");
-    uiMenuSelectUp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_UP, InputEvent.ALT_MASK));
-    menuView.add(uiMenuSelectUp);
-    uiMenuSelectUp.setEnabled(false);
-    uiMenuSelectUp.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            saveTodoList();
-            uiListTodos.setSelectedIndex(uiListTodos.getSelectedIndex() - 1);
-        }
-    });
+        mnuMenu= new JMenu("File");
+        menuBar.add(mnuMenu);
 
-    uiMenuSelectDown = new JMenuItem("Lista Abw√§rts");
-    uiMenuSelectDown.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, InputEvent.ALT_MASK));
-    menuView.add(uiMenuSelectDown);
-    uiMenuSelectDown.setEnabled(false);
-    uiMenuSelectDown.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            saveTodoList();
-            uiListTodos.setSelectedIndex(uiListTodos.getSelectedIndex() + 1);
-        }
-    });
+//a group of JMenuItems
+        menuItem = new JMenuItem("New ToDo");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        mnuMenu.add(menuItem);
 
-    uiMenuWindow = new JMenu("Fenster");
-    menuBar.add(uiMenuWindow);
+        menuItem = new JMenuItem("Save ToDo");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        mnuMenu.add(menuItem);
 
-    JMenuItem menuMin;
-    if (OS.isMac()) {
-        menuMin = new JMenuItem("Im Dock ablegen");
+        menuItem = new JMenuItem("Save All");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('S', (InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
+        mnuMenu.add(menuItem);
+
+
+//a group of radio button mnuMenu items
+        mnuMenu.addSeparator();
+        ButtonGroup group = new ButtonGroup();
+        rbMenuItem = new JRadioButtonMenuItem("A radio button menu item");
+        rbMenuItem.setSelected(true);
+        rbMenuItem.setMnemonic(KeyEvent.VK_R);
+        group.add(rbMenuItem);
+        mnuMenu.add(rbMenuItem);
+
+        rbMenuItem = new JRadioButtonMenuItem("Another one");
+        rbMenuItem.setMnemonic(KeyEvent.VK_O);
+        group.add(rbMenuItem);
+        mnuMenu.add(rbMenuItem);
+
+//a group of check box mnuMenu items
+        mnuMenu.addSeparator();
+        cbMenuItem = new JCheckBoxMenuItem("A check box menu item");
+        cbMenuItem.setMnemonic(KeyEvent.VK_C);
+        mnuMenu.add(cbMenuItem);
+
+        cbMenuItem = new JCheckBoxMenuItem("Another one");
+        cbMenuItem.setMnemonic(KeyEvent.VK_H);
+        mnuMenu.add(cbMenuItem);
+
+//a submenu
+        mnuMenu.addSeparator();
+        submenu = new JMenu("A submenu");
+        submenu.setMnemonic(KeyEvent.VK_S);
+
+        menuItem = new JMenuItem("An item in the submenu");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        submenu.add(menuItem);
+
+        menuItem = new JMenuItem("Another item");
+        submenu.add(menuItem);
+        mnuMenu.add(submenu);
+
+//Build second mnuMenu in the mnuMenu bar.
+        mnuMenu= new JMenu("Another Menu");
+        mnuMenu.setMnemonic(KeyEvent.VK_N);
+        mnuMenu.getAccessibleContext().setAccessibleDescription(
+                "This menu does nothing");
+        menuBar.add(mnuMenu);
     }
-    else {
-        menuMin = new JMenuItem("Minimieren");
+
+    private void setUpComponents() {
+
     }
-    menuMin.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,
-            Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-    uiMenuWindow.add(menuMin);
-    menuMin.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setState(ICONIFIED);
-        }
-    });
 
-    JMenuItem menuMax = new JMenuItem("Zoomen");
-    uiMenuWindow.add(menuMax);
-    menuMax.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        }
-    });
+    private void placeComponents() {
 
-    uiMenuWindow.addSeparator();
-
-    JCheckBoxMenuItem menuFirstWindow = new JCheckBoxMenuItem(firstWindowName);
-    uiMenuWindow.add(menuFirstWindow);
-    menuFirstWindow.setSelected(true);
-
-    JMenu menuHelp = new JMenu("Help");
-    menuBar.add(menuHelp);
-
-    JMenuItem menuHelpWindow = new JMenuItem("TODO Liste Hilfe");
-    menuHelpWindow.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
-    menuHelp.add(menuHelpWindow);
-    menuHelpWindow.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            new Help(tab);
-        }
-    });
-
-    setJMenuBar(menuBar);
-
+    }
 
     @Override
-    public JPanel getPanel() {
+    public JMenuBar getMenu() {
         return menuBar;
     }
 }
-*/
+
+/*
+cmd+shift+n -> Neue ToDo Liste...
+cmd+s -> Speichern (oder Speichern unter falls neu...)
+cmd+shift+s -> Speichern unter...
+ctrl+tab -> Ansicht wechseln (ToDos / Kalender)
+cmd+o -> Liste öffnen…
+cmd+w -> Liste schliessen
+cmd+m -> Fenster minimieren
+cmd+k -> Fenster maximieren
+ */

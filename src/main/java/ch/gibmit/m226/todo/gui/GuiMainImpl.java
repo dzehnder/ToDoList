@@ -10,10 +10,12 @@ import javax.swing.WindowConstants;
  * Created by colin on 24.02.16.
  */
 
+import ch.gibmit.m226.todo.gui.gui.GuiMenu;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarPanel;
 import ch.gibmit.m226.todo.gui.gui.GuiPanel;
 //import ch.gibmit.m226.todo.gui.guiMenu.GuiMenuImpl;
+import ch.gibmit.m226.todo.gui.guiMenu.GuiMenuImpl;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
 
 /**
@@ -32,26 +34,25 @@ public class GuiMainImpl extends JFrame{
      */
     private GuiPanel gtm;
     private GuiCalendarPanel gtc;
-    
-    private GuiPanel gm;
+    private GuiMenu gm;
 
     public GuiMainImpl() {
 
         mainPane = new JTabbedPane();
         gtm = new GuiToDoMainImpl();
         gtc = new GuiCalendarImpl();
-        //gm = new GuiMenuImpl();
+        gm = new GuiMenuImpl();
         
         this.mainPane.addTab("ToDos", gtm.getPanel());
         this.mainPane.addTab("Calendar", gtc.getCalendarPanel());
-        //this.setJMenuBar(gm.getMenuBar());
+        this.setJMenuBar(gm.getMenu());
         
         this.add(mainPane);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.pack();
-        this.setSize(800, 500);
-        this.setMinimumSize(new Dimension(500, 300));
+        this.setSize(900, 600);
+        this.setMinimumSize(new Dimension(700, 550));
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
