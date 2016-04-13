@@ -130,15 +130,11 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         // Create the slider
         sldrPriority = new JSlider(JSlider.HORIZONTAL, MAX_PRIO, MIN_PRIO, 3);
         // sldrPriority.addChangeListener(this);
-        sldrPriority.setMajorTickSpacing(10);
+        sldrPriority.setMajorTickSpacing(1);
+        sldrPriority.setMaximum(10);
         sldrPriority.setPaintTicks(true);
+        sldrPriority.setSnapToTicks(true);
         // label table for priority
-        hstbl = new Hashtable<Integer, JLabel>();
-        hstbl.put(new Integer(MIN_PRIO), new JLabel("Important"));
-        hstbl.put(new Integer(4), new JLabel("|"));
-        hstbl.put(new Integer(3), new JLabel("|"));
-        hstbl.put(new Integer(2), new JLabel("|"));
-        hstbl.put(new Integer(MAX_PRIO), new JLabel("Unimportant"));
         sldrPriority.setLabelTable(hstbl);
         sldrPriority.setPaintLabels(true);
 
