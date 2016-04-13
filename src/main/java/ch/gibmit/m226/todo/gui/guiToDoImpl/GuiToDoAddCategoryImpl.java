@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by hecol on 08.04.2016.
  */
-public class GuiToDoAddCategory extends JFrame {
+public class GuiToDoAddCategoryImpl extends JFrame {
 
     JPanel pnlButtons;
     JPanel pnlButtonsList;
@@ -19,7 +19,7 @@ public class GuiToDoAddCategory extends JFrame {
     JButton btnDone;
     JButton btnCancel;
 
-    public GuiToDoAddCategory() {
+    public GuiToDoAddCategoryImpl() {
         setUpPanels();
 
         setUpComponents();
