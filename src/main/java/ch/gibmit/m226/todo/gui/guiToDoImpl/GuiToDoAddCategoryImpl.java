@@ -18,8 +18,24 @@ public class GuiToDoAddCategoryImpl extends JFrame {
     JButton btnRem;
     JButton btnDone;
     JButton btnCancel;
+    JDialog dlgAddCategory;
 
     public GuiToDoAddCategoryImpl() {
+
+        dlgAddCategory = new JDialog();
+        btnDone = new JButton("Ok");
+        dlgAddCategory.getRootPane().setDefaultButton(btnDone);
+        btnDone.isDefaultButton();
+        btnCancel = new JButton("Cancel");
+
+        setUpPanels();
+        setUpComponents();
+
+        dlgAddCategory.setTitle("Add cateogry");
+        dlgAddCategory.setSize(new Dimension(300, 500));
+        dlgAddCategory.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
+        dlgAddCategory.setModal(true);
+        dlgAddCategory.setVisible(true);
         setUpPanels();
 
         setUpComponents();
@@ -28,7 +44,7 @@ public class GuiToDoAddCategoryImpl extends JFrame {
     }
 
     private void setUpPanels() {
-        this.setLayout(new BorderLayout());
+        dlgAddCategory.setLayout(new BorderLayout());
         DefaultListModel model = new DefaultListModel();
         model.ensureCapacity(100);
         for (int i = 0; i<100; i++) {
@@ -46,18 +62,13 @@ public class GuiToDoAddCategoryImpl extends JFrame {
         pnlButtonsList.add(btnRem);
         pnlList.add(pnlButtonsList, BorderLayout.SOUTH);
         pnlList.setBorder(new EmptyBorder(15,15,15,15));
-        this.add(pnlList, BorderLayout.CENTER);
+        dlgAddCategory.add(pnlList, BorderLayout.CENTER);
         btnDone = new JButton("Done");
         btnCancel = new JButton("Cancel");
         pnlButtons = new JPanel(new GridLayout(1, 2));
         pnlButtons.add(btnDone);
         pnlButtons.add(btnCancel);
-        this.add(pnlButtons, BorderLayout.SOUTH);
-        this.setSize(300, 450);
-        this.setVisible(true);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-
+        dlgAddCategory.add(pnlButtons, BorderLayout.SOUTH);
     }
 
     private void setUpComponents() {

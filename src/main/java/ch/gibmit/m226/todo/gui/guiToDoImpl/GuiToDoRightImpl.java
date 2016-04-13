@@ -1,23 +1,12 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Hashtable;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.DateFormatter;
 
@@ -37,6 +26,8 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private JPanel pnlToDoRightCenterCenter;
     private JPanel pnlToDoRightCenterTopLeft;
     private JPanel pnlToDoRightCenterTopLeftTop;
+    private JPanel pnlToDoRightCenterTopLeftTopTop;
+    private JPanel pnlToDoRightCenterTopLeftTopBottom;
     private JPanel pnlToDoRightCenterTopRight;
     private JPanel pnlToDoRightCenterTopRightTop;
     private JPanel pnlToDoRightCenterTopRightBottom;
@@ -53,7 +44,6 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private JLabel lblRepeat;
     private JLabel lblCategory;
     private JLabel lblPriority;
-    private JLabel lblDone;
 
     private JButton btnRepeat;
     private JButton btnAddCategory;
@@ -92,8 +82,10 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         pnlToDoRightCenterCenter = new JPanel(new GridLayout(1, 2));
 
         pnlToDoRightCenterTopLeft = new JPanel(new BorderLayout());
-        pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
-        pnlToDoRightCenterTopLeftTop = new JPanel(new GridLayout(1, 2));
+        pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5, 0, 5, 5));
+        pnlToDoRightCenterTopLeftTop = new JPanel(new GridLayout(2, 1));
+        pnlToDoRightCenterTopLeftTopTop = new JPanel(new BorderLayout());
+        pnlToDoRightCenterTopLeftTopBottom = new JPanel(new BorderLayout());
         pnlToDoRightCenterTopRight = new JPanel(new GridLayout(2, 1));
         pnlToDoRightCenterTopRight.setBorder(new EmptyBorder(5, 5, 5, 5));
         pnlToDoRightCenterTopRightTop = new JPanel(new GridLayout(1, 2));
@@ -144,20 +136,20 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         lblRepeat = new JLabel("---");
         lblCategory = new JLabel("Category:");
         lblPriority = new JLabel("Priority:");
-        lblDone = new JLabel("Done:");
 
         txtFldTitle = new JTextField();
         xdpDate = new JXDatePicker();
         btnRepeat = new JButton("Repeat");
 		btnRepeat.addActionListener(this);
-        btnAddCategory = new JButton("...");
+        btnAddCategory = new JButton("Edit");
         btnAddCategory.addActionListener(this);
         cmbxCategory = new JComboBox<String>();
         cmbxCategory.addItem("Work");
         cmbxCategory.addItem("School");
         cmbxCategory.addItem("Theater");
         cmbxCategory.addItem("Movies");
-        chbxDone = new JCheckBox();
+        chbxDone = new JCheckBox("Done:");
+        chbxDone.setHorizontalTextPosition(SwingConstants.LEFT);
         txtAreaNotes = new JTextArea();
         txtAreaNotes.setText("Note..");
         txtAreaNotes.setLineWrap(true);
@@ -173,13 +165,17 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         pnlToDoRightCenter.add(pnlToDoRightCenterNorth, BorderLayout.NORTH);
         pnlToDoRightCenter.add(pnlToDoRightCenterCenter, BorderLayout.CENTER);
 
-        pnlToDoRightCenterTopLeftTop.add(lblDate, BorderLayout.WEST);
-        pnlToDoRightCenterTopLeftTop.add(xdpDate, BorderLayout.CENTER);
+        pnlToDoRightCenterTopLeftTop.add(pnlToDoRightCenterTopLeftTopTop);
+        pnlToDoRightCenterTopLeftTop.add(pnlToDoRightCenterTopLeftTopBottom);
+        pnlToDoRightCenterTopLeftTopTop.add(lblDate, BorderLayout.WEST);
+        pnlToDoRightCenterTopLeftTopTop.add(xdpDate, BorderLayout.CENTER);
+        pnlToDoRightCenterTopLeftTopBottom.add(lblTime, BorderLayout.WEST);
+        pnlToDoRightCenterTopLeftTopBottom.add(jspTime, BorderLayout.CENTER);
         pnlToDoRightCenterTopLeft.add(pnlToDoRightCenterTopLeftTop);
         pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopLeft);
 
-        pnlToDoRightCenterTopRightTop.add(lblTime);
-        pnlToDoRightCenterTopRightTop.add(jspTime);
+        //pnlToDoRightCenterTopRightTop.add(lblTime);
+        //pnlToDoRightCenterTopRightTop.add(jspTime);
         pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightTop);
         pnlToDoRightCenterTopRightBottom.add(btnRepeat);
         pnlToDoRightCenterTopRightBottom.add(lblRepeat);
@@ -196,7 +192,6 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         pnlToDoRightCenterBottomLeftMid.add(sldrPriority, BorderLayout.CENTER);
         pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftMid);
 
-        pnlToDoRightCenterBottomLeftBottom.add(lblDone, BorderLayout.WEST);
         pnlToDoRightCenterBottomLeftBottom.add(chbxDone, BorderLayout.CENTER);
         pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftBottom);
 
