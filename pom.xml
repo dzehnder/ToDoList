@@ -69,6 +69,7 @@
                 <version>1.1.0</version>
                 <configuration>
                     <mainClass>ch.gibmit.m226.todo.Start</mainClass>
+                    <generateDiskImageFile>true</generateDiskImageFile>
                 </configuration>
                 <executions>
                     <execution>

@@ -15,7 +15,7 @@ import java.awt.event.*;
 public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
 
     private static final String[] REPEATRATES = {"Never", "Daily", "Weekly", "Monthly", "Yearly"};
-    private static final String[] WEEKDAYS = {"Monday   ", "Tuesday  ", "Wednesday", "Thursday ", "Friday   ", "Saturday ", "Sunday   "};
+    private static final String[] WEEKDAYS = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
     private JDialog dlgRepeater;
     private JPanel pnlRepeater;
