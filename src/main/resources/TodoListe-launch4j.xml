@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+    <headerType>gui</headerType>
+    <dontWrapJar>false</dontWrapJar>
+    <outfile>../../../target/ToDoList.exe</outfile>
+
+    <jar>../../../target/TodoListe-1.0-SNAPSHOT-jar-with-dependencies.jar</jar>
+    <classPath>
+        <mainClass>ch.gibmit.m226.todo.Start</mainClass>
+    </classPath>
+
+    <jre>
+        <minVersion>1.8.0_45</minVersion>
+    </jre>
+</launch4jConfig>
