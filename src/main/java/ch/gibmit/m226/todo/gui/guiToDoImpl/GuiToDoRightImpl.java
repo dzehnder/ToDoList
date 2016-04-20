@@ -38,6 +38,8 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private JPanel pnlToDoRightCenterBottomLeftMid;
     private JPanel pnlToDoRightCenterBottomLeftBottom;
 
+    private JScrollPane scrPnNoteArea;
+
     private JLabel lblTitle;
     private JLabel lblDate;
     private JLabel lblTime;
@@ -156,6 +158,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         txtAreaNotes.setWrapStyleWord(true);
         Color randomColor = new Color(255, 255, 154);
         txtAreaNotes.setBackground(randomColor);
+        scrPnNoteArea = new JScrollPane(txtAreaNotes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     private void placeComponents() {
@@ -174,8 +177,6 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         pnlToDoRightCenterTopLeft.add(pnlToDoRightCenterTopLeftTop);
         pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopLeft);
 
-        //pnlToDoRightCenterTopRightTop.add(lblTime);
-        //pnlToDoRightCenterTopRightTop.add(jspTime);
         pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightTop);
         pnlToDoRightCenterTopRightTop.add(btnRepeat);
         pnlToDoRightCenterTopRightTop.add(lblRepeat);
@@ -197,7 +198,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
         pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomLeft);
 
-        pnlToDoRightCenterBottomRight.add(txtAreaNotes, BorderLayout.CENTER);
+        pnlToDoRightCenterBottomRight.add(scrPnNoteArea, BorderLayout.CENTER);
         pnlToDoRightCenterCenter.add(pnlToDoRightCenterBottomRight);
 
         pnlToDoRight.add(pnlToDoRightTop, BorderLayout.NORTH);
