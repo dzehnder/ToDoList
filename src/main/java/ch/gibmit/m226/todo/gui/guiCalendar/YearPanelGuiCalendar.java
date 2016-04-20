@@ -1,13 +1,9 @@
-package ch.gibmit.m226.todo.gui.guiCalendar.year;
-
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendar;
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
+package ch.gibmit.m226.todo.gui.guiCalendar;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -16,17 +12,16 @@ import java.util.Locale;
  * @author Damian Zehnder
  * This class implements the calendar view of the year
  */
-public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar {
+public class YearPanelGuiCalendar extends AbstrGuiCalendar {
 
-    private JPanel pnlYear;
     private JToolBar tlBrCalYear;
     private GuiCalendarYearComp yearComp;
     private JPanel pnlTools;
     private Calendar cal = Calendar.getInstance(Locale.GERMANY);
     private JLabel lblYear;
 
-    public GuiCalendarYearImpl() {
-        pnlYear = new JPanel(new BorderLayout());
+    public YearPanelGuiCalendar() {
+        this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalYear = new JToolBar();
@@ -39,8 +34,8 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
         pnlTools.add(tlBrCalYear, BorderLayout.LINE_START);
         pnlTools.add(lblYear, BorderLayout.LINE_END);
 
-        pnlYear.add(pnlTools, BorderLayout.PAGE_START);
-        pnlYear.add(yearComp, BorderLayout.CENTER);
+        this.add(pnlTools, BorderLayout.PAGE_START);
+        this.add(yearComp, BorderLayout.CENTER);
 
     }
 
@@ -67,14 +62,6 @@ public class GuiCalendarYearImpl extends GuiCalendarAbstr implements GuiCalendar
                 break;
         }
         yearComp.repaint();
-    }
-
-    /**
-     * Interface method that returns the year view panel of the calendar
-     * @return the calendar panel of the year
-     */
-    public JPanel getCalendar() {
-        return pnlYear;
     }
 
     /**

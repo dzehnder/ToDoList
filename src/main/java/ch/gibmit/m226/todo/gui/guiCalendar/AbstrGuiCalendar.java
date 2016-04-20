@@ -12,7 +12,7 @@ import java.util.Locale;
  * @author Damian Zehnder
  * This abstract class generates the navigation buttons and adds them to the calendar
  */
-public abstract class GuiCalendarAbstr implements ActionListener {
+public abstract class AbstrGuiCalendar extends JPanel implements ActionListener {
 
     private static final String BCKIMGNAME = "backButtonIcon";
     private static final String FWDIMGNAME = "forwardButtonIcon";

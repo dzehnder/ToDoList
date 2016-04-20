@@ -1,7 +1,4 @@
-package ch.gibmit.m226.todo.gui.guiCalendar.day;
-
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendar;
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
+package ch.gibmit.m226.todo.gui.guiCalendar;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,9 +12,8 @@ import java.util.Locale;
  * @author Damian Zehnder
  * This class implements the calendar view of the day
  */
-public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar {
+public class DayPanelGuiCalendar extends AbstrGuiCalendar {
 
-    private JPanel pnlDay;
     private JToolBar tlBrCalDay;
     private GuiCalendarDayComp dayComp;
     private JPanel pnlTools;
@@ -25,9 +21,9 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
     private Calendar cal = getCal();
     private JLabel lblDay;
 
-    public GuiCalendarDayImpl() {
+    public DayPanelGuiCalendar() {
 
-        pnlDay = new JPanel(new BorderLayout());
+        this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalDay = new JToolBar();
@@ -42,8 +38,8 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
         pnlTools.add(tlBrCalDay, BorderLayout.LINE_START);
         pnlTools.add(lblDay, BorderLayout.LINE_END);
 
-        pnlDay.add(pnlTools, BorderLayout.PAGE_START);
-        pnlDay.add(dayComp, BorderLayout.CENTER);
+        this.add(pnlTools, BorderLayout.PAGE_START);
+        this.add(dayComp, BorderLayout.CENTER);
     }
 
     /**
@@ -68,15 +64,6 @@ public class GuiCalendarDayImpl extends GuiCalendarAbstr implements GuiCalendar 
                 updateDateLabel();
                 break;
         }
-
-    }
-
-    /**
-     * Interface method that returns the day view panel of the calendar
-     * @return the calendar panel of the day
-     */
-    public JPanel getCalendar() {
-        return pnlDay;
 
     }
 

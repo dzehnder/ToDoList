@@ -84,11 +84,11 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         pnlToDoRightCenterTopLeft = new JPanel(new BorderLayout());
         pnlToDoRightCenterTopLeft.setBorder(new EmptyBorder(5, 0, 5, 5));
         pnlToDoRightCenterTopLeftTop = new JPanel(new GridLayout(2, 1));
-        pnlToDoRightCenterTopLeftTopTop = new JPanel(new BorderLayout());
+        pnlToDoRightCenterTopLeftTopTop = new JPanel(new FlowLayout());
         pnlToDoRightCenterTopLeftTopBottom = new JPanel(new BorderLayout());
         pnlToDoRightCenterTopRight = new JPanel(new GridLayout(2, 1));
         pnlToDoRightCenterTopRight.setBorder(new EmptyBorder(5, 5, 5, 5));
-        pnlToDoRightCenterTopRightTop = new JPanel(new GridLayout(1, 2));
+        pnlToDoRightCenterTopRightTop = new JPanel(new FlowLayout());
         pnlToDoRightCenterTopRightBottom = new JPanel(new GridLayout(1, 2));
         pnlToDoRightCenterBottomLeft = new JPanel(new GridLayout(3, 1));
         pnlToDoRightCenterBottomLeft.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -167,18 +167,18 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
         pnlToDoRightCenterTopLeftTop.add(pnlToDoRightCenterTopLeftTopTop);
         pnlToDoRightCenterTopLeftTop.add(pnlToDoRightCenterTopLeftTopBottom);
-        pnlToDoRightCenterTopLeftTopTop.add(lblDate, BorderLayout.WEST);
-        pnlToDoRightCenterTopLeftTopTop.add(xdpDate, BorderLayout.CENTER);
-        pnlToDoRightCenterTopLeftTopBottom.add(lblTime, BorderLayout.WEST);
-        pnlToDoRightCenterTopLeftTopBottom.add(jspTime, BorderLayout.CENTER);
+        pnlToDoRightCenterTopLeftTopTop.add(lblDate);
+        pnlToDoRightCenterTopLeftTopTop.add(xdpDate);
+        pnlToDoRightCenterTopLeftTopTop.add(lblTime);
+        pnlToDoRightCenterTopLeftTopTop.add(jspTime);
         pnlToDoRightCenterTopLeft.add(pnlToDoRightCenterTopLeftTop);
         pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopLeft);
 
         //pnlToDoRightCenterTopRightTop.add(lblTime);
         //pnlToDoRightCenterTopRightTop.add(jspTime);
         pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightTop);
-        pnlToDoRightCenterTopRightBottom.add(btnRepeat);
-        pnlToDoRightCenterTopRightBottom.add(lblRepeat);
+        pnlToDoRightCenterTopRightTop.add(btnRepeat);
+        pnlToDoRightCenterTopRightTop.add(lblRepeat);
         pnlToDoRightCenterTopRight.add(pnlToDoRightCenterTopRightBottom);
         pnlToDoRightCenterNorth.add(pnlToDoRightCenterTopRight);
 

@@ -1,13 +1,8 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
-import ch.gibmit.m226.todo.gui.guiCalendar.day.GuiCalendarDayImpl;
-import ch.gibmit.m226.todo.gui.guiCalendar.month.GuiCalendarMonthImpl;
-import ch.gibmit.m226.todo.gui.guiCalendar.week.GuiCalendarWeekImpl;
-import ch.gibmit.m226.todo.gui.guiCalendar.year.GuiCalendarYearImpl;
+import ch.gibmit.m226.todo.gui.gui.GuiCalendarPanel;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 /**
@@ -18,25 +13,18 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
 
     private JPanel pnlCalendarMain;
     private JTabbedPane tbdPnCalendars;
-    private GuiCalendar gtc;
 
     public GuiCalendarImpl() {
         pnlCalendarMain = new JPanel(new BorderLayout());
-        gtc = new GuiCalendarDayImpl();
-
-
 
         tbdPnCalendars = new JTabbedPane();
-        tbdPnCalendars.addTab("Day", gtc.getCalendar());
+        tbdPnCalendars.addTab("Day", new DayPanelGuiCalendar());
 
-        gtc = new GuiCalendarWeekImpl();
-        tbdPnCalendars.addTab("Week", gtc.getCalendar());
+        tbdPnCalendars.addTab("Week", new WeekPanelGuiCalendar());
 
-        gtc = new GuiCalendarMonthImpl();
-        tbdPnCalendars.addTab("Month", gtc.getCalendar());
+        tbdPnCalendars.addTab("Month", new MonthPanelGuiCalendar());
 
-        gtc = new GuiCalendarYearImpl();
-        tbdPnCalendars.addTab("Year", gtc.getCalendar());
+        tbdPnCalendars.addTab("Year", new YearPanelGuiCalendar());
 
         pnlCalendarMain.add(tbdPnCalendars);
 

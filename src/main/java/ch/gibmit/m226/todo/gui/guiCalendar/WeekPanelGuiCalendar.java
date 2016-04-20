@@ -1,7 +1,4 @@
-package ch.gibmit.m226.todo.gui.guiCalendar.week;
-
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendar;
-import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarAbstr;
+package ch.gibmit.m226.todo.gui.guiCalendar;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,9 +12,8 @@ import java.util.Locale;
  * @author Damian Zehnder
  * This class implements the calendar view of the year
  */
-public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar {
+public class WeekPanelGuiCalendar extends AbstrGuiCalendar {
 
-    private JPanel pnlWeek;
     private JToolBar tlBrCalWeek;
     private GuiCalendarWeekComp weekComp;
     private JPanel pnlTools;
@@ -25,8 +21,8 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
     private Calendar cal = Calendar.getInstance(Locale.GERMANY);
     private JLabel lblWeek;
 
-    public GuiCalendarWeekImpl() {
-        pnlWeek = new JPanel(new BorderLayout());
+    public WeekPanelGuiCalendar() {
+        this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalWeek = new JToolBar();
@@ -39,8 +35,8 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
         pnlTools.add(tlBrCalWeek, BorderLayout.LINE_START);
         pnlTools.add(lblWeek, BorderLayout.LINE_END);
 
-        pnlWeek.add(pnlTools, BorderLayout.PAGE_START);
-        pnlWeek.add(weekComp, BorderLayout.CENTER);
+        this.add(pnlTools, BorderLayout.PAGE_START);
+        this.add(weekComp, BorderLayout.CENTER);
 
     }
 
@@ -66,14 +62,6 @@ public class GuiCalendarWeekImpl extends GuiCalendarAbstr implements GuiCalendar
                 updateDateLabel();
                 break;
         }
-    }
-
-    /**
-     * Interface method that returns the week view panel of the calendar
-     * @return the calendar panel of the week
-     */
-    public JPanel getCalendar() {
-        return pnlWeek;
     }
 
     /**
