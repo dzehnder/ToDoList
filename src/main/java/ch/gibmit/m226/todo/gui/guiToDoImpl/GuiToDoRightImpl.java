@@ -12,7 +12,7 @@ import javax.swing.text.DateFormatter;
 
 import org.jdesktop.swingx.JXDatePicker;
 
-import ch.gibmit.m226.todo.gui.gui.GuiPanel;
+import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
 
 /**
  * Created by colin on 16.03.16.

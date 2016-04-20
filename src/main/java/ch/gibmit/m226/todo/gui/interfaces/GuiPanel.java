@@ -1,4 +1,4 @@
-package ch.gibmit.m226.todo.gui.gui;
+package ch.gibmit.m226.todo.gui.interfaces;
 
 import javax.swing.*;
 
