@@ -10,11 +10,11 @@ import javax.swing.WindowConstants;
  * Created by colin on 24.02.16.
  */
 
-import ch.gibmit.m226.todo.gui.gui.GuiMenu;
+import ch.gibmit.m226.todo.gui.interfaces.GuiMenu;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
-import ch.gibmit.m226.todo.gui.gui.GuiCalendarPanel;
-import ch.gibmit.m226.todo.gui.gui.GuiPanel;
-//import ch.gibmit.m226.todo.gui.guiMenu.GuiMenuImpl;
+import ch.gibmit.m226.todo.gui.interfaces.GuiCalendarPanel;
+import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
+//import ch.gibmit.m226.todo.interfaces.guiMenu.GuiMenuImpl;
 import ch.gibmit.m226.todo.gui.guiMenu.GuiMenuImpl;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
 

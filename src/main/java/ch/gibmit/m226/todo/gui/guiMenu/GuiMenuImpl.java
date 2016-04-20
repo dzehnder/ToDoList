@@ -1,6 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiMenu;
 
-import ch.gibmit.m226.todo.gui.gui.GuiMenu;
+import ch.gibmit.m226.todo.gui.interfaces.GuiMenu;
 
 import javax.swing.*;
 import java.awt.*;

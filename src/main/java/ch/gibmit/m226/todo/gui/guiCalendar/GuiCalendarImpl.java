@@ -1,6 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
-import ch.gibmit.m226.todo.gui.gui.GuiCalendarPanel;
+import ch.gibmit.m226.todo.gui.interfaces.GuiCalendarPanel;
 
 import javax.swing.*;
 import java.awt.*;
