@@ -10,7 +10,8 @@ import java.util.Locale;
 
 /**
  * @author Damian Zehnder
- * This abstract class generates the navigation buttons and adds them to the calendar
+ * This abstract class is the panel of the calendar.
+ * It also generates the navigation buttons and adds them to the calendar toolbar
  */
 public abstract class AbstrGuiCalendar extends JPanel implements ActionListener {
 
