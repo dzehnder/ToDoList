@@ -213,7 +213,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.btnAddCategory) {
-            new GuiToDoAddCategoryImpl();
+            new GuiToDoEditCategoriesImpl();
         }
 		if (e.getSource() == this.btnRepeat) {
 			new GuiToDoRepeatImpl();
