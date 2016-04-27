@@ -1,8 +1,28 @@
 package ch.gibmit.m226.todo.bl;
 
+import ch.gibmit.m226.todo.data.ToDoDAO;
+import ch.gibmit.m226.todo.data.ToDoDAOImpl;
+import ch.gibmit.m226.todo.dto.ToDoDTO;
+
+import java.util.ArrayList;
+
 /**
  * Created by hecol on 22.04.2016.
  */
 public class ToDo {
-//TODO: Implement code
+
+    private ToDoDAO toDoDAO;
+
+    public ToDo() {
+        toDoDAO = new ToDoDAOImpl();
+    }
+
+    public void add(ToDoDTO toDo) {
+        toDoDAO.addToDo(toDo);
+    }
+
+    public ArrayList<ToDoDTO> getToDos() {
+        return null;
+    }
+    
 }
