@@ -5,7 +5,8 @@ import ch.gibmit.m226.todo.dto.CategoryDTO;
 import java.util.ArrayList;
 
 /**
- * Created by zehnder on 25/04/16.
+ * @author Damian Zehnder
+ * this is the model of the category list
  */
 public class CategoryModel {
 

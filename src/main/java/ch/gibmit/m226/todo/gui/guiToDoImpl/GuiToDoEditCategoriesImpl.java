@@ -33,23 +33,24 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
     private JList<String> categoryList;
     private DefaultListModel<String> model;
 
-    public GuiToDoEditCategoriesImpl() {
+    public GuiToDoEditCategoriesImpl(CategoryModel categoryModel, CategoryController controller) {
 
-        categoryModel = new CategoryModel();
-        controller = new CategoryController(categoryModel);
+        this.categoryModel = categoryModel;
+        this.controller = controller;
 
         setUpComponents();
         setUpPanels();
         placeComponents();
 
+
         /**
          * add a new category to the category list
          */
         btnAdd.addActionListener(e -> {
-            CategoryDTO categoryDTO = new CategoryDTO();
-            categoryDTO.setName("New Category");
-            controller.addCategory(categoryDTO);
+            CategoryDTO categoryDTO = new CategoryDTO("New Category");
+            this.controller.addCategory(categoryDTO);
             updateList();
+            categoryList.setSelectedIndex(categoryList.getLastVisibleIndex());
 
         });
 
@@ -64,6 +65,8 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
                 txtFldCatName.setEnabled(true);
                 btnRem.setEnabled(true);
                 txtFldCatName.setText(categoryList.getSelectedValue());
+                txtFldCatName.requestFocus();
+                txtFldCatName.selectAll();
             }
             else {
                 txtFldCatName.setEnabled(false);
@@ -74,7 +77,7 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
 
         btnRem.addActionListener(e -> {
 
-            categoryModel.removeCategory(categoryList.getSelectedIndex());
+            this.categoryModel.removeCategory(categoryList.getSelectedIndex());
 
             updateList();
         });
@@ -102,9 +105,9 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
         getRootPane().setDefaultButton(btnDone);
         btnDone.isDefaultButton();
 
-        btnDone.addActionListener(e -> setVisible(false));
+        updateList();
 
-
+        setResizable(false);
         setTitle("Edit categories");
         setSize(new Dimension(300, 500));
         setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
@@ -118,7 +121,8 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
      * Updates the category list content
      */
     private void updateList() {
-        deleteAllItems();
+
+        model.removeAllElements();
         for (int i = 0; i < categoryModel.getCategoryList().size(); i++) {
             model.add(i, categoryModel.getCategoryName(i));
         }
@@ -189,14 +193,8 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
         pnlButtons.add(btnDone, BorderLayout.LINE_END);
     }
 
-    public CategoryModel getCategoryModel() {
-        return categoryModel;
-    }
-
-    private void deleteAllItems() {
-        for (int i = model.size()-1; i >=0; i--) {
-            model.remove(i);
-        }
+    public JButton getDone() {
+        return btnDone;
     }
 
 

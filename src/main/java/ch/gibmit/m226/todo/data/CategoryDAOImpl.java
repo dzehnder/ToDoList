@@ -13,6 +13,10 @@ public class CategoryDAOImpl implements CategoryDAO {
 
     public CategoryDAOImpl() {
         categoryList = new ArrayList<>();
+        categoryList.add(new CategoryDTO("Work"));
+        categoryList.add(new CategoryDTO("School"));
+        categoryList.add(new CategoryDTO("Theater"));
+        categoryList.add(new CategoryDTO("Movies"));
     }
 
     @Override

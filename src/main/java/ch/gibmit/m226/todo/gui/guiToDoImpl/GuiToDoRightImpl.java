@@ -19,6 +19,8 @@ import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
  */
 public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
+    private CategoryController controller;
+    private CategoryModel categoryModel;
     private JPanel pnlToDoRight;
     private JPanel pnlToDoRightTop;
     private JPanel pnlToDoRightCenter;
@@ -59,7 +61,6 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private SpinnerDateModel model;
     private JComboBox<String> cmbxCategory;
     private JSlider sldrPriority;
-    private Hashtable<Integer, JLabel> hstbl;
     private JCheckBox chbxDone;
     private JTextArea txtAreaNotes;
 
@@ -67,13 +68,24 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private static final int MAX_PRIO = 1;
 
     public GuiToDoRightImpl() {
-        guiToDoEditCategories = new GuiToDoEditCategoriesImpl();
 
-        for(int i = 0; i<guiToDoEditCategories.getCategoryModel().getCategoryList().size(); i++) {
-            cmbxCategory.addItem(guiToDoEditCategories.getCategoryModel().getCategoryList().get(i).getName());
-        }
+        categoryModel = new CategoryModel();
+        controller = new CategoryController(categoryModel);
+        controller.getAllCategories();
 
-        guiToDoEditCategories.getCategoryModel().getCategoryList();
+        guiToDoEditCategories = new GuiToDoEditCategoriesImpl(categoryModel, controller);
+
+
+        guiToDoEditCategories.getDone().addActionListener(e -> {
+            guiToDoEditCategories.setVisible(false);
+
+            Object item = cmbxCategory.getSelectedItem();
+
+            updateCategorySelectBox();
+
+            cmbxCategory.setSelectedItem(item);
+        });
+
 
         setUpPanels();
 
@@ -81,6 +93,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
         placeComponents();
 
+        updateCategorySelectBox();
     }
 
     private void setUpPanels() {
@@ -137,7 +150,6 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         sldrPriority.setPaintTicks(true);
         sldrPriority.setSnapToTicks(true);
         // label table for priority
-        sldrPriority.setLabelTable(hstbl);
         sldrPriority.setPaintLabels(true);
 
         lblTitle = new JLabel("Title:");
@@ -153,11 +165,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 		btnRepeat.addActionListener(this);
         btnAddCategory = new JButton("Edit");
         btnAddCategory.addActionListener(this);
-        cmbxCategory = new JComboBox<String>();
-        cmbxCategory.addItem("Work");
-        cmbxCategory.addItem("School");
-        cmbxCategory.addItem("Theater");
-        cmbxCategory.addItem("Movies");
+        cmbxCategory = new JComboBox<>();
         chbxDone = new JCheckBox("Done:");
         chbxDone.setHorizontalTextPosition(SwingConstants.LEFT);
         txtAreaNotes = new JTextArea();
@@ -212,6 +220,15 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
         pnlToDoRight.add(pnlToDoRightTop, BorderLayout.NORTH);
         pnlToDoRight.add(pnlToDoRightCenter, BorderLayout.CENTER);
     }
+
+    private void updateCategorySelectBox() {
+        cmbxCategory.removeAllItems();
+
+        for(int i = 0; i<categoryModel.getCategoryList().size(); i++) {
+            cmbxCategory.addItem(categoryModel.getCategoryList().get(i).getName());
+        }
+    }
+
 
     @Override
     public JPanel getPanel() {

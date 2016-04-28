@@ -5,13 +5,11 @@ import ch.gibmit.m226.todo.dto.CategoryDTO;
 import ch.gibmit.m226.todo.gui.interfaces.ICategoryController;
 
 /**
- * Created by zehnder on 25/04/16.
+ * @author Damian Zehnder
+ * this class is the controller of the category list
  */
 public class CategoryController implements ICategoryController {
 
-    /**
-     * give Data to business layer:
-     */
     private Category category = new Category();
     private CategoryModel categoryModel;
 

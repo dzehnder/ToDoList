@@ -7,7 +7,8 @@ import ch.gibmit.m226.todo.dto.CategoryDTO;
 import java.util.ArrayList;
 
 /**
- * Created by zehnder on 21/04/16.
+ * @author Damian Zehnder
+ * this class is the business-logic of the category class
  */
 public class Category {
 
