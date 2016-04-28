@@ -4,14 +4,19 @@ import ch.gibmit.m226.todo.dto.CategoryDTO;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by hecol on 08.04.2016.
  */
-public class GuiToDoEditCategoriesImpl extends JFrame {
+public class GuiToDoEditCategoriesImpl extends JDialog {
 
-    private JDialog dlgAddCategory;
     private JPanel pnlButtons;
     private JPanel pnlButtonsList;
     private JPanel pnlTextField;
@@ -23,7 +28,6 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
     private JButton btnAdd;
     private JButton btnRem;
     private JButton btnDone;
-    private JButton btnCancel;
 
     private JTextField txtFldCatName;
     private JList<String> categoryList;
@@ -31,7 +35,6 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
 
     public GuiToDoEditCategoriesImpl() {
 
-        dlgAddCategory = new JDialog();
         categoryModel = new CategoryModel();
         controller = new CategoryController(categoryModel);
 
@@ -39,6 +42,9 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
         setUpPanels();
         placeComponents();
 
+        /**
+         * add a new category to the category list
+         */
         btnAdd.addActionListener(e -> {
             CategoryDTO categoryDTO = new CategoryDTO();
             categoryDTO.setName("New Category");
@@ -49,35 +55,92 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
 
         model = new DefaultListModel<>();
         categoryList.setModel(model);
+        /**
+         * set the textfield value to the same value as the selected item value in the category list,
+         * enable or disable elements according to selection
+         */
+        categoryList.addListSelectionListener(e -> {
+            if (categoryList.getSelectedIndex() >= 0) {
+                txtFldCatName.setEnabled(true);
+                btnRem.setEnabled(true);
+                txtFldCatName.setText(categoryList.getSelectedValue());
+            }
+            else {
+                txtFldCatName.setEnabled(false);
+                btnRem.setEnabled(false);
+                txtFldCatName.setText("");
+            }
+        });
 
-        dlgAddCategory.getRootPane().setDefaultButton(btnDone);
+        btnRem.addActionListener(e -> {
+
+            categoryModel.removeCategory(categoryList.getSelectedIndex());
+
+            updateList();
+        });
+
+        /**
+         * listener to check, if the category name got changed
+         */
+        txtFldCatName.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateCategory();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateCategory();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateCategory();
+            }
+        });
+
+        getRootPane().setDefaultButton(btnDone);
         btnDone.isDefaultButton();
 
-        btnCancel.addActionListener(e -> dlgAddCategory.dispose());
+        btnDone.addActionListener(e -> setVisible(false));
 
 
-
-
-        dlgAddCategory.setTitle("Edit categories");
-        dlgAddCategory.setSize(new Dimension(300, 500));
-        dlgAddCategory.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
-        dlgAddCategory.setModal(true);
-        dlgAddCategory.setVisible(true);
-
+        setTitle("Edit categories");
+        setSize(new Dimension(300, 500));
+        setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
+        setModal(true);
+        setVisible(false);
 
 
     }
 
+    /**
+     * Updates the category list content
+     */
     private void updateList() {
-        model.clear();
+        deleteAllItems();
         for (int i = 0; i < categoryModel.getCategoryList().size(); i++) {
-            model.add(i, categoryModel.getCategoryList().get(i).getName());
+            model.add(i, categoryModel.getCategoryName(i));
         }
 
     }
 
+    /**
+     * updates the selected category name to the input of the text field
+     */
+    private void updateCategory() {
+        int index = categoryList.getSelectedIndex();
+        if (index >= 0) {
+            categoryModel.setCategoryName(index, txtFldCatName.getText());
+            model.set(index, categoryModel.getCategoryName(index));
+        }
+    }
+
+    /**
+     * sets up all panels in this dialog window
+     */
     private void setUpPanels() {
-        dlgAddCategory.setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
         categoryList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         scrollPane = new JScrollPane(categoryList);
@@ -90,17 +153,19 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
 
         pnlList.add(pnlTextField, BorderLayout.SOUTH);
         pnlList.setBorder(new EmptyBorder(15,15,15,15));
-        dlgAddCategory.add(pnlList, BorderLayout.CENTER);
-        pnlButtons = new JPanel(new GridLayout(1, 2));
+        add(pnlList, BorderLayout.CENTER);
+        pnlButtons = new JPanel(new BorderLayout());
 
-        dlgAddCategory.add(pnlButtons, BorderLayout.SOUTH);
+        add(pnlButtons, BorderLayout.SOUTH);
     }
 
+    /**
+     * sets up all components in this dialog window
+     */
     private void setUpComponents() {
         categoryList = new JList<>();
 
-        btnDone = new JButton("Save");
-        btnCancel = new JButton("Cancel");
+        btnDone = new JButton("Done");
 
         txtFldCatName = new JTextField();
         txtFldCatName.setEnabled(false);
@@ -112,14 +177,26 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
         btnRem.setEnabled(false);
     }
 
+    /**
+     * places all the components in this dialog window
+     */
     private void placeComponents() {
         pnlList.add(scrollPane, BorderLayout.CENTER);
         pnlTextField.add(txtFldCatName, BorderLayout.CENTER);
         pnlButtonsList.add(btnAdd);
         pnlButtonsList.add(btnRem);
 
-        pnlButtons.add(btnCancel);
-        pnlButtons.add(btnDone);
+        pnlButtons.add(btnDone, BorderLayout.LINE_END);
+    }
+
+    public CategoryModel getCategoryModel() {
+        return categoryModel;
+    }
+
+    private void deleteAllItems() {
+        for (int i = model.size()-1; i >=0; i--) {
+            model.remove(i);
+        }
     }
 
 

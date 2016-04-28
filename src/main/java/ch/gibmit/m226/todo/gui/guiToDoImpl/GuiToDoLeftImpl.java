@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
-import ch.gibmit.m226.todo.todo.Todo;
 
 public class GuiToDoLeftImpl implements GuiPanel {
 
@@ -20,7 +19,7 @@ public class GuiToDoLeftImpl implements GuiPanel {
 	private JPanel pnlToDoLeftTop;
 	private JPanel pnlToDoLeftBottom;
 	private JComboBox<String> cmbxToDoSort;
-	private JList<Todo> lstToDos;
+	private JList lstToDos;
 	private JTextField txtFldSearchToDo;
 	private JButton btnAddToDo;
 	private JButton btnRemoveToDo;
@@ -42,7 +41,7 @@ public class GuiToDoLeftImpl implements GuiPanel {
 	}
 
 	private void setUpComponents() {
-		lstToDos = new JList<Todo>();
+		lstToDos = new JList();
 		txtFldSearchToDo = new JTextField();
 		cmbxToDoSort = new JComboBox<String>();
 		cmbxToDoSort.addItem("Name");

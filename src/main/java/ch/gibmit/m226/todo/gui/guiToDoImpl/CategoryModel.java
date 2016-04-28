@@ -24,4 +24,16 @@ public class CategoryModel {
     public ArrayList<CategoryDTO> getCategoryList() {
         return categoryList;
     }
+
+    public String getCategoryName(int index) {
+        return categoryList.get(index).getName();
+    }
+
+    public void setCategoryName(int index, String name) {
+        categoryList.get(index).setName(name);
+    }
+
+    public void removeCategory(int index) {
+        categoryList.remove(index);
+    }
 }

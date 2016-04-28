@@ -37,6 +37,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private JPanel pnlToDoRightCenterBottomLeftTopTop;
     private JPanel pnlToDoRightCenterBottomLeftMid;
     private JPanel pnlToDoRightCenterBottomLeftBottom;
+    private GuiToDoEditCategoriesImpl guiToDoEditCategories;
 
     private JScrollPane scrPnNoteArea;
 
@@ -66,6 +67,13 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private static final int MAX_PRIO = 1;
 
     public GuiToDoRightImpl() {
+        guiToDoEditCategories = new GuiToDoEditCategoriesImpl();
+
+        for(int i = 0; i<guiToDoEditCategories.getCategoryModel().getCategoryList().size(); i++) {
+            cmbxCategory.addItem(guiToDoEditCategories.getCategoryModel().getCategoryList().get(i).getName());
+        }
+
+        guiToDoEditCategories.getCategoryModel().getCategoryList();
 
         setUpPanels();
 
@@ -213,7 +221,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.btnAddCategory) {
-            new GuiToDoEditCategoriesImpl();
+            guiToDoEditCategories.setVisible(true);
         }
 		if (e.getSource() == this.btnRepeat) {
 			new GuiToDoRepeatImpl();
