@@ -22,7 +22,7 @@ public class Category {
     }
 
     public ArrayList<CategoryDTO> getCategories() {
-        return null;
+        return categoryDAO.getCategories();
     }
 
 }

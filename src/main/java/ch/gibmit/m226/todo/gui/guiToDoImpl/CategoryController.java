@@ -13,14 +13,22 @@ public class CategoryController implements ICategoryController {
      * give Data to business layer:
      */
     private Category category = new Category();
+    private CategoryModel categoryModel;
+
+    public CategoryController(CategoryModel categoryModel) {
+        this.categoryModel = categoryModel;
+    }
+
 
     @Override
     public void addCategory(CategoryDTO categoryDTO) {
         category.add(categoryDTO);
+        getAllCategories();
     }
 
     @Override
     public void getAllCategories() {
+        categoryModel.refreshCategoryList(category.getCategories());
 
     }
 }

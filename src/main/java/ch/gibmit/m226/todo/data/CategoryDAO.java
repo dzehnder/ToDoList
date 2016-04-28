@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 public interface CategoryDAO {
     void  addCategory(CategoryDTO cateroy);
-    ArrayList<CategoryDAO> getAllCategories();
+    ArrayList<CategoryDTO> getCategories();
 }

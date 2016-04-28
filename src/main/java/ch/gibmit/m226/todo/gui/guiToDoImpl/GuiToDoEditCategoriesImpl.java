@@ -4,10 +4,7 @@ import ch.gibmit.m226.todo.dto.CategoryDTO;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.DimensionUIResource;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by hecol on 08.04.2016.
@@ -21,6 +18,7 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
     private JPanel pnlList;
     private JScrollPane scrollPane;
     private CategoryController controller;
+    private CategoryModel categoryModel;
 
     private JButton btnAdd;
     private JButton btnRem;
@@ -28,22 +26,30 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
     private JButton btnCancel;
 
     private JTextField txtFldCatName;
-    private JList<CategoryDTO> categoryList;
+    private JList<String> categoryList;
+    private DefaultListModel<String> model;
 
     public GuiToDoEditCategoriesImpl() {
 
         dlgAddCategory = new JDialog();
+        categoryModel = new CategoryModel();
+        controller = new CategoryController(categoryModel);
 
         setUpComponents();
         setUpPanels();
         placeComponents();
 
-        btnDone.addActionListener(e -> {
+        btnAdd.addActionListener(e -> {
             CategoryDTO categoryDTO = new CategoryDTO();
-            categoryDTO.setName(txtFldCatName.getText());
+            categoryDTO.setName("New Category");
             controller.addCategory(categoryDTO);
+            updateList();
 
         });
+
+        model = new DefaultListModel<>();
+        categoryList.setModel(model);
+
         dlgAddCategory.getRootPane().setDefaultButton(btnDone);
         btnDone.isDefaultButton();
 
@@ -59,6 +65,14 @@ public class GuiToDoEditCategoriesImpl extends JFrame {
         dlgAddCategory.setVisible(true);
 
 
+
+    }
+
+    private void updateList() {
+        model.clear();
+        for (int i = 0; i < categoryModel.getCategoryList().size(); i++) {
+            model.add(i, categoryModel.getCategoryList().get(i).getName());
+        }
 
     }
 

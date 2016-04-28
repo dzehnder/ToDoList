@@ -9,14 +9,20 @@ import java.util.ArrayList;
  */
 public class CategoryDAOImpl implements CategoryDAO {
 
-    @Override
-    public void addCategory(CategoryDTO category) {
+    private ArrayList<CategoryDTO> categoryList;
 
+    public CategoryDAOImpl() {
+        categoryList = new ArrayList<>();
     }
 
     @Override
-    public ArrayList<CategoryDAO> getAllCategories() {
-        return null;
+    public void addCategory(CategoryDTO category) {
+        categoryList.add(category);
+    }
+
+    @Override
+    public ArrayList<CategoryDTO> getCategories() {
+        return  categoryList;
     }
 
 }
