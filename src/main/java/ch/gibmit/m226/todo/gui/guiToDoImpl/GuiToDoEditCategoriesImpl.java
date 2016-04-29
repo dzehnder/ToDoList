@@ -47,6 +47,7 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
          * add a new category to the category list
          */
         btnAdd.addActionListener(e -> {
+            //TODO test for multiple 'new category'
             CategoryDTO categoryDTO = new CategoryDTO("New Category");
             this.controller.addCategory(categoryDTO);
             updateList();
@@ -145,7 +146,7 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
      */
     private void setUpPanels() {
         setLayout(new BorderLayout());
-        categoryList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 
         scrollPane = new JScrollPane(categoryList);
         pnlList = new JPanel(new BorderLayout());
@@ -168,6 +169,7 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
      */
     private void setUpComponents() {
         categoryList = new JList<>();
+        categoryList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         btnDone = new JButton("Done");
 

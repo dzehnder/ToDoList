@@ -40,59 +40,46 @@ public class GuiMenuImpl implements GuiMenu {
         menuItem.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         mnuMenu.add(menuItem);
 
-        menuItem = new JMenuItem("Save ToDo");
+        menuItem = new JMenuItem("Open...");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        mnuMenu.add(menuItem);
+
+        menuItem = new JMenuItem("Close");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        mnuMenu.add(menuItem);
+
+        mnuMenu.addSeparator();
+
+        menuItem = new JMenuItem("Save");
         menuItem.setAccelerator(KeyStroke.getKeyStroke('S', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         mnuMenu.add(menuItem);
 
-        menuItem = new JMenuItem("Save All");
+        menuItem = new JMenuItem("Save As...");
         menuItem.setAccelerator(KeyStroke.getKeyStroke('S', (InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
         mnuMenu.add(menuItem);
 
+        mnuMenu = new JMenu("View");
+        menuItem = new JMenuItem("Close Window");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        mnuMenu.add(menuItem);
 
-//a group of radio button mnuMenu items
+        menuItem = new JMenuItem("Minimize");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('M', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        mnuMenu.add(menuItem);
+
+        menuItem = new JMenuItem("Zoom");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('K', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        mnuMenu.add(menuItem);
+
         mnuMenu.addSeparator();
-        ButtonGroup group = new ButtonGroup();
-        rbMenuItem = new JRadioButtonMenuItem("A radio button menu item");
-        rbMenuItem.setSelected(true);
-        rbMenuItem.setMnemonic(KeyEvent.VK_R);
-        group.add(rbMenuItem);
-        mnuMenu.add(rbMenuItem);
 
-        rbMenuItem = new JRadioButtonMenuItem("Another one");
-        rbMenuItem.setMnemonic(KeyEvent.VK_O);
-        group.add(rbMenuItem);
-        mnuMenu.add(rbMenuItem);
+        menuItem = new JMenuItem("Switch");
+        //TODO add keystroke (tab not working as keystroke)
+        mnuMenu.add(menuItem);
 
-//a group of check box mnuMenu items
-        mnuMenu.addSeparator();
-        cbMenuItem = new JCheckBoxMenuItem("A check box menu item");
-        cbMenuItem.setMnemonic(KeyEvent.VK_C);
-        mnuMenu.add(cbMenuItem);
-
-        cbMenuItem = new JCheckBoxMenuItem("Another one");
-        cbMenuItem.setMnemonic(KeyEvent.VK_H);
-        mnuMenu.add(cbMenuItem);
-
-//a submenu
-        mnuMenu.addSeparator();
-        submenu = new JMenu("A submenu");
-        submenu.setMnemonic(KeyEvent.VK_S);
-
-        menuItem = new JMenuItem("An item in the submenu");
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_2, ActionEvent.ALT_MASK));
-        submenu.add(menuItem);
-
-        menuItem = new JMenuItem("Another item");
-        submenu.add(menuItem);
-        mnuMenu.add(submenu);
-
-//Build second mnuMenu in the mnuMenu bar.
-        mnuMenu= new JMenu("Another Menu");
-        mnuMenu.setMnemonic(KeyEvent.VK_N);
-        mnuMenu.getAccessibleContext().setAccessibleDescription(
-                "This menu does nothing");
         menuBar.add(mnuMenu);
+
+
     }
 
     private void setUpComponents() {
