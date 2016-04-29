@@ -1,10 +1,12 @@
 package ch.gibmit.m226.todo.gui.guiMenu;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoEditCategoriesImpl;
 import ch.gibmit.m226.todo.gui.interfaces.GuiMenu;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
@@ -58,7 +60,15 @@ public class GuiMenuImpl implements GuiMenu {
         menuItem.setAccelerator(KeyStroke.getKeyStroke('S', (InputEvent.SHIFT_MASK | (Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()))));
         mnuMenu.add(menuItem);
 
+        mnuMenu = new JMenu("Edit");
+        menuBar.add(mnuMenu);
+        menuItem = new JMenuItem("Edit Categories...");
+        menuItem.setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+        menuItem.addActionListener(e -> GuiToDoEditCategoriesImpl.getInstance().setVisible(true));
+        mnuMenu.add(menuItem);
+
         mnuMenu = new JMenu("View");
+
         menuItem = new JMenuItem("Close Window");
         menuItem.setAccelerator(KeyStroke.getKeyStroke('W', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         mnuMenu.add(menuItem);

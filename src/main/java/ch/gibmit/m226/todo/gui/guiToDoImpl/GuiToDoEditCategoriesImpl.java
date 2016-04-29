@@ -33,10 +33,15 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
     private JList<String> categoryList;
     private DefaultListModel<String> model;
 
-    public GuiToDoEditCategoriesImpl(CategoryModel categoryModel, CategoryController controller) {
+    private static GuiToDoEditCategoriesImpl instance = new GuiToDoEditCategoriesImpl();
 
-        this.categoryModel = categoryModel;
-        this.controller = controller;
+    private GuiToDoEditCategoriesImpl() {
+
+        categoryModel = new CategoryModel();
+        controller = new CategoryController(categoryModel);
+        controller.getAllCategories();
+        //this.categoryModel = categoryModel;
+        //this.controller = controller;
 
         setUpComponents();
         setUpPanels();
@@ -105,6 +110,8 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
 
         getRootPane().setDefaultButton(btnDone);
         btnDone.isDefaultButton();
+
+        btnDone.addActionListener(e -> setVisible(false));
 
         updateList();
 
@@ -195,8 +202,12 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
         pnlButtons.add(btnDone, BorderLayout.LINE_END);
     }
 
-    public JButton getDone() {
-        return btnDone;
+    public CategoryModel getCategoryModel() {
+        return categoryModel;
+    }
+
+    public static GuiToDoEditCategoriesImpl getInstance() {
+        return instance;
     }
 
 

@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -32,8 +34,6 @@ import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
  */
 public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
-    private CategoryController controller;
-    private CategoryModel categoryModel;
     private JPanel pnlToDoRight;
     private JPanel pnlToDoRightTop;
     private JPanel pnlToDoRightCenter;
@@ -52,7 +52,7 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
     private JPanel pnlToDoRightCenterBottomLeftTopTop;
     private JPanel pnlToDoRightCenterBottomLeftMid;
     private JPanel pnlToDoRightCenterBottomLeftBottom;
-    private GuiToDoEditCategoriesImpl guiToDoEditCategories;
+    private GuiToDoEditCategoriesImpl guiToDoEditCategories = GuiToDoEditCategoriesImpl.getInstance();
 
     private JScrollPane scrPnNoteArea;
 
@@ -82,23 +82,17 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
     public GuiToDoRightImpl() {
 
-        categoryModel = new CategoryModel();
-        controller = new CategoryController(categoryModel);
-        controller.getAllCategories();
 
-        guiToDoEditCategories = new GuiToDoEditCategoriesImpl(categoryModel, controller);
+        guiToDoEditCategories.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                Object item = cmbxCategory.getSelectedItem();
 
+                updateCategorySelectBox();
 
-        guiToDoEditCategories.getDone().addActionListener(e -> {
-            guiToDoEditCategories.setVisible(false);
-
-            Object item = cmbxCategory.getSelectedItem();
-
-            updateCategorySelectBox();
-
-            cmbxCategory.setSelectedItem(item);
+                cmbxCategory.setSelectedItem(item);
+            }
         });
-
 
         setUpPanels();
 
@@ -236,12 +230,12 @@ public class GuiToDoRightImpl implements GuiPanel, ActionListener {
 
     private void updateCategorySelectBox() {
         cmbxCategory.removeAllItems();
+        CategoryModel categoryModel = GuiToDoEditCategoriesImpl.getInstance().getCategoryModel();
 
         for(int i = 0; i<categoryModel.getCategoryList().size(); i++) {
             cmbxCategory.addItem(categoryModel.getCategoryList().get(i).getName());
         }
     }
-
 
     @Override
     public JPanel getPanel() {
