@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by hecol on 22.04.2016.
+ * this class is the business-logic of the todo class
  */
 public class ToDo {
 

@@ -27,6 +27,10 @@ public class ToDoDTO {
         this.note = note;
         this.cat = cat;
     }
+    
+    public ToDoDTO(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;

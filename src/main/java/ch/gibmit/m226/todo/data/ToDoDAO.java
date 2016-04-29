@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * Created by hecol on 22.04.2016.
  */
 public interface ToDoDAO {
-    void addToDo(ToDoDTO toDo);
-
-    ArrayList<ToDoDAO> getAllToDo();
+	void addToDo(ToDoDTO toDo);
+	ArrayList<ToDoDTO> getAllToDo();
 }

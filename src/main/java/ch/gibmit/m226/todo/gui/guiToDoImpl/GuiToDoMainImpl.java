@@ -12,10 +12,13 @@ import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
  */
 public class GuiToDoMainImpl implements GuiPanel {
 
-	JPanel pnlToDoMain;
-	JSplitPane sptPnToDoMain;
-	GuiPanel gtl;
-	GuiPanel gtr;
+    private ToDoController controller;
+    private ToDoModel toDoModel;
+	
+	private JPanel pnlToDoMain;
+	private JSplitPane sptPnToDoMain;
+	private GuiPanel gtl;
+	private GuiPanel gtr;
 
 	public GuiToDoMainImpl() {
 
@@ -34,8 +37,12 @@ public class GuiToDoMainImpl implements GuiPanel {
 	private void setUpComponents() {
 		sptPnToDoMain = new JSplitPane();
 		sptPnToDoMain.setDividerLocation(0.3);
+		
+        toDoModel = new ToDoModel();
+        controller = new ToDoController(toDoModel);
+        controller.getAllToDos();
 
-		gtl = new GuiToDoLeftImpl();
+		gtl = new GuiToDoLeftImpl(toDoModel, controller);
 		sptPnToDoMain.setLeftComponent(gtl.getPanel());
 
 		gtr = new GuiToDoRightImpl();
