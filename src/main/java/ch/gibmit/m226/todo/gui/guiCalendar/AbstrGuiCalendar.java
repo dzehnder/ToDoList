@@ -20,7 +20,7 @@ public abstract class AbstrGuiCalendar extends JPanel implements ActionListener 
     private Calendar cal = Calendar.getInstance(Locale.GERMANY);
 
     /**
-     * This mehtod makes a navigation Button with an arrow
+     * This method makes a navigation Button with an arrow
      * @param imgName name of the image
      * @param action action witch can be catched from the action Listener in the main calendar class
      * @return the button with the specified icon
@@ -68,7 +68,7 @@ public abstract class AbstrGuiCalendar extends JPanel implements ActionListener 
 
     /**
      * This method catches all performed actions in the calendar
-     * @param e Action Event
+     * @param e the Action Event
      */
     public abstract void actionPerformed(ActionEvent e);
 
