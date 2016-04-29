@@ -13,7 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Created by hecol on 08.04.2016.
+ * @author Colin Herzog, Damian Zehnder
+ * this singleton class is the edit-dialog of the categories
  */
 public class GuiToDoEditCategoriesImpl extends JDialog {
 
@@ -35,13 +36,15 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
 
     private static GuiToDoEditCategoriesImpl instance = new GuiToDoEditCategoriesImpl();
 
+    /**
+     * constructor sets up the category model and controller,
+     * adds all action listeners and sets the basic dialog settings
+     */
     private GuiToDoEditCategoriesImpl() {
 
         categoryModel = new CategoryModel();
         controller = new CategoryController(categoryModel);
         controller.getAllCategories();
-        //this.categoryModel = categoryModel;
-        //this.controller = controller;
 
         setUpComponents();
         setUpPanels();
@@ -202,10 +205,16 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
         pnlButtons.add(btnDone, BorderLayout.LINE_END);
     }
 
+    /**
+     * @return the model of the category
+     */
     public CategoryModel getCategoryModel() {
         return categoryModel;
     }
 
+    /**
+     * @return the category dialog singleton instance
+     */
     public static GuiToDoEditCategoriesImpl getInstance() {
         return instance;
     }

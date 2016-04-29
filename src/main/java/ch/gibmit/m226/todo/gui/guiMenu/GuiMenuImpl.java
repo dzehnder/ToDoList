@@ -31,13 +31,13 @@ public class GuiMenuImpl implements GuiMenu {
     }
 
     private void setUpPanels() {
-//Create the mnuMenu bar.
+
+        //Create the mnuMenu bar.
         menuBar = new JMenuBar();
 
         mnuMenu= new JMenu("File");
         menuBar.add(mnuMenu);
 
-//a group of JMenuItems
         menuItem = new JMenuItem("New ToDo");
         menuItem.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         mnuMenu.add(menuItem);
@@ -85,6 +85,7 @@ public class GuiMenuImpl implements GuiMenu {
 
         menuItem = new JMenuItem("Switch");
         //TODO add keystroke (tab not working as keystroke)
+        //menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
         mnuMenu.add(menuItem);
 
         menuBar.add(mnuMenu);
@@ -105,14 +106,3 @@ public class GuiMenuImpl implements GuiMenu {
         return menuBar;
     }
 }
-
-/*
-cmd+shift+n -> Neue ToDo Liste...
-cmd+s -> Speichern (oder Speichern unter falls neu...)
-cmd+shift+s -> Speichern unter...
-ctrl+tab -> Ansicht wechseln (ToDos / Kalender)
-cmd+o -> Liste öffnen…
-cmd+w -> Liste schliessen
-cmd+m -> Fenster minimieren
-cmd+k -> Fenster maximieren
- */
