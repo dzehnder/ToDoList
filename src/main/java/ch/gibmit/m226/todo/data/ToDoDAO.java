@@ -9,5 +9,5 @@ import java.util.ArrayList;
  */
 public interface ToDoDAO {
 	void addToDo(ToDoDTO toDo);
-	ArrayList<ToDoDTO> getAllToDo();
+	ArrayList<ToDoDTO> getAllToDos();
 }

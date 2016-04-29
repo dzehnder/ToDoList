@@ -13,10 +13,6 @@ public class ToDoDAOImpl implements ToDoDAO {
 	
 	public ToDoDAOImpl() {
 		toDoList = new ArrayList<>();
-		toDoList.add(new ToDoDTO("Work"));
-		toDoList.add(new ToDoDTO("School"));
-		toDoList.add(new ToDoDTO("Theater"));
-		toDoList.add(new ToDoDTO("Movies"));
 	}
 	
     @Override
@@ -25,7 +21,7 @@ public class ToDoDAOImpl implements ToDoDAO {
     }
 
     @Override
-    public ArrayList<ToDoDTO> getAllToDo() {
+    public ArrayList<ToDoDTO> getAllToDos() {
         return toDoList;
     }
 }

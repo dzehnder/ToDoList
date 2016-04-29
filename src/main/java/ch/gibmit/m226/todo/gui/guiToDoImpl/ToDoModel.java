@@ -15,7 +15,7 @@ public class ToDoModel {
     }
     
     public void refreshToDoList(ArrayList<ToDoDTO> toDoList) {
-        this.toDoList = toDoList;;
+        this.toDoList = toDoList;
     }
 
     public ArrayList<ToDoDTO> getToDoList() {

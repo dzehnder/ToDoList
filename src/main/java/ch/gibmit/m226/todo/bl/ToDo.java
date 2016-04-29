@@ -23,7 +23,7 @@ public class ToDo {
     }
 
     public ArrayList<ToDoDTO> getToDos() {
-        return null;
+        return toDoDAO.getAllToDos();
     }
     
 }

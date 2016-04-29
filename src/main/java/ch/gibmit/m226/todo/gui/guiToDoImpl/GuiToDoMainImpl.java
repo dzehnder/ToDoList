@@ -11,16 +11,19 @@ import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
  * Created by colin on 24.02.16.
  */
 public class GuiToDoMainImpl implements GuiPanel {
-
-    private ToDoController controller;
-    private ToDoModel toDoModel;
 	
 	private JPanel pnlToDoMain;
 	private JSplitPane sptPnToDoMain;
-	private GuiPanel gtl;
-	private GuiPanel gtr;
+	private GuiToDoLeftImpl gtl;
+	private GuiToDoRightImpl gtr;
+	
+	private ToDoController toDoController;
+	private ToDoModel toDoModel;
 
 	public GuiToDoMainImpl() {
+		
+		this.toDoModel = new ToDoModel();
+		this.toDoController = new ToDoController(toDoModel);
 
 		setUpPanels();
 
@@ -37,12 +40,11 @@ public class GuiToDoMainImpl implements GuiPanel {
 	private void setUpComponents() {
 		sptPnToDoMain = new JSplitPane();
 		sptPnToDoMain.setDividerLocation(0.3);
-		
-        toDoModel = new ToDoModel();
-        controller = new ToDoController(toDoModel);
-        controller.getAllToDos();
 
-		gtl = new GuiToDoLeftImpl(toDoModel, controller);
+		gtl = new GuiToDoLeftImpl(toDoModel, toDoController);
+		
+		gtl.getBtnAddToDo().addActionListener(e -> gtl.addToDo());
+			
 		sptPnToDoMain.setLeftComponent(gtl.getPanel());
 
 		gtr = new GuiToDoRightImpl();
