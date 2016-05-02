@@ -58,11 +58,9 @@ public class GuiToDoMainImpl {
 				gtl.getBtnRemoveToDo().setEnabled(true);
 				gtr.enableAll();
 				int selected = gtl.getLstToDos().getSelectedIndex();
-				if (this.lastIndex >= 0) {
-					this.saveChangesByIndex(gtr.getChangedToDo(), lastIndex);
-				}
 				gtr.updateValues(this.toDoController.getSingleToDo(selected));
-				this.lastIndex = this.gtl.getLstToDos().getSelectedIndex();
+				//this.saveChangesByIndex(gtr.getChangedToDo(), lastIndex);
+				//this.lastIndex = this.gtl.getLstToDos().getSelectedIndex();
 			} else {
 				gtl.getBtnRemoveToDo().setEnabled(false);
 				gtr.disableAll();

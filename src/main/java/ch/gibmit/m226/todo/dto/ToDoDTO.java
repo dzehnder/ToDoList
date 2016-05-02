@@ -37,6 +37,11 @@ public class ToDoDTO {
 		this.repeat = repeat;
 	}
 
+	public ToDoDTO(String name, Date date) {
+		this.name = name;
+		this.dateTime = date;
+	}
+	
 	public ToDoDTO(String name) {
 		this.name = name;
 	}

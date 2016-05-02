@@ -2,6 +2,7 @@ package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.util.Date;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -67,7 +68,7 @@ public class GuiToDoLeftImpl {
 	}
 
 	public ToDoDTO addToDo() {
-		ToDoDTO toDoDTO = new ToDoDTO("New ToDo" + test);
+		ToDoDTO toDoDTO = new ToDoDTO("New ToDo" + test, new Date());
 		this.controller.addToDo(toDoDTO);
 		this.updateList();
 		this.lstToDos.setSelectedIndex(lstToDos.getLastVisibleIndex());

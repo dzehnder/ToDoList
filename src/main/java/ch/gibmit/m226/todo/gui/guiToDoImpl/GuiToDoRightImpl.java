@@ -174,9 +174,9 @@ public class GuiToDoRightImpl implements ActionListener {
 		lblTitle = new JLabel("Title:");
 		lblDate = new JLabel("Date:");
 		lblTime = new JLabel("Time:");
-		lblRepeat = new JLabel("---");
 		lblCategory = new JLabel("Category:");
 		lblPriority = new JLabel("Priority:");
+		lblRepeat = new JLabel();
 
 		txtFldTitle = new JTextField();
 		xdpDate = new JXDatePicker();
@@ -194,6 +194,7 @@ public class GuiToDoRightImpl implements ActionListener {
 		txtAreaNotes.setBackground(randomColor);
 		scrPnNoteArea = new JScrollPane(txtAreaNotes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		
 		objects = new ArrayList<JComponent>();
 		objects.add(btnRepeat);
 		objects.add(btnAddCategory);
@@ -345,7 +346,7 @@ public class GuiToDoRightImpl implements ActionListener {
 			xdpDate.setDate(new Date());
 		} else if (jspTime.getValue() == null) {
 			jspTime.setValue(new Date());
-		} else if (xdpDate.getDate() == null) {
+		} else if (xdpDate.getDate().toString() == "") {
 			xdpDate.setDate(new Date());
 		}
 		Date date = (Date) jspTime.getValue();
