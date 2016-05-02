@@ -10,5 +10,9 @@ public interface IToDoController {
     void addToDo(ToDoDTO toDoDTO);
 
     void getAllToDos();
+    
+    ToDoDTO getLatestToDo();
+    
+    ToDoDTO getSingleToDo(int index);
 
 }

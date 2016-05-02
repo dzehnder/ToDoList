@@ -4,4 +4,6 @@ import javax.swing.*;
 
 public interface GuiPanel {
 	JPanel getPanel();
+
+	void saveChanges();
 }

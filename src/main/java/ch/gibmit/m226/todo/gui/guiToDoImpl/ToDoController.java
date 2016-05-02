@@ -26,4 +26,15 @@ public class ToDoController implements IToDoController {
     public void getAllToDos() {
     	toDoModel.refreshToDoList(toDo.getToDos());
     }
+
+	@Override
+	public ToDoDTO getLatestToDo() {
+		return toDo.getToDos().get(toDo.getToDos().size() - 1);
+	}
+
+	@Override
+	public ToDoDTO getSingleToDo(int index) {
+		return this.toDo.getToDos().get(index);
+	}
+
 }

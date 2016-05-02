@@ -15,7 +15,7 @@ import javax.swing.ListSelectionModel;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
 
-public class GuiToDoLeftImpl implements GuiPanel {
+public class GuiToDoLeftImpl {
 
 	private ToDoModel toDoModel;
 	private ToDoController controller;
@@ -32,6 +32,8 @@ public class GuiToDoLeftImpl implements GuiPanel {
 	private DefaultListModel<String> listModel;
 	private JTextField txtFldSearchToDo;
 
+	private int test = 0;
+
 	public GuiToDoLeftImpl(ToDoModel toDoModel, ToDoController controller) {
 
 		this.toDoModel = toDoModel;
@@ -42,15 +44,6 @@ public class GuiToDoLeftImpl implements GuiPanel {
 		setUpComponents();
 
 		placeComponents();
-		
-        lstToDos.addListSelectionListener(e -> {
-            if (lstToDos.getSelectedIndex() >= 0) {
-                btnRemoveToDo.setEnabled(true);
-            }
-            else {
-            	btnRemoveToDo.setEnabled(false);
-            }
-        });
         
         btnRemoveToDo.addActionListener(e -> {
             this.toDoModel.removeToDo(lstToDos.getSelectedIndex());
@@ -62,16 +55,27 @@ public class GuiToDoLeftImpl implements GuiPanel {
 	}
 	
 	public JButton getBtnAddToDo() {
-		return btnAddToDo;
+		return this.btnAddToDo;
+	}
+	
+	public JButton getBtnRemoveToDo() {
+		return this.btnRemoveToDo;
+	}
+	
+	public JList<String> getLstToDos() {
+		return this.lstToDos;
 	}
 
-	public void addToDo() {
-		ToDoDTO toDoDTO = new ToDoDTO("New ToDo");
+	public ToDoDTO addToDo() {
+		ToDoDTO toDoDTO = new ToDoDTO("New ToDo" + test);
 		this.controller.addToDo(toDoDTO);
-		updateList();
+		this.updateList();
+		this.lstToDos.setSelectedIndex(lstToDos.getLastVisibleIndex());
+		test++;
+		return this.controller.getLatestToDo();
 	}
 
-	private void updateList() {
+	public void updateList() {
 		listModel.removeAllElements();
 		for (int i = 0; i < toDoModel.getToDoList().size(); i++) {
 			listModel.add(i, toDoModel.getToDoName(i));
@@ -110,9 +114,18 @@ public class GuiToDoLeftImpl implements GuiPanel {
 		pnlToDoLeft.add(pnlToDoLeftBottom, BorderLayout.SOUTH);
 		pnlToDoLeft.add(lstToDos, BorderLayout.CENTER);
 	}
-
-	@Override
+	
 	public JPanel getPanel() {
 		return pnlToDoLeft;
 	}
+
+	public void updateListByIndex(int selected) {
+		listModel.removeAllElements();
+		for (int i = 0; i < toDoModel.getToDoList().size(); i++) {
+			listModel.add(i, toDoModel.getToDoName(i));
+		}
+		this.lstToDos.setSelectedIndex(selected);
+	}
+
+
 }

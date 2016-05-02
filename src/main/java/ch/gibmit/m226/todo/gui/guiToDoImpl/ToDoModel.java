@@ -33,4 +33,8 @@ public class ToDoModel {
     public void removeToDo(int index) {
         toDoList.remove(index);
     }
+
+	public void updateToDo(int selected, ToDoDTO changedToDo) {
+		this.toDoList.set(selected, changedToDo);		
+	}
 }

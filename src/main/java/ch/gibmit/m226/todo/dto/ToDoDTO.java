@@ -8,84 +8,93 @@ import java.util.Date;
  * Created by hecol on 22.04.2016.
  */
 public class ToDoDTO {
-    private int id;
-    private String name;
-    private Date dateTime;
-    private int priority;
-    private boolean done;
-    private String note;
-    //private Repeat repeat;
-    private Category cat;
+	private String name;
+	private Date dateTime;
+	private int priority;
+	private boolean done;
+	private String note;
+	private String repeat;
+	private Category category;
 
+	/**
+	 * New ToDoDTO
+	 * @param name
+	 * @param dateTime
+	 * @param priority
+	 * @param done
+	 * @param note
+	 * @param category
+	 * @param repeat
+	 */
+	public ToDoDTO(String name, Date dateTime, int priority, boolean done, String note, Category category,
+			String repeat) {
+		this.name = name;
+		this.dateTime = dateTime;
+		this.priority = priority;
+		this.done = done;
+		this.note = note;
+		this.category = category;
+		this.repeat = repeat;
+	}
 
-    public ToDoDTO(String name, Date dateTime, int priority, boolean done, String note, Category cat) {
-        //this.id = id;
-        this.name = name;
-        this.dateTime = dateTime;
-        this.priority = priority;
-        this.done = done;
-        this.note = note;
-        this.cat = cat;
-    }
-    
-    public ToDoDTO(String name) {
-        this.name = name;
-    }
+	public ToDoDTO(String name) {
+		this.name = name;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Date getDateTime() {
+		return dateTime;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setDateTime(Date dateTime) {
+		this.dateTime = dateTime;
+	}
 
-    public Date getDateTime() {
-        return dateTime;
-    }
+	public int getPriority() {
+		return priority;
+	}
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
-    }
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 
-    public int getPriority() {
-        return priority;
-    }
+	public boolean isDone() {
+		return done;
+	}
 
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
+	public void setDone(boolean done) {
+		this.done = done;
+	}
 
-    public boolean isDone() {
-        return done;
-    }
+	public String getNote() {
+		return note;
+	}
 
-    public void setDone(boolean done) {
-        this.done = done;
-    }
+	public void setNote(String note) {
+		this.note = note;
+	}
 
-    public String getNote() {
-        return note;
-    }
+	public String getRepeat() {
+		return repeat;
+	}
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+	public void setRepeat(String repeat) {
+		this.repeat = repeat;
+	}
 
-    public Category getCat() {
-        return cat;
-    }
+	public Category getCategory() {
+		return category;
+	}
 
-    public void setCat(Category cat) {
-        this.cat = cat;
-    }
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 }
