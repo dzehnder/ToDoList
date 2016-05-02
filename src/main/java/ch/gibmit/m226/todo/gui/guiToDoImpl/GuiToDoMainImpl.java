@@ -20,7 +20,7 @@ public class GuiToDoMainImpl {
 	private ToDoController toDoController;
 	private ToDoModel toDoModel;
 
-	private int lastIndex;
+	private int changeTemp = -1;
 
 	public GuiToDoMainImpl() {
 
@@ -47,7 +47,7 @@ public class GuiToDoMainImpl {
 
 	private void setUpComponents() {
 		this.sptPnToDoMain = new JSplitPane();
-		this.sptPnToDoMain.setDividerLocation(0.3);
+		this.sptPnToDoMain.setDividerLocation(200);
 
 		this.gtl.getBtnAddToDo().addActionListener(e -> {
 			this.addToDo();
@@ -57,22 +57,23 @@ public class GuiToDoMainImpl {
 			if (this.gtl.getLstToDos().getSelectedIndex() >= 0) {
 				gtl.getBtnRemoveToDo().setEnabled(true);
 				gtr.enableAll();
-				int selected = gtl.getLstToDos().getSelectedIndex();
-				gtr.updateValues(this.toDoController.getSingleToDo(selected));
-				//this.saveChangesByIndex(gtr.getChangedToDo(), lastIndex);
-				//this.lastIndex = this.gtl.getLstToDos().getSelectedIndex();
+				int newTemp = gtl.getLstToDos().getSelectedIndex();
+				if (changeTemp > -1) {
+					this.saveChanges(changeTemp, gtr.getChangedToDo());
+					this.gtl.getLstToDos().setSelectedIndex(newTemp);
+					changeTemp = -1;
+				}
+				gtr.updateValues(this.toDoController.getSingleToDo(newTemp));
+				changeTemp = this.gtl.getLstToDos().getSelectedIndex();
 			} else {
 				gtl.getBtnRemoveToDo().setEnabled(false);
 				gtr.disableAll();
+				changeTemp = -1;
 			}
 		});
 
 		this.sptPnToDoMain.setLeftComponent(gtl.getPanel());
 		this.sptPnToDoMain.setRightComponent(gtr.getPanel());
-	}
-
-	private void saveChangesByIndex(ToDoDTO changedToDo, int lastIndex) {
-		this.toDoModel.updateToDo(lastIndex, gtr.getChangedToDo());
 	}
 
 	public void addToDo() {
@@ -98,6 +99,11 @@ public class GuiToDoMainImpl {
 			this.toDoModel.updateToDo(selected, gtr.getChangedToDo());
 			this.gtl.updateListByIndex(selected);
 		}
+	}
+
+	public void saveChanges(int lastSelected, ToDoDTO lastSelectedToDo) {
+		this.toDoModel.updateToDo(lastSelected, lastSelectedToDo);
+		this.gtl.updateList();
 	}
 
 }

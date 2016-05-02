@@ -194,7 +194,7 @@ public class GuiToDoRightImpl implements ActionListener {
 		txtAreaNotes.setBackground(randomColor);
 		scrPnNoteArea = new JScrollPane(txtAreaNotes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		
+
 		objects = new ArrayList<JComponent>();
 		objects.add(btnRepeat);
 		objects.add(btnAddCategory);
@@ -282,10 +282,10 @@ public class GuiToDoRightImpl implements ActionListener {
 	 *            selected todo
 	 */
 	public void updateValues(ToDoDTO dto) {
-		if (dto.getRepeat() != null) {
+		if (dto.getRepeat() != "") {
 			lblRepeat.setText(dto.getRepeat());
 		} else {
-			lblRepeat.setText("---");
+			lblRepeat.setText("");
 		}
 		if (dto.getName() != null) {
 			txtFldTitle.setText(dto.getName());
@@ -341,13 +341,8 @@ public class GuiToDoRightImpl implements ActionListener {
 
 	@SuppressWarnings("deprecation")
 	public ToDoDTO getChangedToDo() {
-		if (jspTime.getValue() == null && xdpDate.getDate() == null) {
+		if (jspTime.getValue() == null) {
 			jspTime.setValue(new Date());
-			xdpDate.setDate(new Date());
-		} else if (jspTime.getValue() == null) {
-			jspTime.setValue(new Date());
-		} else if (xdpDate.getDate().toString() == "") {
-			xdpDate.setDate(new Date());
 		}
 		Date date = (Date) jspTime.getValue();
 		date.setDate(xdpDate.getDate().getDate());
