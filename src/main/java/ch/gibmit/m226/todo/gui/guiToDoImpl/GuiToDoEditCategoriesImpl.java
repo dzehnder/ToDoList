@@ -6,14 +6,11 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
- * @author Colin Herzog, Damian Zehnder
+ * @author Colin Herzog
+ * @author Damian Zehnder
  * this singleton class is the edit-dialog of the categories
  */
 public class GuiToDoEditCategoriesImpl extends JDialog {

@@ -14,7 +14,7 @@ public class ToDoDTO {
 	private boolean done;
 	private String note;
 	private String repeat;
-	private Category category;
+	private Object category;
 
 	/**
 	 * New ToDoDTO
@@ -26,8 +26,8 @@ public class ToDoDTO {
 	 * @param category
 	 * @param repeat
 	 */
-	public ToDoDTO(String name, Date dateTime, int priority, boolean done, String note, Category category,
-			String repeat) {
+	public ToDoDTO(String name, Date dateTime, int priority, boolean done, String note, Object category,
+				   String repeat) {
 		this.name = name;
 		this.dateTime = dateTime;
 		this.priority = priority;
@@ -94,7 +94,7 @@ public class ToDoDTO {
 		this.repeat = repeat;
 	}
 
-	public Category getCategory() {
+	public Object getCategory() {
 		return category;
 	}
 

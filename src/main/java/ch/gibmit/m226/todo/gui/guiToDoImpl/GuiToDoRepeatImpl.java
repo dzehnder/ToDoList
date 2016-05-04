@@ -66,6 +66,7 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         dlgRepeater.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
         dlgRepeater.setModal(true);
         dlgRepeater.setVisible(true);
+        dlgRepeater.setResizable(false);
     }
 
     /**

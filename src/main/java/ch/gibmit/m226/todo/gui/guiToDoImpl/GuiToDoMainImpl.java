@@ -50,6 +50,7 @@ public class GuiToDoMainImpl {
 		this.sptPnToDoMain.setDividerLocation(200);
 
 		this.gtl.getBtnAddToDo().addActionListener(e -> {
+			this.saveChanges();
 			this.addToDo();
 		});
 

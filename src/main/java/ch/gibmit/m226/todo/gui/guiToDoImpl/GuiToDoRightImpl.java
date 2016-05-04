@@ -72,7 +72,6 @@ public class GuiToDoRightImpl implements ActionListener {
 	private JLabel lblPriority;
 
 	private JButton btnRepeat;
-	private JButton btnAddCategory;
 	private JTextField txtFldTitle;
 	private JXDatePicker xdpDate;
 	private Calendar cdrCalendar;
@@ -103,7 +102,8 @@ public class GuiToDoRightImpl implements ActionListener {
 				updateCategorySelectBox();
 
 				cmbxCategory.setSelectedItem(item);
-			}
+                cmbxCategory.getSelectedItem();
+            }
 		});
 
 		setUpPanels();
@@ -182,8 +182,6 @@ public class GuiToDoRightImpl implements ActionListener {
 		xdpDate = new JXDatePicker();
 		btnRepeat = new JButton("Repeat");
 		btnRepeat.addActionListener(this);
-		btnAddCategory = new JButton("Edit");
-		btnAddCategory.addActionListener(this);
 		cmbxCategory = new JComboBox<>();
 		chbxDone = new JCheckBox("Done:");
 		chbxDone.setHorizontalTextPosition(SwingConstants.LEFT);
@@ -197,7 +195,6 @@ public class GuiToDoRightImpl implements ActionListener {
 
 		objects = new ArrayList<JComponent>();
 		objects.add(btnRepeat);
-		objects.add(btnAddCategory);
 		objects.add(txtFldTitle);
 		objects.add(xdpDate);
 		objects.add(jspTime);
@@ -233,7 +230,6 @@ public class GuiToDoRightImpl implements ActionListener {
 		pnlToDoRightCenterBottomLeftTop.add(pnlToDoRightCenterBottomLeftTopTop, BorderLayout.NORTH);
 		pnlToDoRightCenterBottomLeftTopTop.add(lblCategory, BorderLayout.WEST);
 		pnlToDoRightCenterBottomLeftTopTop.add(cmbxCategory, BorderLayout.CENTER);
-		pnlToDoRightCenterBottomLeftTopTop.add(btnAddCategory, BorderLayout.EAST);
 		pnlToDoRightCenterBottomLeft.add(pnlToDoRightCenterBottomLeftTop);
 
 		pnlToDoRightCenterBottomLeftMid.add(lblPriority, BorderLayout.WEST);
@@ -267,9 +263,6 @@ public class GuiToDoRightImpl implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.btnAddCategory) {
-			guiToDoEditCategories.setVisible(true);
-		}
 		if (e.getSource() == this.btnRepeat) {
 			new GuiToDoRepeatImpl();
 		}
@@ -350,7 +343,7 @@ public class GuiToDoRightImpl implements ActionListener {
 		date.setYear(xdpDate.getDate().getYear());
 
 		return new ToDoDTO(this.txtFldTitle.getText(), date, this.sldrPriority.getValue(), this.chbxDone.isSelected(),
-				this.txtAreaNotes.getText(), new Category(), "");
+				this.txtAreaNotes.getText(), this.cmbxCategory.getSelectedItem(), "");
 
 	}
 }
