@@ -46,8 +46,8 @@ public class GuiMainImpl extends JFrame {
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		this.pack();
-		this.setSize(900, 600);
-		this.setMinimumSize(new Dimension(700, 550));
+		this.setSize(950, 600);
+		this.setMinimumSize(new Dimension(950, 550));
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 		this.setVisible(true);

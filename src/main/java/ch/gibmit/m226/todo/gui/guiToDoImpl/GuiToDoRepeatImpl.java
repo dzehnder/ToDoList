@@ -1,5 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
+import ch.gibmit.m226.todo.dto.Repeater;
 import org.jdesktop.swingx.JXDatePicker;
 
 import javax.swing.*;
@@ -32,12 +33,26 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
     private JComboBox<String> cmbxRepeatRate;
     private JComboBox<String> cmbxEndDate;
     private JXDatePicker xdpEndDate;
+    private Repeater repeater;
+    private ToDoController toDoController;
 
 
     /**
      * constructor sets up the dialog, according to the selected repeater options
+     * @param controller
      */
-    public GuiToDoRepeatImpl() {
+    public GuiToDoRepeatImpl(ToDoController controller) {
+        this.toDoController = controller;
+        if (toDoController.getActiveTodo().getRepeat() == null) {
+            repeater = new Repeater();
+            toDoController.getActiveTodo().setRepeat(repeater);
+        }
+        else {
+            repeater = toDoController.getActiveTodo().getRepeat();
+        }
+
+
+
 
         dlgRepeater = new JDialog();
 
@@ -91,6 +106,16 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
      */
     private void setUpComponents() {
         cmbxRepeatRate = new JComboBox<>();
+
+        for (String rep : REPEATRATES) {
+            cmbxRepeatRate.addItem(rep);
+        }
+
+        if (repeater.getRecurrence() != null) {
+            cmbxRepeatRate.setSelectedItem(repeater.getRecurrence());
+        }
+        cmbxRepeatRate.addActionListener(e -> repeater.setRecurrence(cmbxRepeatRate.getSelectedItem()));
+
         lblRepetition = new JLabel("Every: ");
         spnrTime = new JSpinner();
         spnrTime.setPreferredSize(new Dimension(55, 20));
@@ -99,9 +124,7 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
 
         placeComponents();
 
-        for (String rep : REPEATRATES) {
-            cmbxRepeatRate.addItem(rep);
-        }
+
 
         cmbxRepeatRate.addActionListener(this);
         pnlRepeater.add(cmbxRepeatRate, BorderLayout.PAGE_START);
@@ -238,5 +261,9 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
             // do stuff
         }
 
+    }
+
+    public Repeater getRepeater() {
+        return repeater;
     }
 }

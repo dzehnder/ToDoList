@@ -56,6 +56,7 @@ public class GuiToDoMainImpl {
 
 		this.gtl.getLstToDos().addListSelectionListener(e -> {
 			if (this.gtl.getLstToDos().getSelectedIndex() >= 0) {
+				toDoController.setActiveTodo(this.gtl.getLstToDos().getSelectedIndex());
 				gtl.getBtnRemoveToDo().setEnabled(true);
 				gtr.enableAll();
 				int newTemp = gtl.getLstToDos().getSelectedIndex();

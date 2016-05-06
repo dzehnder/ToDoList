@@ -11,6 +11,7 @@ public class ToDoController implements IToDoController {
 
     private ToDo toDo = new ToDo();
     private ToDoModel toDoModel;
+    private int activeTodo;
 
     public ToDoController(ToDoModel toDoModel) {
         this.toDoModel = toDoModel;
@@ -37,4 +38,11 @@ public class ToDoController implements IToDoController {
 		return this.toDo.getToDos().get(index);
 	}
 
+    public ToDoDTO getActiveTodo() {
+        return toDo.getToDos().get(activeTodo);
+    }
+
+    public void setActiveTodo(int activeTodo) {
+        this.activeTodo = activeTodo;
+    }
 }

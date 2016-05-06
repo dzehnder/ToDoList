@@ -13,7 +13,7 @@ public class ToDoDTO {
 	private int priority;
 	private boolean done;
 	private String note;
-	private String repeat;
+	private Repeater repeat;
 	private Object category;
 
 	/**
@@ -27,7 +27,7 @@ public class ToDoDTO {
 	 * @param repeat
 	 */
 	public ToDoDTO(String name, Date dateTime, int priority, boolean done, String note, Object category,
-				   String repeat) {
+				   Repeater repeat) {
 		this.name = name;
 		this.dateTime = dateTime;
 		this.priority = priority;
@@ -86,11 +86,11 @@ public class ToDoDTO {
 		this.note = note;
 	}
 
-	public String getRepeat() {
+	public Repeater getRepeat() {
 		return repeat;
 	}
 
-	public void setRepeat(String repeat) {
+	public void setRepeat(Repeater repeat) {
 		this.repeat = repeat;
 	}
 

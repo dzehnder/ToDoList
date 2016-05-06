@@ -28,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.DateFormatter;
 
+import ch.gibmit.m226.todo.dto.Repeater;
 import org.jdesktop.swingx.JXDatePicker;
 
 import ch.gibmit.m226.todo.bl.Category;
@@ -39,7 +40,6 @@ import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
  */
 public class GuiToDoRightImpl implements ActionListener {
 
-	private ToDoModel toDoModel;
 	private ToDoController controller;
 
 	private JPanel pnlToDoRight;
@@ -88,10 +88,10 @@ public class GuiToDoRightImpl implements ActionListener {
 
 	private static final int MIN_PRIO = 5;
 	private static final int MAX_PRIO = 1;
+	private GuiToDoRepeatImpl repeater;
 
 	public GuiToDoRightImpl(ToDoModel toDoModel, ToDoController controller) {
 
-		this.toDoModel = toDoModel;
 		this.controller = controller;
 
 		guiToDoEditCategories.addWindowListener(new WindowAdapter() {
@@ -264,7 +264,7 @@ public class GuiToDoRightImpl implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btnRepeat) {
-			new GuiToDoRepeatImpl();
+			repeater = new GuiToDoRepeatImpl(controller);
 		}
 	}
 
@@ -275,11 +275,12 @@ public class GuiToDoRightImpl implements ActionListener {
 	 *            selected todo
 	 */
 	public void updateValues(ToDoDTO dto) {
+		/*
 		if (dto.getRepeat() != "") {
 			lblRepeat.setText(dto.getRepeat());
 		} else {
 			lblRepeat.setText("");
-		}
+		}*/
 		if (dto.getName() != null) {
 			txtFldTitle.setText(dto.getName());
 		}
@@ -342,8 +343,9 @@ public class GuiToDoRightImpl implements ActionListener {
 		date.setMonth(xdpDate.getDate().getMonth());
 		date.setYear(xdpDate.getDate().getYear());
 
+		// TODO change repeater param
 		return new ToDoDTO(this.txtFldTitle.getText(), date, this.sldrPriority.getValue(), this.chbxDone.isSelected(),
-				this.txtAreaNotes.getText(), this.cmbxCategory.getSelectedItem(), "");
+				this.txtAreaNotes.getText(), this.cmbxCategory.getSelectedItem(), repeater.getRepeater());
 
 	}
 }
