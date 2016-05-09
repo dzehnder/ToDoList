@@ -23,7 +23,7 @@ public class CategoryTest {
         categoryController.addCategory(categoryDTO);
         
         //index 4 because of default categories
-        assertEquals(categoryModel.getCategoryName(4), catname);
+        assertEquals(categoryModel.getCategoryName(3), catname);
     }
 
     @Test
