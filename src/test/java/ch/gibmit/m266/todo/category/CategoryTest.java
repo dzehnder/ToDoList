@@ -21,9 +21,8 @@ public class CategoryTest {
     public void testAddCategory() {
         CategoryDTO categoryDTO = new CategoryDTO(catname);
         categoryController.addCategory(categoryDTO);
-        
-        //index 4 because of default categories
-        assertEquals(categoryModel.getCategoryName(3), catname);
+
+        assertEquals(categoryModel.getCategoryName(categoryModel.getCategoryList().size()-1), catname);
     }
 
     @Test
