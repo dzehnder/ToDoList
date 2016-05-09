@@ -93,6 +93,7 @@ public class GuiToDoRightImpl implements ActionListener {
 	public GuiToDoRightImpl(ToDoModel toDoModel, ToDoController controller) {
 
 		this.controller = controller;
+		repeater = new GuiToDoRepeatImpl(this.controller);
 
 		guiToDoEditCategories.addWindowListener(new WindowAdapter() {
 			@Override
@@ -264,7 +265,7 @@ public class GuiToDoRightImpl implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btnRepeat) {
-			repeater = new GuiToDoRepeatImpl(controller);
+			repeater.start();
 		}
 	}
 

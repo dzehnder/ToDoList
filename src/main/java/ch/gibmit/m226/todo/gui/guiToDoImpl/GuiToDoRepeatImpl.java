@@ -43,6 +43,11 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
      */
     public GuiToDoRepeatImpl(ToDoController controller) {
         this.toDoController = controller;
+
+
+    }
+
+    public void start() {
         if (toDoController.getActiveTodo().getRepeat() == null) {
             repeater = new Repeater();
             toDoController.getActiveTodo().setRepeat(repeater);
@@ -50,9 +55,6 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         else {
             repeater = toDoController.getActiveTodo().getRepeat();
         }
-
-
-
 
         dlgRepeater = new JDialog();
 
@@ -264,6 +266,9 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
     }
 
     public Repeater getRepeater() {
+        if (repeater == null) {
+            repeater = new Repeater();
+        }
         return repeater;
     }
 }
