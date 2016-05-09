@@ -1,11 +1,11 @@
 # ToDoList
 
 ## Use Cases
-This ToDo List should provide a userinterface, to manage todo's. It should be possible, to add new, and edit or delete existing todo's.
-The attributes of a todo should be easily configurable. To have a good overview, the todo's should be sort- and searchable. Additinally there should be a calendar, where all todo's are marked.
-A Todo List should be saveable in a local file (due to lack of time, this should happen with serialization!).
+This ToDo List Applicatins provides a userinterface, to manage todo's. It is possible, to add, edit, manage and delete todo's.
+The attributes of a todo are easily configurable. To have a good overview, the todo's are be sort- and searchable. There's a calendar, where all todo's are marked.
+A Todo List is saveable in a local file (due to lack of time, this happens with serialization!).
 
-This ToDo List is designed for privat- or business use. Especially it is intended for persons who would like an organized and digitalized todo list.
+This ToDo List is designed for privat- or business use. Especially it is intended for persons who like an organized and digitalized todo list.
 
 
 ## Swingx
@@ -17,6 +17,8 @@ How to install SwingX in IntelliJ:
 
 1. `File > Projectstructure > "+"-Symbol (bottom left) > JARs or directories > Select swingx-all-***.jar > Ok > Ok`
 2. Your SwingX is ready to use
+
+Or just install the maven-dependencies
 
 ## Minimum hardware requirements
 RAM: 128 MB
