@@ -37,11 +37,16 @@ public class ToDoController implements IToDoController {
 	public ToDoDTO getSingleToDo(int index) {
 		return this.toDo.getToDos().get(index);
 	}
+	
+	@Override
+	public ToDo getToDo() {
+		return this.toDo;
+	}
 
     public ToDoDTO getActiveTodo() {
         return toDo.getToDos().get(activeTodo);
     }
-
+    
     public void setActiveTodo(int activeTodo) {
         this.activeTodo = activeTodo;
     }

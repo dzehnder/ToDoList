@@ -26,4 +26,8 @@ public class ToDo {
         return toDoDAO.getAllToDos();
     }
     
+    public ToDoDAO getToDoDAO() {
+    	return this.toDoDAO;
+    }
+    
 }

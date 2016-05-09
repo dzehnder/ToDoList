@@ -2,12 +2,18 @@ package ch.gibmit.m226.todo.dto;
 
 import ch.gibmit.m226.todo.bl.Category;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by hecol on 22.04.2016.
  */
-public class ToDoDTO {
+public class ToDoDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9162166727252543372L;
+	
 	private String name;
 	private Date dateTime;
 	private int priority;

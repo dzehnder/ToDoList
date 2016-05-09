@@ -26,4 +26,8 @@ public class Category {
         return categoryDAO.getCategories();
     }
 
+	public CategoryDAO getCategoryDAO() {
+		return categoryDAO;
+	}
+
 }

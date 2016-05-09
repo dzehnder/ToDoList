@@ -41,6 +41,14 @@ public class GuiToDoMainImpl {
 
 	}
 
+	public ToDoController getToDoController() {
+		return toDoController;
+	}
+
+	public ToDoModel getToDoModel() {
+		return toDoModel;
+	}
+
 	private void setUpPanels() {
 		this.pnlToDoMain = new JPanel(new BorderLayout());
 	}

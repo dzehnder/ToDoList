@@ -1,13 +1,19 @@
 package ch.gibmit.m226.todo.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Damian Zehnder
  */
-public class Repeater {
+public class Repeater implements Serializable {
 
-    private Object recurrence;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1024913788309088968L;
+	
+	private Object recurrence;
     private int rate;
     private Object hasEndDate;
     private Date endDate;

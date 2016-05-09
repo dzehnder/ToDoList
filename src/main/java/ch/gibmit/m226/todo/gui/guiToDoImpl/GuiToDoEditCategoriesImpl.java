@@ -208,7 +208,14 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
     public CategoryModel getCategoryModel() {
         return categoryModel;
     }
-
+    
+    /**
+     * @return the controller of the category
+     */
+    public CategoryController getCategoryController() {
+        return controller;
+    }
+    
     /**
      * @return the category dialog singleton instance
      */

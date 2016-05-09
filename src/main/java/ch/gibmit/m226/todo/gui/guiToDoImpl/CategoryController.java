@@ -29,4 +29,9 @@ public class CategoryController implements ICategoryController {
         categoryModel.refreshCategoryList(category.getCategories());
 
     }
+
+
+	public Category getCategory() {
+		return category;
+	}
 }

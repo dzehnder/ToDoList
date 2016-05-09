@@ -1,5 +1,6 @@
 package ch.gibmit.m226.todo.gui.interfaces;
 
+import ch.gibmit.m226.todo.bl.ToDo;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 
 /**
@@ -14,5 +15,7 @@ public interface IToDoController {
     ToDoDTO getLatestToDo();
     
     ToDoDTO getSingleToDo(int index);
+
+	ToDo getToDo();
 
 }
