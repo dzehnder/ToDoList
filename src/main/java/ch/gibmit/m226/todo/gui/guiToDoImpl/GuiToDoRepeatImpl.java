@@ -27,8 +27,7 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
     private JLabel lblRepetition;
     private JSpinner spnrTime;
     private JLabel lblRate;
-    private JButton btnOk;
-    private JButton btnCancel;
+    private JButton btnDone;
     private JCheckBox[] chbxWeekdays = new JCheckBox[WEEKDAYS.length];
     private JComboBox<String> cmbxRepeatRate;
     private JComboBox<String> cmbxEndDate;
@@ -58,13 +57,10 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
 
         dlgRepeater = new JDialog();
 
-        btnOk = new JButton("Ok");
-        dlgRepeater.getRootPane().setDefaultButton(btnOk);
-        btnOk.isDefaultButton();
-        btnOk.addActionListener(this);
-
-        btnCancel = new JButton("Cancel");
-        btnCancel.addActionListener(this);
+        btnDone = new JButton("Done");
+        dlgRepeater.getRootPane().setDefaultButton(btnDone);
+        btnDone.isDefaultButton();
+        btnDone.addActionListener(this);
 
         cmbxEndDate = new JComboBox<>(new String[]{"No end date", "End by date: "});
         cmbxEndDate.addActionListener(this);
@@ -134,8 +130,7 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         cmbxRepeatRate.addActionListener(this);
         pnlRepeater.add(cmbxRepeatRate, BorderLayout.PAGE_START);
 
-        pnlRepeaterBottom.add(btnCancel);
-        pnlRepeaterBottom.add(btnOk);
+        pnlRepeaterBottom.add(btnDone);
     }
 
     /**
@@ -259,11 +254,8 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         if (e.getSource() == this.cmbxEndDate) {
             updateRepeatDateToSelection();
         }
-        if (e.getSource() == this.btnCancel) {
+        if (e.getSource() == this.btnDone) {
             dlgRepeater.dispose();
-        }
-        if (e.getSource() == this.btnOk) {
-            // do stuff
         }
 
     }

@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
-import ch.gibmit.m226.todo.bl.Serializor;
+//import ch.gibmit.m226.todo.bl.Serializor;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiMenu.GuiMenu;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoEditCategoriesImpl;
@@ -32,7 +32,7 @@ public class GuiMainImpl extends JFrame {
 	private GuiToDoMainImpl gtm;
 	private GuiCalendarPanel gtc;
 	private GuiMenu gm;
-	private Serializor sr;
+//	private Serializor sr;
 
 	public GuiMainImpl() {
 
@@ -63,7 +63,7 @@ public class GuiMainImpl extends JFrame {
 	public void setActionListeners() {
         gm.getSave().addActionListener(e -> {
             gtm.saveChanges();
-            sr.save();
+//            sr.save();
         });
         gm.getNewToDo().addActionListener(e -> {
             gtm.addToDo();

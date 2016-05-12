@@ -274,11 +274,11 @@ public class GuiToDoRightImpl implements ActionListener {
 	 */
 	public void updateValues(ToDoDTO dto) {
 
-		/*if (dto.getRepeat() != "") {
-			lblRepeat.setText(dto.getRepeat());
+		if (dto.getRepeat() != null) {
+			lblRepeat.setText(dto.getRepeat().getRecurrence().toString());
 		} else {
 			lblRepeat.setText("");
-		}*/
+		}
 		if (dto.getName() != null) {
 			txtFldTitle.setText(dto.getName());
 		}
@@ -349,16 +349,8 @@ public class GuiToDoRightImpl implements ActionListener {
 		toDoDTO.setDone(chbxDone.isSelected());
 		toDoDTO.setNote(txtAreaNotes.getText());
 		toDoDTO.setCategory(this.cmbxCategory.getSelectedItem());
-		toDoDTO.setRepeat(repeater.getRepeater());
 
 		return toDoDTO;
 
-
-		//System.out.println(controller.getSingleToDo(selected).getName());
-/*
-		// TODO change repeater param
-		return new ToDoDTO(this.txtFldTitle.getText(), date, this.sldrPriority.getValue(), this.chbxDone.isSelected(),
-				this.txtAreaNotes.getText(), this.cmbxCategory.getSelectedItem(), repeater.getRepeater());
-*/
 	}
 }
