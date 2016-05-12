@@ -69,7 +69,7 @@ public class GuiToDoMainImpl {
 				gtr.enableAll();
 				int newTemp = gtl.getLstToDos().getSelectedIndex();
 				if (changeTemp > -1) {
-					this.saveChanges(changeTemp, gtr.getChangedToDo());
+					this.saveChanges(changeTemp, gtr.getChangedToDo(changeTemp));
 					this.gtl.getLstToDos().setSelectedIndex(newTemp);
 					changeTemp = -1;
 				}
@@ -106,7 +106,7 @@ public class GuiToDoMainImpl {
 	public void saveChanges() {
 		if (this.gtl.getLstToDos().getSelectedIndex() >= 0) {
 			int selected = gtl.getLstToDos().getSelectedIndex();
-			this.toDoModel.updateToDo(selected, gtr.getChangedToDo());
+			this.toDoModel.updateToDo(selected, gtr.getChangedToDo(selected));
 			this.gtl.updateListByIndex(selected);
 		}
 	}

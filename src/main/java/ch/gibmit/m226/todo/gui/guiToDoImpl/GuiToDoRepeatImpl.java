@@ -116,6 +116,9 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         if (repeater.getRecurrence() != null) {
             cmbxRepeatRate.setSelectedItem(repeater.getRecurrence());
         }
+        else {
+            cmbxRepeatRate.setSelectedItem(0);
+        }
         cmbxRepeatRate.addActionListener(e -> repeater.setRecurrence(cmbxRepeatRate.getSelectedItem()));
 
         lblRepetition = new JLabel("Every: ");

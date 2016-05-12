@@ -22,27 +22,12 @@ public class ToDoDTO implements Serializable {
 	private Repeater repeat;
 	private Object category;
 
-	/**
-	 * New ToDoDTO
-	 * @param name
-	 * @param dateTime
-	 * @param priority
-	 * @param done
-	 * @param note
-	 * @param category
-	 * @param repeat
-	 */
-	public ToDoDTO(String name, Date dateTime, int priority, boolean done, String note, Object category,
-				   Repeater repeat) {
-		this.name = name;
-		this.dateTime = dateTime;
-		this.priority = priority;
-		this.done = done;
-		this.note = note;
-		this.category = category;
-		this.repeat = repeat;
-	}
 
+	/**
+	 * Constructor sets default values
+	 * @param name the default name of the new todo
+	 * @param date the default date of new todo
+     */
 	public ToDoDTO(String name, Date date) {
 		this.name = name;
 		this.dateTime = date;
@@ -104,7 +89,7 @@ public class ToDoDTO implements Serializable {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(Object category) {
 		this.category = category;
 	}
 

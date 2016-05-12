@@ -21,7 +21,7 @@ public class Repeater implements Serializable {
 
 
     public Repeater() {
-
+        System.out.println("New Repeater");
     }
 
     public Object getRecurrence() {
