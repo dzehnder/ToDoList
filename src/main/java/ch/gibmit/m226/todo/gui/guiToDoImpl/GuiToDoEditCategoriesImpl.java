@@ -128,7 +128,7 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
     /**
      * Updates the category list content
      */
-    private void updateList() {
+    public void updateList() {
 
         model.removeAllElements();
         for (int i = 0; i < categoryModel.getCategoryList().size(); i++) {

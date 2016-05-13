@@ -146,4 +146,9 @@ public class GuiToDoMainImpl {
 		this.gtl.updateList();
 	}
 
+	public void updateToDosAndCategories() {
+		this.toDoController.getAllToDos();
+		GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getAllCategories();
+	}
+
 }

@@ -44,9 +44,11 @@ public class GuiMainImpl extends JFrame {
 		gtm = new GuiToDoMainImpl();
 		gtc = new GuiCalendarImpl();
 		if(categoryDAO != null || toDoDAO != null){
-			gtm = new GuiToDoMainImpl((ToDoDAO) toDoDAO);
 			GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().setCategoriyDAO((CategoryDAO) categoryDAO);
-			gtm.getToDoController();
+			gtm.updateToDosAndCategories();
+			GuiToDoEditCategoriesImpl.getInstance().updateList();
+			gtm = new GuiToDoMainImpl((ToDoDAO) toDoDAO);
+			gtm.updateToDosAndCategories();
 			gtm.updateList();
 		}
 		sr = new Serializor(GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().getCategoryDAO(), gtm.getToDoController().getToDo().getToDoDAO());
