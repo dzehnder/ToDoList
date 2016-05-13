@@ -37,7 +37,7 @@ public class Start {
 			categoryDAO = oin.readObject();
 			toDoDAO = oin.readObject();
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("No safe-file found");
 		}
 		new GuiMainImpl(categoryDAO, toDoDAO);
 	}
