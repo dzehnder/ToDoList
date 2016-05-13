@@ -15,7 +15,11 @@ public class ToDo {
     private ToDoDAO toDoDAO;
 
     public ToDo() {
-        toDoDAO = new ToDoDAOImpl();
+        this(new ToDoDAOImpl());
+    }
+    
+    public ToDo(ToDoDAO toDoDAO) {
+        this.toDoDAO = toDoDAO;
     }
 
     public void add(ToDoDTO toDo) {
@@ -28,6 +32,10 @@ public class ToDo {
     
     public ToDoDAO getToDoDAO() {
     	return this.toDoDAO;
+    }
+    
+    public void setToDoDAO(ToDoDAO toDoDAO) {
+    	this.toDoDAO = toDoDAO;
     }
     
 }

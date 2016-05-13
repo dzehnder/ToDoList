@@ -1,6 +1,8 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
 import ch.gibmit.m226.todo.bl.ToDo;
+import ch.gibmit.m226.todo.data.ToDoDAO;
+import ch.gibmit.m226.todo.data.ToDoDAOImpl;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 import ch.gibmit.m226.todo.gui.interfaces.IToDoController;
 
@@ -9,13 +11,20 @@ import ch.gibmit.m226.todo.gui.interfaces.IToDoController;
  */
 public class ToDoController implements IToDoController {
 
-    private ToDo toDo = new ToDo();
+    
     private ToDoModel toDoModel;
     private int activeTodo;
+    private ToDo toDo = null;
 
     public ToDoController(ToDoModel toDoModel) {
-        this.toDoModel = toDoModel;
+        this(toDoModel, new ToDoDAOImpl());
     }
+    
+    public ToDoController(ToDoModel toDoModel, ToDoDAO toDoDAO) {
+        this.toDoModel = toDoModel;
+        toDo = new ToDo(toDoDAO);
+    }
+ 
 
     @Override
     public void addToDo(ToDoDTO toDoDTO) {

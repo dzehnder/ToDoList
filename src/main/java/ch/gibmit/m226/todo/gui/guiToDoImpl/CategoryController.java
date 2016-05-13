@@ -1,6 +1,7 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
 import ch.gibmit.m226.todo.bl.Category;
+import ch.gibmit.m226.todo.data.CategoryDAO;
 import ch.gibmit.m226.todo.dto.CategoryDTO;
 import ch.gibmit.m226.todo.gui.interfaces.ICategoryController;
 
@@ -15,6 +16,11 @@ public class CategoryController implements ICategoryController {
 
     public CategoryController(CategoryModel categoryModel) {
         this.categoryModel = categoryModel;
+    }
+    
+    public CategoryController(CategoryModel categoryModel, CategoryDAO categoryDAO) {
+        category = new Category(categoryDAO);
+    	this.categoryModel = categoryModel;
     }
 
 

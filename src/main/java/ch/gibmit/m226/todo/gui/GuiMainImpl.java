@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
+import ch.gibmit.m226.todo.bl.Serializor;
+import ch.gibmit.m226.todo.data.CategoryDAO;
+import ch.gibmit.m226.todo.data.ToDoDAO;
 //import ch.gibmit.m226.todo.bl.Serializor;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiMenu.GuiMenu;
@@ -32,14 +35,20 @@ public class GuiMainImpl extends JFrame {
 	private GuiToDoMainImpl gtm;
 	private GuiCalendarPanel gtc;
 	private GuiMenu gm;
-//	private Serializor sr;
+	private Serializor sr;
 
-	public GuiMainImpl() {
+	public GuiMainImpl(Object categoryDAO, Object toDoDAO) {
 
 		gm = new GuiMenu();
 		mainPane = new JTabbedPane();
 		gtm = new GuiToDoMainImpl();
 		gtc = new GuiCalendarImpl();
+		if(categoryDAO != null || toDoDAO != null){
+			gtm = new GuiToDoMainImpl((ToDoDAO) toDoDAO);
+			GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().setCategoriyDAO((CategoryDAO) categoryDAO);
+			gtm.getToDoController();
+			gtm.updateList();
+		}
 		sr = new Serializor(GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().getCategoryDAO(), gtm.getToDoController().getToDo().getToDoDAO());
 		
 		this.mainPane.addTab("ToDos", gtm.getPanel());
@@ -63,7 +72,7 @@ public class GuiMainImpl extends JFrame {
 	public void setActionListeners() {
         gm.getSave().addActionListener(e -> {
             gtm.saveChanges();
-//            sr.save();
+            sr.save();
         });
         gm.getNewToDo().addActionListener(e -> {
             gtm.addToDo();

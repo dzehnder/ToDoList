@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
+import ch.gibmit.m226.todo.data.ToDoDAO;
+import ch.gibmit.m226.todo.data.ToDoDAOImpl;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 
 /**
@@ -21,11 +23,31 @@ public class GuiToDoMainImpl {
 	private ToDoModel toDoModel;
 
 	private int changeTemp = -1;
-
+	
+	
 	public GuiToDoMainImpl() {
 
 		this.toDoModel = new ToDoModel();
-		this.toDoController = new ToDoController(toDoModel);
+		this.toDoController = new ToDoController(toDoModel, new ToDoDAOImpl());
+
+		this.gtl = new GuiToDoLeftImpl(toDoModel, toDoController);
+
+		this.gtr = new GuiToDoRightImpl(toDoModel, toDoController);
+
+		this.gtr.disableAll();
+
+		this.setUpPanels();
+
+		this.setUpComponents();
+
+		this.placeComponents();
+
+	}
+
+	public GuiToDoMainImpl(ToDoDAO toDoDAO) {
+
+		this.toDoModel = new ToDoModel();
+		this.toDoController = new ToDoController(toDoModel, toDoDAO);
 
 		this.gtl = new GuiToDoLeftImpl(toDoModel, toDoController);
 
@@ -47,6 +69,10 @@ public class GuiToDoMainImpl {
 
 	public ToDoModel getToDoModel() {
 		return toDoModel;
+	}
+	
+	public void updateList() {
+		gtl.updateList();
 	}
 
 	private void setUpPanels() {
@@ -89,6 +115,10 @@ public class GuiToDoMainImpl {
 	public void addToDo() {
 		ToDoDTO toDoDTOforRightPanel = gtl.addToDo();
 		this.updateValuesRight(toDoDTOforRightPanel);
+	}
+	
+	public void removeLastToDo() {
+		gtl.removeLastToDo();
 	}
 
 	private void placeComponents() {

@@ -15,10 +15,14 @@ public class Category {
     private CategoryDAO categoryDAO;
 
     public Category() {
-        categoryDAO = new CategoryDAOImpl();
+        this(new CategoryDAOImpl());
     }
 
-    public void add(CategoryDTO category) {
+    public Category(CategoryDAO categoryDAO) {
+    	this.categoryDAO = categoryDAO;
+	}
+
+	public void add(CategoryDTO category) {
         categoryDAO.addCategory(category);
     }
 
@@ -29,5 +33,10 @@ public class Category {
 	public CategoryDAO getCategoryDAO() {
 		return categoryDAO;
 	}
+	
+	public void setCategoriyDAO(CategoryDAO categoryDAO) {
+		this.categoryDAO = categoryDAO;
+	}
+	
 
 }

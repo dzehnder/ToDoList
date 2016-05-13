@@ -45,24 +45,29 @@ public class GuiToDoLeftImpl {
 		setUpComponents();
 
 		placeComponents();
-        
-        btnRemoveToDo.addActionListener(e -> {
-            this.toDoModel.removeToDo(lstToDos.getSelectedIndex());
-            updateList();
-        });
+
+		btnRemoveToDo.addActionListener(e -> {
+			this.toDoModel.removeToDo(lstToDos.getSelectedIndex());
+			updateList();
+		});
 
 		listModel = new DefaultListModel<>();
 		lstToDos.setModel(listModel);
 	}
 	
+	public void removeLastToDo() {
+		this.toDoModel.removeToDo(lstToDos.getVisibleRowCount());
+		updateList();
+	}
+
 	public JButton getBtnAddToDo() {
 		return this.btnAddToDo;
 	}
-	
+
 	public JButton getBtnRemoveToDo() {
 		return this.btnRemoveToDo;
 	}
-	
+
 	public JList<String> getLstToDos() {
 		return this.lstToDos;
 	}
@@ -115,7 +120,7 @@ public class GuiToDoLeftImpl {
 		pnlToDoLeft.add(pnlToDoLeftBottom, BorderLayout.SOUTH);
 		pnlToDoLeft.add(lstToDos, BorderLayout.CENTER);
 	}
-	
+
 	public JPanel getPanel() {
 		return pnlToDoLeft;
 	}
@@ -127,6 +132,5 @@ public class GuiToDoLeftImpl {
 		}
 		this.lstToDos.setSelectedIndex(selected);
 	}
-
 
 }
