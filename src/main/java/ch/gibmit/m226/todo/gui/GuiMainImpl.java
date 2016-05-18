@@ -1,18 +1,21 @@
 package ch.gibmit.m226.todo.gui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.WindowConstants;
+
 import ch.gibmit.m226.todo.bl.Serializor;
 import ch.gibmit.m226.todo.data.CategoryDAO;
 import ch.gibmit.m226.todo.data.ToDoDAO;
+//import ch.gibmit.m226.todo.bl.Serializor;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiMenu.GuiMenu;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoEditCategoriesImpl;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoMainImpl;
 import ch.gibmit.m226.todo.gui.interfaces.GuiCalendarPanel;
-
-import javax.swing.*;
-import java.awt.*;
-
-//import ch.gibmit.m226.todo.bl.Serializor;
 
 /**
  * @author Colin Herzog This class divides the GUI by its tabs. The left tab is
@@ -39,7 +42,7 @@ public class GuiMainImpl extends JFrame {
 		gm = new GuiMenu();
 		mainPane = new JTabbedPane();
 		gtm = new GuiToDoMainImpl();
-		gtc = new GuiCalendarImpl(gtm.getToDoModel());
+		gtc = new GuiCalendarImpl();
 		if(categoryDAO != null || toDoDAO != null){
 			GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().setCategoriyDAO((CategoryDAO) categoryDAO);
 			gtm.updateToDosAndCategories();
