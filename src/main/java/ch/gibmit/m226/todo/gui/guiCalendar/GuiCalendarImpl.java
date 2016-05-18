@@ -1,5 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 import ch.gibmit.m226.todo.gui.interfaces.GuiCalendarPanel;
 
 import javax.swing.*;
@@ -14,11 +15,11 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
     private JPanel pnlCalendarMain;
     private JTabbedPane tbdPnCalendars;
 
-    public GuiCalendarImpl() {
+    public GuiCalendarImpl(ToDoModel toDoModel) {
         pnlCalendarMain = new JPanel(new BorderLayout());
 
         tbdPnCalendars = new JTabbedPane();
-        tbdPnCalendars.addTab("Day", new DayPanelGuiCalendar());
+        tbdPnCalendars.addTab("Day", new DayPanelGuiCalendar(toDoModel));
 
         tbdPnCalendars.addTab("Week", new WeekPanelGuiCalendar());
 

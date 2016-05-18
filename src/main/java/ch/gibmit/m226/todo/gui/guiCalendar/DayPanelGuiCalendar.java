@@ -1,5 +1,7 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -21,13 +23,13 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
     private Calendar cal = getCal();
     private JLabel lblDay;
 
-    public DayPanelGuiCalendar() {
+    public DayPanelGuiCalendar(ToDoModel toDoModel) {
 
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalDay = new JToolBar();
-        dayComp = new GuiCalendarDayComp();
+        dayComp = new GuiCalendarDayComp(cal, toDoModel);
         addButtonsToToolBar(tlBrCalDay);
         lblDay = new JLabel();
         lblDay.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -73,5 +75,6 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
     private void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));
         setCal(cal);
+        dayComp.repaint();
     }
 }

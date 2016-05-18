@@ -63,6 +63,12 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         btnDone.addActionListener(this);
 
         cmbxEndDate = new JComboBox<>(new String[]{"No end date", "End by date: "});
+        if (repeater.getHasEndDate() != null) {
+            if (repeater.getHasEndDate()) {
+                cmbxEndDate.setSelectedIndex(1);
+            }
+        }
+
         cmbxEndDate.addActionListener(this);
 
         for (int i = 0; i < chbxWeekdays.length; i++) {
@@ -74,7 +80,6 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         updateContentToSelection();
 
         dlgRepeater.setTitle("Repeater options");
-        setResizable(false);
         dlgRepeater.setSize(new Dimension(300, 160));
         dlgRepeater.setLocationRelativeTo(SwingUtilities.getWindowAncestor(this));
         dlgRepeater.setModal(true);
@@ -115,19 +120,20 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         else {
             cmbxRepeatRate.setSelectedItem(0);
         }
-        cmbxRepeatRate.addActionListener(e -> repeater.setRecurrence(cmbxRepeatRate.getSelectedItem()));
-
         lblRepetition = new JLabel("Every: ");
         spnrTime = new JSpinner();
         spnrTime.setPreferredSize(new Dimension(55, 20));
+        spnrTime.setValue(repeater.getRate());
         lblRate = new JLabel();
         xdpEndDate = new JXDatePicker();
+        xdpEndDate.setDate(repeater.getEndDate());
 
         placeComponents();
 
 
 
         cmbxRepeatRate.addActionListener(this);
+
         pnlRepeater.add(cmbxRepeatRate, BorderLayout.PAGE_START);
 
         pnlRepeaterBottom.add(btnDone);
@@ -255,6 +261,15 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
             updateRepeatDateToSelection();
         }
         if (e.getSource() == this.btnDone) {
+            repeater.setRecurrence(cmbxRepeatRate.getSelectedItem());
+            repeater.setRate((Integer) spnrTime.getValue());
+            if (cmbxEndDate.getSelectedIndex() == 0){
+                repeater.setHasEndDate(false);
+            }
+            else if (cmbxEndDate.getSelectedIndex() == 1) {
+                repeater.setHasEndDate(true);
+            }
+            repeater.setEndDate(xdpEndDate.getDate());
             dlgRepeater.dispose();
         }
 

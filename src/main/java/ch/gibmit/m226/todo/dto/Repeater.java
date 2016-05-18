@@ -9,19 +9,19 @@ import java.util.Date;
 public class Repeater implements Serializable {
 
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1024913788309088968L;
 	
 	private Object recurrence;
     private int rate;
-    private Object hasEndDate;
+    private Boolean hasEndDate;
     private Date endDate;
     private Boolean[] weekDays;
 
 
     public Repeater() {
-        System.out.println("New Repeater");
+        // nothing to do
     }
 
     public Object getRecurrence() {
@@ -40,11 +40,11 @@ public class Repeater implements Serializable {
         this.rate = rate;
     }
 
-    public Object getHasEndDate() {
+    public Boolean getHasEndDate() {
         return hasEndDate;
     }
 
-    public void setHasEndDate(Object hasEndDate) {
+    public void setHasEndDate(Boolean hasEndDate) {
         this.hasEndDate = hasEndDate;
     }
 
