@@ -39,7 +39,7 @@ public class Start {
 		} catch (IOException | ClassNotFoundException e) {
 			System.out.println("No safe-file found");
 		}
-		new GuiMainImpl(categoryDAO, toDoDAO);
+		new GuiMainImpl(categoryDAO, toDoDAO, "");
 	}
 
 }

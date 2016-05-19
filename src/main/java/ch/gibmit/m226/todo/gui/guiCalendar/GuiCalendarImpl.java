@@ -31,6 +31,8 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
 
     }
 
+
+
     /**
      * Interface method that returns the main calendar panel
      * @return the main Calendar Panel

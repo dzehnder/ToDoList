@@ -24,60 +24,72 @@ import ch.gibmit.m226.todo.gui.interfaces.GuiCalendarPanel;
  */
 public class GuiMainImpl extends JFrame {
 
-	/**
-	 * This is the main pane. It's a tabbed pane where you can split a view into
-	 * tabs.
-	 */
-	private JTabbedPane mainPane;
-	/**
-	 * This is the class for the left tab.
-	 */
-	private GuiToDoMainImpl gtm;
-	private GuiCalendarPanel gtc;
-	private GuiMenu gm;
-	private Serializor sr;
+    /**
+     * This is the main pane. It's a tabbed pane where you can split a view into
+     * tabs.
+     */
+    private JTabbedPane mainPane;
+    /**
+     * This is the class for the left tab.
+     */
+    private GuiToDoMainImpl gtm;
+    private GuiCalendarPanel gtc;
+    private GuiMenu gm;
+    private Serializor sr;
 
-	public GuiMainImpl(Object categoryDAO, Object toDoDAO) {
+    private String path;
+    private boolean newFile = false;
 
-		gm = new GuiMenu();
-		mainPane = new JTabbedPane();
-		gtm = new GuiToDoMainImpl();
-		gtc = new GuiCalendarImpl();
-		if(categoryDAO != null || toDoDAO != null){
-			GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().setCategoriyDAO((CategoryDAO) categoryDAO);
-			gtm.updateToDosAndCategories();
-			GuiToDoEditCategoriesImpl.getInstance().updateList();
-			gtm = new GuiToDoMainImpl((ToDoDAO) toDoDAO);
-			gtm.updateToDosAndCategories();
-			gtm.updateList();
-		}
-		sr = new Serializor(GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().getCategoryDAO(), gtm.getToDoController().getToDo().getToDoDAO());
-		
-		this.mainPane.addTab("ToDos", gtm.getPanel());
-		this.mainPane.addTab("Calendar", gtc.getCalendarPanel());
-		this.setJMenuBar(gm.getMenu());
+    public GuiMainImpl(Object categoryDAO, Object toDoDAO, String path) {
+        gm = new GuiMenu();
+        mainPane = new JTabbedPane();
+        gtm = new GuiToDoMainImpl();
+        gtc = new GuiCalendarImpl(gtm.getToDoModel());
+        this.path = path;
+        if ((categoryDAO != null) && (toDoDAO != null) && (path != "")) {
+            GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().setCategoriyDAO((CategoryDAO) categoryDAO);
+            gtm.updateToDosAndCategories();
+            GuiToDoEditCategoriesImpl.getInstance().updateList();
+            gtm = new GuiToDoMainImpl((ToDoDAO) toDoDAO);
+            gtm.updateToDosAndCategories();
+            gtm.updateList();
+            newFile = true;
+        }
+        sr = new Serializor(GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().getCategoryDAO(), gtm.getToDoController().getToDo().getToDoDAO());
 
-		this.add(mainPane);
-		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.mainPane.addTab("ToDos", gtm.getPanel());
+        this.mainPane.addTab("Calendar", gtc.getCalendarPanel());
+        this.setJMenuBar(gm.getMenu());
 
-		this.pack();
-		this.setSize(950, 600);
-		this.setMinimumSize(new Dimension(950, 550));
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-		this.setVisible(true);
-		
-		this.setActionListeners();
+        this.add(mainPane);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-	}
+        this.pack();
+        this.setSize(950, 600);
+        this.setMinimumSize(new Dimension(950, 550));
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+        this.setVisible(true);
 
-	public void setActionListeners() {
+        this.setActionListeners();
+
+    }
+
+    public void setActionListeners() {
         gm.getSave().addActionListener(e -> {
             gtm.saveChanges();
-            sr.save();
+            if (newFile) {
+                sr.saveNew();
+            } else if (!newFile) {
+                sr.save(this.path);
+            }
+        });
+        gm.getSaveAs().addActionListener(e -> {
+            gtm.saveChanges();
+            sr.saveAs();
         });
         gm.getNewToDo().addActionListener(e -> {
             gtm.addToDo();
         });
-	}
+    }
 }
