@@ -2,13 +2,15 @@ package ch.gibmit.m226.todo.bl;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectOutputStream;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
+import org.apache.commons.io.FilenameUtils;
 
 import ch.gibmit.m226.todo.data.CategoryDAO;
 import ch.gibmit.m226.todo.data.ToDoDAO;
-
-import javax.swing.*;
 
 public class Serializor {
 
@@ -43,9 +45,15 @@ public class Serializor {
         JFrame parentFrame = new JFrame();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Save ToDoList");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int userSelection = fileChooser.showSaveDialog(parentFrame);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             File fileToSave = fileChooser.getSelectedFile();
+            if (FilenameUtils.getExtension(fileToSave.getName()).equalsIgnoreCase("tdo")) {
+                // filename is OK as it is
+            } else {
+            	fileToSave = new File(fileToSave.toString() + ".tdo");
+            }
             this.save(fileToSave.getAbsolutePath());
         }
     }
