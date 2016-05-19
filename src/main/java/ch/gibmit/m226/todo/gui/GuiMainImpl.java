@@ -97,14 +97,14 @@ public class GuiMainImpl extends JFrame {
 		gm.getSave().addActionListener(e -> {
 			gtm.saveChanges();
 			if (newFile) {
-				sr.saveNew();
+				this.newFile = sr.saveNew();
 			} else if (!newFile && !path.equals("")) {
 				sr.save(this.path);
 			}
 		});
 		gm.getSaveAs().addActionListener(e -> {
 			gtm.saveChanges();
-			sr.saveAs();
+			this.newFile = sr.saveAs();
 		});
 		gm.getOpen().addActionListener(e -> {
 			if (!newFile && !path.equals("")) {

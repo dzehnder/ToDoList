@@ -1,13 +1,16 @@
 package ch.gibmit.m226.todo.bl;
 
-import ch.gibmit.m226.todo.data.CategoryDAO;
-import ch.gibmit.m226.todo.data.ToDoDAO;
-import org.apache.commons.io.FilenameUtils;
-
-import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
+import org.apache.commons.io.FilenameUtils;
+
+import ch.gibmit.m226.todo.data.CategoryDAO;
+import ch.gibmit.m226.todo.data.ToDoDAO;
 
 public class Serializor {
 
@@ -19,8 +22,8 @@ public class Serializor {
         this.toDoDAO = toDoDAO;
     }
 
-    public void saveNew() {
-        saveAs();
+    public boolean saveNew() {
+        return saveAs();
     }
 
     public void save(String path) {
@@ -38,7 +41,7 @@ public class Serializor {
         }
     }
 
-    public void saveAs() {
+    public boolean saveAs() {
         JFrame parentFrame = new JFrame();
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Save ToDoList");
@@ -52,6 +55,9 @@ public class Serializor {
             	fileToSave = new File(fileToSave.toString() + ".tdo");
             }
             this.save(fileToSave.getAbsolutePath());
+            return false;
+        } else {
+        	return true;
         }
     }
 }
