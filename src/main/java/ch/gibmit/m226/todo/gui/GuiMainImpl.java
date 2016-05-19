@@ -1,6 +1,7 @@
 package ch.gibmit.m226.todo.gui;
 
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Toolkit;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -76,7 +77,7 @@ public class GuiMainImpl extends JFrame {
 		this.setActionListeners();
 
 	}
-	
+
 	public GuiMainImpl(Object categoryDAO, Object toDoDAO) {
 		this(categoryDAO, toDoDAO, "");
 	}
@@ -106,6 +107,9 @@ public class GuiMainImpl extends JFrame {
 			sr.saveAs();
 		});
 		gm.getOpen().addActionListener(e -> {
+			if (!newFile && !path.equals("")) {
+				sr.save(this.path);
+			}
 			ObjectInputStream oin;
 			Object categoryDAO;
 			Object toDoDAO;
@@ -134,6 +138,15 @@ public class GuiMainImpl extends JFrame {
 		});
 		gm.getNewToDo().addActionListener(e -> {
 			gtm.addToDo();
+		});
+		gm.getClose().addActionListener(e -> {
+			System.exit(0);
+		});
+		gm.getMinimize().addActionListener(e -> {
+			this.setState(Frame.ICONIFIED);
+		});
+		gm.getZoom().addActionListener(e -> {
+			this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		});
 	}
 }
