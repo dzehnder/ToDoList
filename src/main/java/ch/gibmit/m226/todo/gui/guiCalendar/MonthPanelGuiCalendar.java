@@ -1,5 +1,7 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -21,12 +23,12 @@ public class MonthPanelGuiCalendar extends AbstrGuiCalendar {
     private Calendar cal = getCal();
     private JLabel lblMonth;
 
-    public MonthPanelGuiCalendar() {
+    public MonthPanelGuiCalendar(ToDoModel toDoModel) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalMonth = new JToolBar();
-        monthComp = new GuiCalendarMonthComp(cal);
+        monthComp = new GuiCalendarMonthComp(cal, toDoModel);
         addButtonsToToolBar(tlBrCalMonth);
         lblMonth = new JLabel();
         lblMonth.setBorder(new EmptyBorder(5, 10, 5, 10));

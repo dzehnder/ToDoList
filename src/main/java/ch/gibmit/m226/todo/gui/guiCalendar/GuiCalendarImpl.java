@@ -21,9 +21,9 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
         tbdPnCalendars = new JTabbedPane();
         tbdPnCalendars.addTab("Day", new DayPanelGuiCalendar(toDoModel));
 
-        tbdPnCalendars.addTab("Week", new WeekPanelGuiCalendar());
+        tbdPnCalendars.addTab("Week", new WeekPanelGuiCalendar(toDoModel));
 
-        tbdPnCalendars.addTab("Month", new MonthPanelGuiCalendar());
+        tbdPnCalendars.addTab("Month", new MonthPanelGuiCalendar(toDoModel));
 
         tbdPnCalendars.addTab("Year", new YearPanelGuiCalendar());
 

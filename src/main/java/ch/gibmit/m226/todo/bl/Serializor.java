@@ -1,16 +1,13 @@
 package ch.gibmit.m226.todo.bl;
 
+import ch.gibmit.m226.todo.data.CategoryDAO;
+import ch.gibmit.m226.todo.data.ToDoDAO;
+import org.apache.commons.io.FilenameUtils;
+
+import javax.swing.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-
-import org.apache.commons.io.FilenameUtils;
-
-import ch.gibmit.m226.todo.data.CategoryDAO;
-import ch.gibmit.m226.todo.data.ToDoDAO;
 
 public class Serializor {
 

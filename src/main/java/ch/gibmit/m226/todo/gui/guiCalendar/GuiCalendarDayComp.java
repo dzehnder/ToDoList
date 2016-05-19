@@ -26,14 +26,10 @@ public class GuiCalendarDayComp extends JComponent {
         int width = getWidth()-2;
         int height = getHeight()-2 ;
 
-        for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
-            Calendar todoDate = Calendar.getInstance();
-            todoDate.setTime(toDoDTO.getDateTime());
-            if (todoDate.get(Calendar.DAY_OF_YEAR) == cal.get(Calendar.DAY_OF_YEAR)) {
-                System.out.println(toDoDTO.getName());
-            }
 
-        }
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT);
 
         /**
          * Background
@@ -43,5 +39,18 @@ public class GuiCalendarDayComp extends JComponent {
 
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, width, height);
+
+        int todosThisDay = 0;
+
+        for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
+            Calendar todoDate = Calendar.getInstance();
+            todoDate.setTime(toDoDTO.getDateTime());
+            if (todoDate.get(Calendar.DAY_OF_YEAR) == cal.get(Calendar.DAY_OF_YEAR)) {
+                todosThisDay++;
+                int posY = todosThisDay*20 + 5;
+                g2d.drawString(toDoDTO.getName() + ", " + toDoDTO.getNote(), 10, posY);
+            }
+
+        }
     }
 }

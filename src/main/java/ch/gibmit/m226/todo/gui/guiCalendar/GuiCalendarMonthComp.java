@@ -1,5 +1,8 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.dto.ToDoDTO;
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
@@ -14,11 +17,13 @@ public class GuiCalendarMonthComp extends JComponent {
 
     private static final String[] WEEKDAYS = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private Calendar cal;
+    private ToDoModel toDoModel;
     private List<Rectangle> days;
     private Graphics2D g2d;
 
-    public GuiCalendarMonthComp(Calendar cal) {
+    public GuiCalendarMonthComp(Calendar cal, ToDoModel toDoModel) {
         this.cal = cal;
+        this.toDoModel = toDoModel;
         days = new ArrayList<>();
     }
 
@@ -115,6 +120,20 @@ public class GuiCalendarMonthComp extends JComponent {
             }
 
             g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
+            g.setColor(Color.BLACK);
+            int todosThisDay = 0;
+            for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
+                Calendar toDoDate = Calendar.getInstance();
+                toDoDate.setTime(toDoDTO.getDateTime());
+                if (thisMonth.get(Calendar.MONTH) == toDoDate.get(Calendar.MONTH) && i == toDoDate.get(Calendar.DAY_OF_MONTH)) {
+                    int yPos = todosThisDay*15;
+                    g.drawString(toDoDTO.getName(), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
+                    todosThisDay++;
+                }
+            }
+
+
+
             index++;
         }
 

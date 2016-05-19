@@ -1,5 +1,7 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -21,12 +23,12 @@ public class WeekPanelGuiCalendar extends AbstrGuiCalendar {
     private Calendar cal = Calendar.getInstance(Locale.GERMANY);
     private JLabel lblWeek;
 
-    public WeekPanelGuiCalendar() {
+    public WeekPanelGuiCalendar(ToDoModel toDoModel) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalWeek = new JToolBar();
-        weekComp = new GuiCalendarWeekComp();
+        weekComp = new GuiCalendarWeekComp(cal, toDoModel);
         addButtonsToToolBar(tlBrCalWeek);
         lblWeek = new JLabel();
         lblWeek.setBorder(new EmptyBorder(5, 10, 5, 10));

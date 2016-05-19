@@ -1,7 +1,10 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Calendar;
 
 /**
  * @author Damian Zehnder
@@ -10,6 +13,13 @@ import java.awt.*;
 public class GuiCalendarWeekComp extends JComponent {
 
     private static final String[] WEEKDAYS = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+    private Calendar cal;
+    private ToDoModel toDoModel;
+
+    public GuiCalendarWeekComp(Calendar cal, ToDoModel toDoModel) {
+        this.cal = cal;
+        this.toDoModel = toDoModel;
+    }
 
     /**
      * @param g Graphics object
@@ -53,7 +63,6 @@ public class GuiCalendarWeekComp extends JComponent {
         for (int i = 0; i<WEEKDAYS.length; i++) {
             g2d.drawString(WEEKDAYS[i], (dayWidth*i)+(dayWidth/8), (dayLabelHeight/2)+dayLabelHeight/4);
         }
-
 
     }
 }
