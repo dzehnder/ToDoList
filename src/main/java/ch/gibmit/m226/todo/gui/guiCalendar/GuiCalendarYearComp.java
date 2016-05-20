@@ -1,10 +1,15 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.dto.ToDoDTO;
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Damian Zehnder
@@ -16,10 +21,12 @@ public class GuiCalendarYearComp extends JComponent {
     private static final String[] WEEKDAYS = {"Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"};
     private List<Rectangle> months;
     private Calendar cal;
+    private ToDoModel toDoModel;
 
-    public GuiCalendarYearComp(Calendar cal) {
+    public GuiCalendarYearComp(Calendar cal, ToDoModel toDoModel) {
         months = new ArrayList<>();
         this.cal = cal;
+        this.toDoModel = toDoModel;
     }
 
     @Override
@@ -111,6 +118,7 @@ public class GuiCalendarYearComp extends JComponent {
                  */
                 for (int d = 0; d < WEEKDAYS.length; d++) {
                     g.setColor(Color.BLACK);
+
                     /**
                      * check for last and next month to gray out the date labels
                      */
@@ -125,6 +133,21 @@ public class GuiCalendarYearComp extends JComponent {
                         g2d.fill(new Ellipse2D.Double(months.get(m).getX()+ (d * (monthWidth / 7))  + ((monthWidth / 7) / 3)-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));
                         g.setColor(Color.WHITE);
                     }
+                    else {
+                        /**
+                         * check if existing todos are occurring on
+                         */
+                        for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
+                            Calendar toDoDate = Calendar.getInstance();
+                            toDoDate.setTime(toDoDTO.getDateTime());
+                            if (yearCal.get(Calendar.DAY_OF_YEAR) == toDoDate.get(Calendar.DAY_OF_YEAR) && yearCal.get(Calendar.YEAR) == toDoDate.get(Calendar.YEAR)) {
+                                g.setColor(Color.decode("#74A4E9"));
+                                g2d.fill(new Ellipse2D.Double(months.get(m).getX()+ (d * (monthWidth / 7))  + ((monthWidth / 7) / 3)-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));
+                                g.setColor(Color.WHITE);
+                            }
+                        }
+                    }
+
                     g.drawString(String.valueOf(yearCal.get(Calendar.DAY_OF_MONTH)), (int) Math.round(months.get(m).getX()) + (d * (monthWidth / 7)) + ((monthWidth / 7) / 3), (int) Math.round(months.get(m).getY()) + (w * ((monthHeight - monthLabelHeight) / 7)) + monthLabelHeight);
                     yearCal.add(Calendar.DAY_OF_YEAR, 1);
                 }

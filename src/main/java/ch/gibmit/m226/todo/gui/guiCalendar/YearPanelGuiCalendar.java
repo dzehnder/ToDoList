@@ -1,5 +1,7 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -20,12 +22,12 @@ public class YearPanelGuiCalendar extends AbstrGuiCalendar {
     private Calendar cal = Calendar.getInstance(Locale.GERMANY);
     private JLabel lblYear;
 
-    public YearPanelGuiCalendar() {
+    public YearPanelGuiCalendar(ToDoModel toDoModel) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalYear = new JToolBar();
-        yearComp = new GuiCalendarYearComp(cal);
+        yearComp = new GuiCalendarYearComp(cal, toDoModel);
         addButtonsToToolBar(tlBrCalYear);
         lblYear = new JLabel();
         lblYear.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -69,6 +71,5 @@ public class YearPanelGuiCalendar extends AbstrGuiCalendar {
      */
     private void updateDateLabel() {
         lblYear.setText(String.valueOf(cal.get(Calendar.YEAR)));
-        setCal(cal);
     }
 }

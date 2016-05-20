@@ -23,12 +23,12 @@ public class MonthPanelGuiCalendar extends AbstrGuiCalendar {
     private Calendar cal = getCal();
     private JLabel lblMonth;
 
-    public MonthPanelGuiCalendar(ToDoModel toDoModel) {
+    public MonthPanelGuiCalendar(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalMonth = new JToolBar();
-        monthComp = new GuiCalendarMonthComp(cal, toDoModel);
+        monthComp = new GuiCalendarMonthComp(cal, toDoModel, tbdPnCalendars);
         addButtonsToToolBar(tlBrCalMonth);
         lblMonth = new JLabel();
         lblMonth.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -72,6 +72,5 @@ public class MonthPanelGuiCalendar extends AbstrGuiCalendar {
      */
     private void updateDateLabel() {
         lblMonth.setText(sdf.format(cal.getTime()));
-        setCal(cal);
     }
 }

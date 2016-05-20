@@ -5,6 +5,8 @@ import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.util.*;
 import java.util.List;
@@ -19,12 +21,17 @@ public class GuiCalendarMonthComp extends JComponent {
     private Calendar cal;
     private ToDoModel toDoModel;
     private List<Rectangle> days;
+    private List<Date> dayDateModel;
     private Graphics2D g2d;
+    private int index;
+    private JTabbedPane tbdPnCalendars;
 
-    public GuiCalendarMonthComp(Calendar cal, ToDoModel toDoModel) {
+    public GuiCalendarMonthComp(Calendar cal, ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         this.cal = cal;
         this.toDoModel = toDoModel;
+        this.tbdPnCalendars = tbdPnCalendars;
         days = new ArrayList<>();
+        dayDateModel = new ArrayList<>();
     }
 
     @Override
@@ -72,7 +79,8 @@ public class GuiCalendarMonthComp extends JComponent {
 
         Calendar thisMonth = (Calendar) cal.clone();
         thisMonth.set(Calendar.DAY_OF_MONTH, 1);
-        int index = 0;
+
+        index = 0;
 
         /**
          * Test if  the first day of the month is monday, that it doesn't need to generate a previous month object
@@ -95,10 +103,7 @@ public class GuiCalendarMonthComp extends JComponent {
              */
 
             for (int i = prevMonth.get(Calendar.DAY_OF_MONTH); i<=prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-                checkForWeekend(index);
-                g.setColor(Color.decode("#BDBDBD"));
-                g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
-                index++;
+                addPrevAndNextMonthDateLabels(i, prevMonth, g);
             }
         }
 
@@ -108,6 +113,9 @@ public class GuiCalendarMonthComp extends JComponent {
         Calendar today = Calendar.getInstance(Locale.GERMANY);
 
         for (int i = thisMonth.get(Calendar.DAY_OF_MONTH); i<= thisMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+            Calendar cal = (Calendar) thisMonth.clone();
+            cal.set(Calendar.DAY_OF_MONTH, i);
+            dayDateModel.add(index, cal.getTime());
             g.setColor(Color.BLACK);
             checkForWeekend(index);
             /**
@@ -125,6 +133,9 @@ public class GuiCalendarMonthComp extends JComponent {
             for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
                 Calendar toDoDate = Calendar.getInstance();
                 toDoDate.setTime(toDoDTO.getDateTime());
+                /**
+                 * draw the name of the todos if the date matches
+                 */
                 if (thisMonth.get(Calendar.MONTH) == toDoDate.get(Calendar.MONTH) && i == toDoDate.get(Calendar.DAY_OF_MONTH)) {
                     int yPos = todosThisDay*15;
                     g.drawString(toDoDTO.getName(), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
@@ -145,10 +156,8 @@ public class GuiCalendarMonthComp extends JComponent {
         nextMonth.add(Calendar.MONTH, 1);
         nextMonth.set(Calendar.DAY_OF_MONTH, 1);
         for (int i = nextMonth.get(Calendar.DAY_OF_MONTH); index<days.size(); i++) {
-            checkForWeekend(index);
-            g.setColor(Color.decode("#BDBDBD"));
-            g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
-            index++;
+            addPrevAndNextMonthDateLabels(i, nextMonth, g);
+
         }
         g.setColor(Color.BLACK);
 
@@ -164,6 +173,31 @@ public class GuiCalendarMonthComp extends JComponent {
          * This needs to be done at the end, so that the backgrounds can't be painted over it.
          */
         days.forEach(g2d::draw);
+
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int col = e.getX() / dayWidth;
+                    int row = (e.getY() - dayLabelHeight) / weekHeight;
+                    int dateIndex = col + (row *columns);
+                    cal.setTime(dayDateModel.get(dateIndex));
+                    tbdPnCalendars.setSelectedIndex(0);
+                }
+            }
+        };
+        addMouseListener(mouseAdapter);
+
+    }
+
+    private void addPrevAndNextMonthDateLabels(int i, Calendar month, Graphics g) {
+        Calendar cal = (Calendar) month.clone();
+        cal.set(Calendar.DAY_OF_MONTH, i);
+        dayDateModel.add(index, cal.getTime());
+        checkForWeekend(index);
+        g.setColor(Color.decode("#BDBDBD"));
+        g.drawString(String.valueOf(i), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+17);
+        index++;
     }
 
     /**

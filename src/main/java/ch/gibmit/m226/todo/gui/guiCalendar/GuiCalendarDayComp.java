@@ -25,7 +25,7 @@ public class GuiCalendarDayComp extends JComponent {
     protected void paintComponent(Graphics g) {
         int width = getWidth()-2;
         int height = getHeight()-2 ;
-
+        System.out.println(cal.getTime());
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -40,8 +40,11 @@ public class GuiCalendarDayComp extends JComponent {
         g.setColor(Color.BLACK);
         g.drawRect(0, 0, width, height);
 
-        int todosThisDay = 0;
 
+        /**
+         * loop through all todos and check if the date matches to the selected day
+         */
+        int todosThisDay = 0;
         for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
             Calendar todoDate = Calendar.getInstance();
             todoDate.setTime(toDoDTO.getDateTime());

@@ -74,7 +74,6 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
      */
     private void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));
-        setCal(cal);
         dayComp.repaint();
     }
 }

@@ -17,7 +17,7 @@ public abstract class AbstrGuiCalendar extends JPanel implements ActionListener 
 
     private static final String BCKIMGNAME = "backButtonIcon";
     private static final String FWDIMGNAME = "forwardButtonIcon";
-    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private final Calendar cal = Calendar.getInstance(Locale.GERMANY);
 
     /**
      * This method makes a navigation Button with an arrow
@@ -83,9 +83,10 @@ public abstract class AbstrGuiCalendar extends JPanel implements ActionListener 
      * set the selected calendar date in the calendar view
      * @param cal the selected calendar date in the calendar view
      */
+    /*
     public void setCal(Calendar cal) {
         this.cal = cal;
-    }
+    }*/
 
 
 }
