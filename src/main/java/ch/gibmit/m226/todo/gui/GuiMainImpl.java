@@ -47,6 +47,18 @@ public class GuiMainImpl extends JFrame {
 	private String path;
 	private boolean newFile = true;
 
+	/**
+	 * Creates windows and sets menu bar. Creates new Serializor.
+	 * 
+	 * @param categoryDAO
+	 *            Data Access Object for Categories
+	 * @param toDoDAO
+	 *            Data Access Object for ToDos
+	 * @param path
+	 *            Path where the file was opened. If this got overloaded, the
+	 *            path is "" that means it will ask you for a location to save
+	 *            the file
+	 */
 	public GuiMainImpl(Object categoryDAO, Object toDoDAO, String path) {
 		this.path = path;
 		gm = new GuiMenu();
@@ -78,10 +90,29 @@ public class GuiMainImpl extends JFrame {
 
 	}
 
+	/**
+	 * Overload for GuiMainPanel if no path is given
+	 * 
+	 * @param categoryDAO
+	 *            Data Access Object for Categories
+	 * @param toDoDAO
+	 *            Data Access Object for ToDos
+	 */
 	public GuiMainImpl(Object categoryDAO, Object toDoDAO) {
 		this(categoryDAO, toDoDAO, "");
 	}
 
+	/**
+	 * Opens new ToDoList from File Sets DAO's from file as active DAO's, makes
+	 * list updates.
+	 * 
+	 * @param categoryDAO
+	 *            Data Access Object for Categories (gets parsed from Object to
+	 *            CategoryDAO)
+	 * @param toDoDAO
+	 *            Data Access Object for ToDos (gets parsed from Object to
+	 *            ToDoDAO)
+	 */
 	private void openToDoList(Object categoryDAO, Object toDoDAO) {
 		GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory()
 				.setCategoriyDAO((CategoryDAO) categoryDAO);
@@ -93,7 +124,10 @@ public class GuiMainImpl extends JFrame {
 		newFile = false;
 	}
 
-	public void setActionListeners() {
+	/**
+	 * Sets all ActionListeners for the buttons in the menu
+	 */
+	private void setActionListeners() {
 		gm.getSave().addActionListener(e -> {
 			gtm.saveChanges();
 			if (newFile) {
