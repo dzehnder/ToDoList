@@ -13,27 +13,32 @@ import java.util.Calendar;
  */
 public class GuiCalendarDayComp extends JComponent {
 
-    ToDoModel toDoModel;
-    Calendar cal;
+    private ToDoModel toDoModel;
+    private Calendar calModel;
 
-    public GuiCalendarDayComp(Calendar cal, ToDoModel toDoModel) {
+    /**
+     * Constructor sets the calendar and model value.
+     * @param toDoModel the todolist-model, containing all todos
+     */
+    public GuiCalendarDayComp(ToDoModel toDoModel) {
         this.toDoModel = toDoModel;
-        this.cal = cal;
+        calModel = CalModel.getInstance().getCal();
     }
 
+    /**
+     * paints the main component of the daily view
+     * @param g graphics object
+     */
     @Override
     protected void paintComponent(Graphics g) {
         int width = getWidth()-2;
         int height = getHeight()-2 ;
-        System.out.println(cal.getTime());
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT);
 
-        /**
-         * Background
-         */
+        // Background
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
 
@@ -41,14 +46,12 @@ public class GuiCalendarDayComp extends JComponent {
         g.drawRect(0, 0, width, height);
 
 
-        /**
-         * loop through all todos and check if the date matches to the selected day
-         */
+        // loop through all todos and check if the date matches to the selected day
         int todosThisDay = 0;
         for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
             Calendar todoDate = Calendar.getInstance();
             todoDate.setTime(toDoDTO.getDateTime());
-            if (todoDate.get(Calendar.DAY_OF_YEAR) == cal.get(Calendar.DAY_OF_YEAR)) {
+            if (todoDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR)) {
                 todosThisDay++;
                 int posY = todosThisDay*20 + 5;
                 g2d.drawString(toDoDTO.getName() + ", " + toDoDTO.getNote(), 10, posY);

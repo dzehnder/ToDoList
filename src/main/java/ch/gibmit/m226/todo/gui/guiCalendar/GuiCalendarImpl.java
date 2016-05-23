@@ -15,22 +15,38 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
     private JPanel pnlCalendarMain;
     private JTabbedPane tbdPnCalendars;
 
+    /**
+     * Constructor creates all week components and adds them to the appropriate tab.
+     * It also updates all date-values in the view, after the tab selection has changed.
+     * @param toDoModel the todolist-model, containing all todos
+     */
     public GuiCalendarImpl(ToDoModel toDoModel) {
+        DayPanelGuiCalendar day = new DayPanelGuiCalendar(toDoModel);
+        WeekPanelGuiCalendar week = new WeekPanelGuiCalendar(toDoModel);
+        MonthPanelGuiCalendar month = new MonthPanelGuiCalendar(toDoModel, tbdPnCalendars);
+        YearPanelGuiCalendar year = new YearPanelGuiCalendar(toDoModel);
+
         pnlCalendarMain = new JPanel(new BorderLayout());
 
         tbdPnCalendars = new JTabbedPane();
-        tbdPnCalendars.addTab("Day", new DayPanelGuiCalendar(toDoModel));
+        tbdPnCalendars.addTab("Day", day);
 
-        tbdPnCalendars.addTab("Week", new WeekPanelGuiCalendar(toDoModel));
+        tbdPnCalendars.addTab("Week", week);
 
-        tbdPnCalendars.addTab("Month", new MonthPanelGuiCalendar(toDoModel, tbdPnCalendars));
+        tbdPnCalendars.addTab("Month", month);
 
-        tbdPnCalendars.addTab("Year", new YearPanelGuiCalendar(toDoModel));
+        tbdPnCalendars.addTab("Year", year);
 
         pnlCalendarMain.add(tbdPnCalendars);
 
-    }
+        tbdPnCalendars.addChangeListener(e -> {
+            day.updateDateLabel();
+            month.updateDateLabel();
+            week.updateDateLabel();
+            year.updateDateLabel();
+        });
 
+    }
 
 
     /**

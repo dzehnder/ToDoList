@@ -8,11 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.Date;
 
 /**
  * @author Damian Zehnder
- * This class implements the calendar view of the year
+ * This class implements the calendar view of the week
  */
 public class WeekPanelGuiCalendar extends AbstrGuiCalendar {
 
@@ -20,8 +20,13 @@ public class WeekPanelGuiCalendar extends AbstrGuiCalendar {
     private GuiCalendarWeekComp weekComp;
     private JPanel pnlTools;
     private SimpleDateFormat sdf = new SimpleDateFormat("d. MMM");
-    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private Calendar cal = getCal();
     private JLabel lblWeek;
+
+    /**
+     * The constructor initializes the panel and the component of the weekly calendar view
+     * @param toDoModel the todolist-model, containing all todos
+     */
 
     public WeekPanelGuiCalendar(ToDoModel toDoModel) {
         this.setLayout(new BorderLayout());
@@ -60,16 +65,16 @@ public class WeekPanelGuiCalendar extends AbstrGuiCalendar {
                 break;
 
             case "today":
-                cal = Calendar.getInstance(Locale.GERMANY);
+                cal.setTime(new Date());
                 updateDateLabel();
                 break;
         }
     }
 
     /**
-     * updates the date label of the week
+     * updates the date label of the week and repaints the week-view
      */
-    private void updateDateLabel() {
+    public void updateDateLabel() {
         Calendar first = (Calendar) cal.clone();
         first.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
@@ -77,5 +82,6 @@ public class WeekPanelGuiCalendar extends AbstrGuiCalendar {
         last.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 
         lblWeek.setText(sdf.format(first.getTime())+" - "+sdf.format(last.getTime())+" (Week "+cal.get(Calendar.WEEK_OF_YEAR)+")");
+        weekComp.repaint();
     }
 }

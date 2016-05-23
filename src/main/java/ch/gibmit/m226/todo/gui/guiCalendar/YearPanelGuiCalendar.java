@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * @author Damian Zehnder
@@ -19,15 +18,19 @@ public class YearPanelGuiCalendar extends AbstrGuiCalendar {
     private JToolBar tlBrCalYear;
     private GuiCalendarYearComp yearComp;
     private JPanel pnlTools;
-    private Calendar cal = Calendar.getInstance(Locale.GERMANY);
+    private Calendar cal = getCal();
     private JLabel lblYear;
 
+    /**
+     * The constructor initializes the panel and year component of the yearly calendar view
+     * @param toDoModel the todolist-model, containing all todos
+     */
     public YearPanelGuiCalendar(ToDoModel toDoModel) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalYear = new JToolBar();
-        yearComp = new GuiCalendarYearComp(cal, toDoModel);
+        yearComp = new GuiCalendarYearComp(toDoModel);
         addButtonsToToolBar(tlBrCalYear);
         lblYear = new JLabel();
         lblYear.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -63,13 +66,13 @@ public class YearPanelGuiCalendar extends AbstrGuiCalendar {
                 updateDateLabel();
                 break;
         }
-        yearComp.repaint();
     }
 
     /**
-     * updates the date label of the year
+     * updates the date label of the year and repaints the year-view
      */
-    private void updateDateLabel() {
+    public void updateDateLabel() {
         lblYear.setText(String.valueOf(cal.get(Calendar.YEAR)));
+        yearComp.repaint();
     }
 }

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.Date;
 
 /**
  * @author Damian Zehnder
@@ -23,13 +23,17 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
     private Calendar cal = getCal();
     private JLabel lblDay;
 
+    /**
+     * constructor initializes the daily view of the calendar
+     * @param toDoModel the todolist-model, containing all todos
+     */
     public DayPanelGuiCalendar(ToDoModel toDoModel) {
 
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalDay = new JToolBar();
-        dayComp = new GuiCalendarDayComp(cal, toDoModel);
+        dayComp = new GuiCalendarDayComp(toDoModel);
         addButtonsToToolBar(tlBrCalDay);
         lblDay = new JLabel();
         lblDay.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -62,7 +66,7 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
                 break;
 
             case "today":
-                cal = Calendar.getInstance(Locale.GERMANY);
+                cal.setTime(new Date());
                 updateDateLabel();
                 break;
         }
@@ -70,9 +74,9 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
     }
 
     /**
-     * updates the date label of the day
+     * updates the date label of the day and repaints the day-component
      */
-    private void updateDateLabel() {
+    public void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));
         dayComp.repaint();
     }

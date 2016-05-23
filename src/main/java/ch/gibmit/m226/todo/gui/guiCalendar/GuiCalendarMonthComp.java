@@ -26,14 +26,18 @@ public class GuiCalendarMonthComp extends JComponent {
     private int index;
     private JTabbedPane tbdPnCalendars;
 
-    public GuiCalendarMonthComp(Calendar cal, ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
-        this.cal = cal;
+    public GuiCalendarMonthComp(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
+        this.cal = CalModel.getInstance().getCal();
         this.toDoModel = toDoModel;
         this.tbdPnCalendars = tbdPnCalendars;
         days = new ArrayList<>();
         dayDateModel = new ArrayList<>();
     }
 
+    /**
+     * in this method, the main month component gets painted.
+     * @param g graphics object
+     */
     @Override
     protected void paintComponent(Graphics g) {
         int width = getWidth()-2;
@@ -44,25 +48,19 @@ public class GuiCalendarMonthComp extends JComponent {
         int dayLabelHeight = 30;
         int weekHeight = (height-dayLabelHeight)/6;
 
-        /**
-         * Graphics2D object for antialiasing
-         */
+        // Graphics2D object for antialiasing
         g2d = (Graphics2D) g;
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_DEFAULT);
 
-        /**
-         * Background
-         */
+        // Background
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
 
         g.setColor(Color.BLACK);
 
-        /**
-         * create day cells
-         */
+        // create day cells
         days.clear();
 
         for(int row = 0; row < rows; row++){
@@ -72,25 +70,17 @@ public class GuiCalendarMonthComp extends JComponent {
             }
         }
 
-
-        /**
-         * draw date numbers
-         */
-
+        // draw date numbers
         Calendar thisMonth = (Calendar) cal.clone();
         thisMonth.set(Calendar.DAY_OF_MONTH, 1);
 
         index = 0;
 
-        /**
-         * Test if  the first day of the month is monday, that it doesn't need to generate a previous month object
-         */
+        // Test if  the first day of the month is monday, that it doesn't need to generate a previous month object
         if (thisMonth.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
             Calendar prevMonth = (Calendar) cal.clone();
             prevMonth.add(Calendar.MONTH, -1);
-            /**
-             * Test if the first day of the month is sunday, special handling needed because of american week form
-             */
+            // Test if the first day of the month is sunday, special handling needed because of american week form
             if (thisMonth.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
                 prevMonth.set(Calendar.DAY_OF_MONTH, prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH)-5);
             }
@@ -98,18 +88,13 @@ public class GuiCalendarMonthComp extends JComponent {
                 prevMonth.set(Calendar.DAY_OF_MONTH, prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH) - thisMonth.get(Calendar.DAY_OF_WEEK) + 3);
             }
 
-            /**
-             * previous month date numbers
-             */
-
+            // previous month date numbers
             for (int i = prevMonth.get(Calendar.DAY_OF_MONTH); i<=prevMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
                 addPrevAndNextMonthDateLabels(i, prevMonth, g);
             }
         }
 
-        /**
-         * selected month date numbers
-         */
+        // selected month date numbers
         Calendar today = Calendar.getInstance(Locale.GERMANY);
 
         for (int i = thisMonth.get(Calendar.DAY_OF_MONTH); i<= thisMonth.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
@@ -118,9 +103,7 @@ public class GuiCalendarMonthComp extends JComponent {
             dayDateModel.add(index, cal.getTime());
             g.setColor(Color.BLACK);
             checkForWeekend(index);
-            /**
-             * color today
-             */
+            // color today
             if (today.get(Calendar.YEAR) == thisMonth.get(Calendar.YEAR) && today.get(Calendar.MONTH) == thisMonth.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) == i) {
                 g.setColor(Color.decode("#DD5238"));
                 g2d.fill(new Ellipse2D.Double(days.get(index).getX()+3, days.get(index).getY()+3, 20, 20));
@@ -133,9 +116,7 @@ public class GuiCalendarMonthComp extends JComponent {
             for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
                 Calendar toDoDate = Calendar.getInstance();
                 toDoDate.setTime(toDoDTO.getDateTime());
-                /**
-                 * draw the name of the todos if the date matches
-                 */
+                // draw the name of the todos if the date matches
                 if (thisMonth.get(Calendar.MONTH) == toDoDate.get(Calendar.MONTH) && i == toDoDate.get(Calendar.DAY_OF_MONTH)) {
                     int yPos = todosThisDay*15;
                     g.drawString(toDoDTO.getName(), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
@@ -148,10 +129,7 @@ public class GuiCalendarMonthComp extends JComponent {
             index++;
         }
 
-        /**
-         * next month date numbers
-         */
-
+        // next month date numbers
         Calendar nextMonth = (Calendar) cal.clone();
         nextMonth.add(Calendar.MONTH, 1);
         nextMonth.set(Calendar.DAY_OF_MONTH, 1);
@@ -161,17 +139,13 @@ public class GuiCalendarMonthComp extends JComponent {
         }
         g.setColor(Color.BLACK);
 
-        /**
-         * Week day labels
-         */
+        // Week day labels
         for (int i = 0; i<WEEKDAYS.length; i++) {
             g2d.drawString(WEEKDAYS[i], (dayWidth*i)+(dayWidth/8), (dayLabelHeight/2)+dayLabelHeight/4);
         }
 
-        /**
-         * draw day cells.
-         * This needs to be done at the end, so that the backgrounds can't be painted over it.
-         */
+        // draw day cells.
+        // This needs to be done at the end, so that the backgrounds can't get painted over it.
         days.forEach(g2d::draw);
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -190,6 +164,12 @@ public class GuiCalendarMonthComp extends JComponent {
 
     }
 
+    /**
+     * adds the month date labels from the past and next month in another color
+     * @param i the date number
+     * @param month the calendar object of the month to draw the date numbers
+     * @param g graphics object
+     */
     private void addPrevAndNextMonthDateLabels(int i, Calendar month, Graphics g) {
         Calendar cal = (Calendar) month.clone();
         cal.set(Calendar.DAY_OF_MONTH, i);

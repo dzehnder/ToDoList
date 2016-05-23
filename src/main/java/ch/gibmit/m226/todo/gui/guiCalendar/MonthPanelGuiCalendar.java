@@ -23,12 +23,17 @@ public class MonthPanelGuiCalendar extends AbstrGuiCalendar {
     private Calendar cal = getCal();
     private JLabel lblMonth;
 
+    /**
+     * In this constructor, the panel and the component of the monthly view gets initialized.
+     * @param toDoModel the todolist-model, containing all todos
+     * @param tbdPnCalendars the tabbed pane of the parent component. It is used to switch the selected tab.
+     */
     public MonthPanelGuiCalendar(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalMonth = new JToolBar();
-        monthComp = new GuiCalendarMonthComp(cal, toDoModel, tbdPnCalendars);
+        monthComp = new GuiCalendarMonthComp(toDoModel, tbdPnCalendars);
         addButtonsToToolBar(tlBrCalMonth);
         lblMonth = new JLabel();
         lblMonth.setBorder(new EmptyBorder(5, 10, 5, 10));
@@ -64,13 +69,13 @@ public class MonthPanelGuiCalendar extends AbstrGuiCalendar {
                 updateDateLabel();
                 break;
         }
-        monthComp.repaint();
     }
 
     /**
-     * updates the date label of the month
+     * updates the date label of the month and repaints the month component
      */
-    private void updateDateLabel() {
+    public void updateDateLabel() {
         lblMonth.setText(sdf.format(cal.getTime()));
+        monthComp.repaint();
     }
 }
