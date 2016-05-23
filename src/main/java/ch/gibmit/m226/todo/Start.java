@@ -26,7 +26,7 @@ public class Start {
 		}
 
 		System.getProperties().put("apple.laf.useScreenMenuBar", "true");
-		new GuiMainImpl(null, null);
+		new GuiMainImpl();
 	}
 	
 	public static void update(Object categoryDAO, Object toDoDAO, String fileToOpen) {

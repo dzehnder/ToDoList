@@ -64,10 +64,10 @@ public class GuiMainImpl extends JFrame {
 		gm = new GuiMenu();
 		mainPane = new JTabbedPane();
 		gtm = new GuiToDoMainImpl();
-		gtc = new GuiCalendarImpl(gtm.getToDoModel());
 		if ((categoryDAO != null) && (toDoDAO != null)) {
 			openToDoList(categoryDAO, toDoDAO);
 		}
+		gtc = new GuiCalendarImpl(gtm.getToDoModel());
 		sr = new Serializor(
 				GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().getCategoryDAO(),
 				gtm.getToDoController().getToDo().getToDoDAO());
@@ -98,8 +98,8 @@ public class GuiMainImpl extends JFrame {
 	 * @param toDoDAO
 	 *            Data Access Object for ToDos
 	 */
-	public GuiMainImpl(Object categoryDAO, Object toDoDAO) {
-		this(categoryDAO, toDoDAO, "");
+	public GuiMainImpl() {
+		this(null, null, "");
 	}
 
 	/**
