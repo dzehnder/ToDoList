@@ -17,7 +17,7 @@ import ch.gibmit.m226.todo.Start;
 import ch.gibmit.m226.todo.bl.Serializor;
 import ch.gibmit.m226.todo.data.CategoryDAO;
 import ch.gibmit.m226.todo.data.ToDoDAO;
-//import ch.gibmit.m226.todo.bl.Serializor;
+import ch.gibmit.m226.todo.data.ToDoDAOImpl;
 import ch.gibmit.m226.todo.gui.guiCalendar.GuiCalendarImpl;
 import ch.gibmit.m226.todo.gui.guiMenu.GuiMenu;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoEditCategoriesImpl;
@@ -114,6 +114,7 @@ public class GuiMainImpl extends JFrame {
 	 *            ToDoDAO)
 	 */
 	private void openToDoList(Object categoryDAO, Object toDoDAO) {
+		System.out.println();
 		GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory()
 				.setCategoriyDAO((CategoryDAO) categoryDAO);
 		gtm.updateToDosAndCategories();
@@ -151,7 +152,7 @@ public class GuiMainImpl extends JFrame {
 			JFileChooser fileChooser = new JFileChooser();
 			FileNameExtensionFilter filter = new FileNameExtensionFilter("ToDoList Files", "tdo", "tdo");
 
-			fileChooser.setDialogTitle("Save ToDoList");
+			fileChooser.setDialogTitle("Open ToDoList");
 			fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			fileChooser.setFileFilter(filter);
 

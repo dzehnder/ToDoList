@@ -31,7 +31,6 @@ public class Serializor {
             this.categoryDAO.getCategories();
             this.toDoDAO.getAllToDos();
             ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream(path));
-
             oout.writeObject(this.categoryDAO);
             oout.writeObject(this.toDoDAO);
             oout.flush();
