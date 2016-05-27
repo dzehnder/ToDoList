@@ -119,7 +119,30 @@ public class GuiCalendarMonthComp extends JComponent {
                 // draw the name of the todos if the date matches
                 if (thisMonth.get(Calendar.MONTH) == toDoDate.get(Calendar.MONTH) && i == toDoDate.get(Calendar.DAY_OF_MONTH)) {
                     int yPos = todosThisDay*15;
-                    g.drawString(toDoDTO.getName(), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
+
+                    // before drawing the todoname, check if the length is small enough
+                    // if the day-cell is not big enough, shorten the todoname and add '...'
+                    FontMetrics metrics = g.getFontMetrics();
+                    int todoNameWidth = metrics.stringWidth(toDoDTO.getName());
+                    int extensionWidth = metrics.stringWidth("...");
+                    // draw the shortened todoname
+                    if (todoNameWidth+10+extensionWidth > dayWidth) {
+                        String changedTodoName = toDoDTO.getName();
+                        while (todoNameWidth+10+extensionWidth > dayWidth) {
+                            changedTodoName = changedTodoName.substring(0, changedTodoName.length()-1);
+                            todoNameWidth = metrics.stringWidth(changedTodoName);
+                        }
+                        g.drawString(changedTodoName+"...", (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
+
+                    }
+                    // dwar the original todoname
+                    else {
+                        if (weekHeight > yPos+34) {
+                            g.drawString(toDoDTO.getName(), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
+                        }
+                    }
+
+
                     todosThisDay++;
                 }
             }

@@ -21,14 +21,16 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
      * @param toDoModel the todolist-model, containing all todos
      */
     public GuiCalendarImpl(ToDoModel toDoModel) {
-        DayPanelGuiCalendar day = new DayPanelGuiCalendar(toDoModel);
-        WeekPanelGuiCalendar week = new WeekPanelGuiCalendar(toDoModel);
-        MonthPanelGuiCalendar month = new MonthPanelGuiCalendar(toDoModel, tbdPnCalendars);
-        YearPanelGuiCalendar year = new YearPanelGuiCalendar(toDoModel);
 
         pnlCalendarMain = new JPanel(new BorderLayout());
 
         tbdPnCalendars = new JTabbedPane();
+
+        DayPanelGuiCalendar day = new DayPanelGuiCalendar(toDoModel);
+        WeekPanelGuiCalendar week = new WeekPanelGuiCalendar(toDoModel);
+        MonthPanelGuiCalendar month = new MonthPanelGuiCalendar(toDoModel, tbdPnCalendars);
+        YearPanelGuiCalendar year = new YearPanelGuiCalendar(toDoModel, tbdPnCalendars);
+
         tbdPnCalendars.addTab("Day", day);
 
         tbdPnCalendars.addTab("Week", week);

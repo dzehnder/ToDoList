@@ -5,6 +5,8 @@ import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,8 +28,9 @@ public class GuiCalendarYearComp extends JComponent {
     /**
      *
      * @param toDoModel the todolist-model, containing all todos. Used to determine on which days the todos are happening.
+     * @param tbdPnCalendars
      */
-    public GuiCalendarYearComp(ToDoModel toDoModel) {
+    public GuiCalendarYearComp(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         months = new ArrayList<>();
         this.toDoModel = toDoModel;
     }
@@ -45,6 +48,22 @@ public class GuiCalendarYearComp extends JComponent {
         int monthLabelHeight = 20;
         int monthsVertical = 3;
         int monthsHorizontal = 4;
+        int dayWidth = width/28;
+        int dayHeight = (monthHeight-monthLabelHeight)/6;
+
+
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int col = e.getX() / dayWidth;
+                    //int row = (e.getY() - (((e.getY()/monthHeight)+1)*monthLabelHeight))/18;
+                    int row = (e.getY() - monthLabelHeight)/dayHeight;
+                    System.out.println("col: "+ col+ ", row: "+ row);
+                }
+            }
+        };
+        addMouseListener(mouseAdapter);
 
         // Graphics2D object for antialiasing
         Graphics2D g2d = (Graphics2D) g;

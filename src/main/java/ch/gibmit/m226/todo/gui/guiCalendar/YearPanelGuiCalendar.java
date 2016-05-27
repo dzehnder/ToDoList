@@ -24,13 +24,14 @@ public class YearPanelGuiCalendar extends AbstrGuiCalendar {
     /**
      * The constructor initializes the panel and year component of the yearly calendar view
      * @param toDoModel the todolist-model, containing all todos
+     * @param tbdPnCalendars
      */
-    public YearPanelGuiCalendar(ToDoModel toDoModel) {
+    public YearPanelGuiCalendar(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalYear = new JToolBar();
-        yearComp = new GuiCalendarYearComp(toDoModel);
+        yearComp = new GuiCalendarYearComp(toDoModel, tbdPnCalendars);
         addButtonsToToolBar(tlBrCalYear);
         lblYear = new JLabel();
         lblYear.setBorder(new EmptyBorder(5, 10, 5, 10));
