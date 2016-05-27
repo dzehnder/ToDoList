@@ -1,5 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.dto.ToDoDTO;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 
 import javax.swing.*;
@@ -57,9 +58,41 @@ public class GuiCalendarWeekComp extends JComponent {
             g.drawLine(i, 0, i, height);
         }
 
+        Calendar weekCal = (Calendar) cal.clone();
         // Week day labels
         for (int i = 0; i<WEEKDAYS.length; i++) {
+            weekCal.set(Calendar.DAY_OF_WEEK, i+2);
+            int todoDayCount = 0;
             g2d.drawString(WEEKDAYS[i], (dayWidth*i)+(dayWidth/8), (dayLabelHeight/2)+dayLabelHeight/4);
+
+            // draw the todos
+            for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
+                Calendar todoDate = Calendar.getInstance();
+                todoDate.setTime(toDoDTO.getDateTime());
+                if (weekCal.get(Calendar.DAY_OF_YEAR) == todoDate.get(Calendar.DAY_OF_YEAR) && weekCal.get(Calendar.YEAR) == todoDate.get(Calendar.YEAR)) {
+
+                    // before dwawing the todoname, check if the length fits into the width of the day
+                    FontMetrics metrics = g.getFontMetrics();
+                    int todoNameWidth = metrics.stringWidth(toDoDTO.getName());
+                    int extensionWidth = metrics.stringWidth("...");
+                    // if the day is not big enough, shorten the todoname
+                    if (todoNameWidth+15+extensionWidth > dayWidth) {
+                        String changedToDoName = toDoDTO.getName();
+                        while(todoNameWidth+15+extensionWidth > dayWidth) {
+                            changedToDoName = changedToDoName.substring(0, changedToDoName.length()-1);
+                            todoNameWidth = metrics.stringWidth(changedToDoName);
+                        }
+                        g2d.drawString(changedToDoName+"...", (dayWidth*i)+10, (dayLabelHeight+20)+(todoDayCount*15));
+                    }
+                    // draw original todoname
+                    else {
+                        g2d.drawString(toDoDTO.getName(), (dayWidth*i)+10, (dayLabelHeight+20)+(todoDayCount*15));
+                    }
+
+                    todoDayCount++;
+                }
+            }
+
         }
 
     }

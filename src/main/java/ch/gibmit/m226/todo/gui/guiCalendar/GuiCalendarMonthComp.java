@@ -135,7 +135,7 @@ public class GuiCalendarMonthComp extends JComponent {
                         g.drawString(changedTodoName+"...", (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
 
                     }
-                    // dwar the original todoname
+                    // draw the original todoname
                     else {
                         if (weekHeight > yPos+34) {
                             g.drawString(toDoDTO.getName(), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
