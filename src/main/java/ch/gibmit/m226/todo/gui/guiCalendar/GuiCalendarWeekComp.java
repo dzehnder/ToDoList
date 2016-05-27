@@ -5,6 +5,8 @@ import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Calendar;
 
 /**
@@ -16,15 +18,17 @@ public class GuiCalendarWeekComp extends JComponent {
     private static final String[] WEEKDAYS = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
     private Calendar cal;
     private ToDoModel toDoModel;
+    private JTabbedPane tabbedPane;
 
     /**
      *
-     * @param cal
      * @param toDoModel the todolist-model, containing all todos. It is used to determine the days the todos are happening.
+     * @param tbdPnCalendars
      */
-    public GuiCalendarWeekComp(Calendar cal, ToDoModel toDoModel) {
-        this.cal = cal;
+    public GuiCalendarWeekComp(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
+        this.cal = CalModel.getInstance().getCal();
         this.toDoModel = toDoModel;
+        this.tabbedPane = tbdPnCalendars;
     }
 
     /**
@@ -94,6 +98,19 @@ public class GuiCalendarWeekComp extends JComponent {
             }
 
         }
+
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    int col = e.getX() / dayWidth;
+                    weekCal.set(Calendar.DAY_OF_WEEK, col+2);
+                    cal.setTime(weekCal.getTime());
+                    tabbedPane.setSelectedIndex(0);
+                }
+            }
+        };
+        addMouseListener(mouseAdapter);
 
     }
 }

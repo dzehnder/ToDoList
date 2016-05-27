@@ -26,14 +26,15 @@ public class WeekPanelGuiCalendar extends AbstrGuiCalendar {
     /**
      * The constructor initializes the panel and the component of the weekly calendar view
      * @param toDoModel the todolist-model, containing all todos
+     * @param tbdPnCalendars
      */
 
-    public WeekPanelGuiCalendar(ToDoModel toDoModel) {
+    public WeekPanelGuiCalendar(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalWeek = new JToolBar();
-        weekComp = new GuiCalendarWeekComp(cal, toDoModel);
+        weekComp = new GuiCalendarWeekComp(toDoModel, tbdPnCalendars);
         addButtonsToToolBar(tlBrCalWeek);
         lblWeek = new JLabel();
         lblWeek.setBorder(new EmptyBorder(5, 10, 5, 10));
