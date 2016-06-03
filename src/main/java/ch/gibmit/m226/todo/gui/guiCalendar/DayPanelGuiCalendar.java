@@ -67,6 +67,7 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
 
             case "today":
                 cal.setTime(new Date());
+                System.out.println(cal.get(Calendar.DAY_OF_YEAR));
                 updateDateLabel();
                 break;
         }

@@ -1,8 +1,7 @@
 package ch.gibmit.m226.todo.dto;
 
-import ch.gibmit.m226.todo.bl.Category;
-
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -93,4 +92,51 @@ public class ToDoDTO implements Serializable {
 		this.category = category;
 	}
 
+	public boolean isDateValid(Calendar calModel) {
+        Calendar startDate = Calendar.getInstance();
+        startDate.setTime(dateTime);
+
+        Calendar endDate = Calendar.getInstance();
+
+        if (repeat == null) {
+            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR) && startDate.get(Calendar.YEAR) == calModel.get(Calendar.YEAR);
+        }
+        else {
+            if (startDate.get(Calendar.YEAR) <= calModel.get(Calendar.YEAR)) {
+                int repeatRate = repeat.getRate();
+                if (repeat.hasEndDate()) {
+                    endDate.setTime(repeat.getEndDate());
+                }
+                if (repeat.getRecurrence().equals("Daily")) {
+
+                    if (repeatRate > 1) {
+                        while (startDate.get(Calendar.DAY_OF_YEAR) < calModel.get(Calendar.DAY_OF_YEAR)) {
+                            startDate.add(Calendar.DAY_OF_YEAR, repeatRate);
+                        }
+                        if (!repeat.hasEndDate()) {
+                            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR);
+                        } else {
+                            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR) && calModel.getTimeInMillis() <= endDate.getTimeInMillis();
+                        }
+                    } else {
+                        return !repeat.hasEndDate() || calModel.getTimeInMillis() <= endDate.getTimeInMillis();
+                    }
+
+                } else if (repeat.getRecurrence().equals("Weekly")) {
+                    return false;
+                } else if (repeat.getRecurrence().equals("Monthly")) {
+
+                    return false;
+                } else if (repeat.getRecurrence().equals("Yearly")) {
+                    return false;
+                } else {
+                    return false;
+                }
+            }
+            else {
+                return false;
+            }
+        }
+
+	}
 }

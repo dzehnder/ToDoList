@@ -40,7 +40,7 @@ public class Repeater implements Serializable {
         this.rate = rate;
     }
 
-    public Boolean getHasEndDate() {
+    public Boolean hasEndDate() {
         return hasEndDate;
     }
 

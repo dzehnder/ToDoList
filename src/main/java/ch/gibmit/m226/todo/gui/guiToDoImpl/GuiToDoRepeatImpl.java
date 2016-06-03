@@ -63,8 +63,8 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         btnDone.addActionListener(this);
 
         cmbxEndDate = new JComboBox<>(new String[]{"No end date", "End by date: "});
-        if (repeater.getHasEndDate() != null) {
-            if (repeater.getHasEndDate()) {
+        if (repeater.hasEndDate() != null) {
+            if (repeater.hasEndDate()) {
                 cmbxEndDate.setSelectedIndex(1);
             }
         }

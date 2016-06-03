@@ -8,10 +8,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.*;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Damian Zehnder
@@ -24,6 +22,8 @@ public class GuiCalendarYearComp extends JComponent {
     private List<Rectangle> months;
     private Calendar cal = CalModel.getInstance().getCal();
     private ToDoModel toDoModel;
+    private List<Date> yearDateModel;
+    private JTabbedPane tbdPnCalendars;
 
     /**
      *
@@ -33,6 +33,8 @@ public class GuiCalendarYearComp extends JComponent {
     public GuiCalendarYearComp(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         months = new ArrayList<>();
         this.toDoModel = toDoModel;
+        yearDateModel = new ArrayList<>();
+        this.tbdPnCalendars = tbdPnCalendars;
     }
 
     /**
@@ -49,21 +51,10 @@ public class GuiCalendarYearComp extends JComponent {
         int monthsVertical = 3;
         int monthsHorizontal = 4;
         int dayWidth = width/28;
-        int dayHeight = (monthHeight-monthLabelHeight)/6;
+        int dayHeight = (monthHeight-(2*monthLabelHeight))/6;
 
 
-        MouseAdapter mouseAdapter = new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    int col = e.getX() / dayWidth;
-                    //int row = (e.getY() - (((e.getY()/monthHeight)+1)*monthLabelHeight))/18;
-                    int row = (e.getY() - monthLabelHeight)/dayHeight;
-                    System.out.println("col: "+ col+ ", row: "+ row);
-                }
-            }
-        };
-        addMouseListener(mouseAdapter);
+
 
         // Graphics2D object for antialiasing
         Graphics2D g2d = (Graphics2D) g;
@@ -115,6 +106,7 @@ public class GuiCalendarYearComp extends JComponent {
         Calendar today = Calendar.getInstance(Locale.GERMANY);
         Calendar yearCal = (Calendar) cal.clone();
 
+        int index = 0;
         // loop through every month
         for (int m = 0; m <months.size(); m++) {
             yearCal.set(Calendar.MONTH, m);
@@ -140,23 +132,48 @@ public class GuiCalendarYearComp extends JComponent {
                     }
                     else {
 
-                         //check if existing todos are occurring on
+                         //check if existing todos are occurring on this day (the day to draw)
                         for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
                             Calendar toDoDate = Calendar.getInstance();
                             toDoDate.setTime(toDoDTO.getDateTime());
-                            if (yearCal.get(Calendar.DAY_OF_YEAR) == toDoDate.get(Calendar.DAY_OF_YEAR) && yearCal.get(Calendar.YEAR) == toDoDate.get(Calendar.YEAR)) {
+                            //if (yearCal.get(Calendar.DAY_OF_YEAR) == toDoDate.get(Calendar.DAY_OF_YEAR) && yearCal.get(Calendar.YEAR) == toDoDate.get(Calendar.YEAR)) {
+                            if (toDoDTO.isDateValid(yearCal)) {
                                 g.setColor(Color.decode("#74A4E9"));
                                 g2d.fill(new Ellipse2D.Double(months.get(m).getX()+ (d * (monthWidth / 7))  + ((monthWidth / 7) / 3)-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));
                                 g.setColor(Color.WHITE);
                             }
                         }
                     }
-
+                    yearDateModel.add(index, yearCal.getTime());
+                    index++;
                     g.drawString(String.valueOf(yearCal.get(Calendar.DAY_OF_MONTH)), (int) Math.round(months.get(m).getX()) + (d * (monthWidth / 7)) + ((monthWidth / 7) / 3), (int) Math.round(months.get(m).getY()) + (w * ((monthHeight - monthLabelHeight) / 7)) + monthLabelHeight);
                     yearCal.add(Calendar.DAY_OF_YEAR, 1);
                 }
             }
         }
+
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO: change index system
+                if (e.getClickCount() == 2) {
+                    int col = e.getX() / dayWidth;
+                    int row = (e.getY() - ((e.getY()/monthHeight+1)*2*monthLabelHeight))/dayHeight;
+                    System.out.println(dayWidth);
+                    int monthY = (e.getY()/monthHeight);
+                    int monthX = (e.getX()/monthWidth);
+                    int dayX = col-(monthX*7);
+                    int dayY = row-(monthY*6);
+
+                    int month = monthY*4+monthX;
+                    int index = (dayX+(dayY*7))+(42*month);
+
+                    cal.setTime(yearDateModel.get(index));
+                    tbdPnCalendars.setSelectedIndex(0);
+                }
+            }
+        };
+        addMouseListener(mouseAdapter);
 
     }
 }

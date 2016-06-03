@@ -80,6 +80,7 @@ public class GuiMainImpl extends JFrame {
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		this.pack();
+		this.setTitle("ToDo Liste");
 		this.setSize(950, 600);
 		this.setMinimumSize(new Dimension(950, 550));
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

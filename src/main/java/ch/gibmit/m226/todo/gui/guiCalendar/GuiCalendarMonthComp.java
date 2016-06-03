@@ -117,7 +117,9 @@ public class GuiCalendarMonthComp extends JComponent {
                 Calendar toDoDate = Calendar.getInstance();
                 toDoDate.setTime(toDoDTO.getDateTime());
                 // draw the name of the todos if the date matches
-                if (thisMonth.get(Calendar.MONTH) == toDoDate.get(Calendar.MONTH) && i == toDoDate.get(Calendar.DAY_OF_MONTH)) {
+                Calendar monthDummy = (Calendar) thisMonth.clone();
+                monthDummy.set(Calendar.DAY_OF_MONTH, i);
+                if (toDoDTO.isDateValid(monthDummy)) {
                     int yPos = todosThisDay*15;
 
                     // before drawing the todoname, check if the length is small enough

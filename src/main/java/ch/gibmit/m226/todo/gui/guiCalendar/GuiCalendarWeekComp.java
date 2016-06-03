@@ -73,7 +73,8 @@ public class GuiCalendarWeekComp extends JComponent {
             for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
                 Calendar todoDate = Calendar.getInstance();
                 todoDate.setTime(toDoDTO.getDateTime());
-                if (weekCal.get(Calendar.DAY_OF_YEAR) == todoDate.get(Calendar.DAY_OF_YEAR) && weekCal.get(Calendar.YEAR) == todoDate.get(Calendar.YEAR)) {
+                //if (weekCal.get(Calendar.DAY_OF_YEAR) == todoDate.get(Calendar.DAY_OF_YEAR) && weekCal.get(Calendar.YEAR) == todoDate.get(Calendar.YEAR)) {
+                if (toDoDTO.isDateValid(weekCal)) {
 
                     // before dwawing the todoname, check if the length fits into the width of the day
                     FontMetrics metrics = g.getFontMetrics();

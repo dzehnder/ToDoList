@@ -51,7 +51,7 @@ public class GuiCalendarDayComp extends JComponent {
         for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
             Calendar todoDate = Calendar.getInstance();
             todoDate.setTime(toDoDTO.getDateTime());
-            if (todoDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR)) {
+            if (toDoDTO.isDateValid(calModel)) {
                 todosThisDay++;
                 int posY = todosThisDay*20 + 5;
                 g2d.drawString(toDoDTO.getName() + ", " + toDoDTO.getNote(), 10, posY);
