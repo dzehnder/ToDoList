@@ -102,7 +102,7 @@ public class ToDoDTO implements Serializable {
             return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR) && startDate.get(Calendar.YEAR) == calModel.get(Calendar.YEAR);
         }
         else {
-            if (startDate.get(Calendar.YEAR) <= calModel.get(Calendar.YEAR)) {
+            if (startDate.getTimeInMillis() <= calModel.getTimeInMillis()) {
                 int repeatRate = repeat.getRate();
                 if (repeat.hasEndDate()) {
                     endDate.setTime(repeat.getEndDate());
@@ -125,10 +125,49 @@ public class ToDoDTO implements Serializable {
                 } else if (repeat.getRecurrence().equals("Weekly")) {
                     return false;
                 } else if (repeat.getRecurrence().equals("Monthly")) {
+                        if (repeatRate > 1) {
+                            while (startDate.get(Calendar.MONTH) < calModel.get(Calendar.MONTH)) {
+                                startDate.add(Calendar.MONTH, repeatRate);
+                            }
+                            if (repeat.hasEndDate()) {
+                                return startDate.get(Calendar.MONTH) == calModel.get(Calendar.MONTH) && calModel.get(Calendar.DAY_OF_MONTH) == startDate.get(Calendar.DAY_OF_MONTH)
+                                        && calModel.getTime().getTime() <= endDate.getTime().getTime();
+                            }
+                            else {
+                                return startDate.get(Calendar.MONTH) == calModel.get(Calendar.MONTH) && calModel.get(Calendar.DAY_OF_MONTH) == startDate.get(Calendar.DAY_OF_MONTH);
+                            }
+                        } else {
+                            int dayToCheck = startDate.get(Calendar.DAY_OF_MONTH);
+                            if (repeat.hasEndDate()) {
+                                return calModel.get(Calendar.DAY_OF_MONTH) == dayToCheck && calModel.getTimeInMillis() <= endDate.getTimeInMillis();
+                            } else {
+                                return calModel.get(Calendar.DAY_OF_MONTH) == dayToCheck;
+                            }
+                        }
 
-                    return false;
                 } else if (repeat.getRecurrence().equals("Yearly")) {
-                    return false;
+                    if (repeatRate > 1) {
+                        while (startDate.get(Calendar.YEAR) <  calModel.get(Calendar.YEAR)) {
+                            startDate.add(Calendar.YEAR, repeatRate);
+                        }
+                        if (repeat.hasEndDate()) {
+                            return startDate.get(Calendar.YEAR) == calModel.get(Calendar.YEAR) && calModel.getTimeInMillis() <= endDate.getTimeInMillis() &&
+                                    calModel.get(Calendar.DAY_OF_YEAR) == startDate.get(Calendar.DAY_OF_YEAR);
+                        }
+                        else {
+                            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR) && startDate.get(Calendar.YEAR) == calModel.get(Calendar.YEAR);
+                        }
+                    }
+                    else {
+                        if (repeat.hasEndDate()) {
+                            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR) && calModel.getTimeInMillis() <= endDate.getTimeInMillis();
+                        }
+                        else {
+                            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR);
+                        }
+                    }
+
+
                 } else {
                     return false;
                 }
