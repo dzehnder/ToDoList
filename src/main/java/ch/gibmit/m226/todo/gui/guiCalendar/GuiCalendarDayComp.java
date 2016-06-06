@@ -5,6 +5,7 @@ import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -54,7 +55,17 @@ public class GuiCalendarDayComp extends JComponent {
             if (toDoDTO.isDateValid(calModel)) {
                 todosThisDay++;
                 int posY = todosThisDay*20 + 5;
-                g2d.drawString(toDoDTO.getName() + ", " + toDoDTO.getNote(), 10, posY);
+                SimpleDateFormat sdf = new SimpleDateFormat("H:m");
+                String repeat = "";
+                if (toDoDTO.getRepeat() != null) {
+                    repeat = ", Repeat: "+ toDoDTO.getRepeat().getRecurrence();
+                }
+                String status = "- ";
+                if (toDoDTO.isDone()) {
+                    status = "√ ";
+                }
+                //TODO: update list when switching to calendar tab
+                g2d.drawString(status + sdf.format(toDoDTO.getDateTime())+" Uhr: "+ toDoDTO.getName() + repeat + ", Category: "+ toDoDTO.getCategory() + ", Priority "+ toDoDTO.getPriority(), 10, posY);
             }
 
         }

@@ -20,6 +20,7 @@ public class GuiCalendarYearComp extends JComponent {
     private static final String[] MONTHS = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     private static final String[] WEEKDAYS = {"Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"};
     private List<Rectangle> months;
+    private List<Rectangle> dayList;
     private Calendar cal = CalModel.getInstance().getCal();
     private ToDoModel toDoModel;
     private List<Date> yearDateModel;
@@ -32,6 +33,7 @@ public class GuiCalendarYearComp extends JComponent {
      */
     public GuiCalendarYearComp(ToDoModel toDoModel, JTabbedPane tbdPnCalendars) {
         months = new ArrayList<>();
+        dayList = new ArrayList<>();
         this.toDoModel = toDoModel;
         yearDateModel = new ArrayList<>();
         this.tbdPnCalendars = tbdPnCalendars;
@@ -107,6 +109,10 @@ public class GuiCalendarYearComp extends JComponent {
         Calendar yearCal = (Calendar) cal.clone();
 
         int index = 0;
+
+        dayList.clear();
+
+
         // loop through every month
         for (int m = 0; m <months.size(); m++) {
             yearCal.set(Calendar.MONTH, m);
@@ -115,8 +121,11 @@ public class GuiCalendarYearComp extends JComponent {
             yearCal.set(Calendar.DAY_OF_WEEK, 2);
             // loop through the weeks
             for (int w = 1; w < 7; w++) {
+
                 //loop through every day
                 for (int d = 0; d < WEEKDAYS.length; d++) {
+                    Rectangle dayCell = new Rectangle((int) Math.round(months.get(m).getX()) + (d * (monthWidth / 7)) + ((monthWidth / 7) / 3),(int) Math.round(months.get(m).getY()) + (w * ((monthHeight - monthLabelHeight) / 7)) + monthLabelHeight, dayWidth, dayHeight);
+
                     g.setColor(Color.BLACK);
 
                      // check for last and next month to gray out the date labels
@@ -127,7 +136,7 @@ public class GuiCalendarYearComp extends JComponent {
                      // check for today to circle the date red
                     else if (today.get(Calendar.YEAR) == yearCal.get(Calendar.YEAR) && today.get(Calendar.MONTH) == yearCal.get(Calendar.MONTH) && today.get(Calendar.DAY_OF_MONTH) == yearCal.get(Calendar.DAY_OF_MONTH)) {
                         g.setColor(Color.decode("#DD5238"));
-                        g2d.fill(new Ellipse2D.Double(months.get(m).getX()+ (d * (monthWidth / 7))  + ((monthWidth / 7) / 3)-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));
+                        g2d.fill(new Ellipse2D.Double(dayCell.getX()-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));
                         g.setColor(Color.WHITE);
                     }
                     else {
@@ -139,18 +148,22 @@ public class GuiCalendarYearComp extends JComponent {
                             //if (yearCal.get(Calendar.DAY_OF_YEAR) == toDoDate.get(Calendar.DAY_OF_YEAR) && yearCal.get(Calendar.YEAR) == toDoDate.get(Calendar.YEAR)) {
                             if (toDoDTO.isDateValid(yearCal)) {
                                 g.setColor(Color.decode("#74A4E9"));
-                                g2d.fill(new Ellipse2D.Double(months.get(m).getX()+ (d * (monthWidth / 7))  + ((monthWidth / 7) / 3)-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));
+                                g2d.fill(new Ellipse2D.Double(dayCell.getX()-2, months.get(m).getY() + (w * ((monthHeight - monthLabelHeight) / 7))+9, 15, 15));
                                 g.setColor(Color.WHITE);
                             }
                         }
                     }
                     yearDateModel.add(index, yearCal.getTime());
+
+                    dayList.add(index, dayCell);
                     index++;
-                    g.drawString(String.valueOf(yearCal.get(Calendar.DAY_OF_MONTH)), (int) Math.round(months.get(m).getX()) + (d * (monthWidth / 7)) + ((monthWidth / 7) / 3), (int) Math.round(months.get(m).getY()) + (w * ((monthHeight - monthLabelHeight) / 7)) + monthLabelHeight);
+                    g.drawString(String.valueOf(yearCal.get(Calendar.DAY_OF_MONTH)), (int) dayCell.getX(), (int) dayCell.getY());
                     yearCal.add(Calendar.DAY_OF_YEAR, 1);
                 }
             }
         }
+        //demo
+        //g.drawLine(0, (1+1)*2*monthLabelHeight+(6*dayHeight), width,(1+1)*2*monthLabelHeight+(6*dayHeight));
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -158,16 +171,17 @@ public class GuiCalendarYearComp extends JComponent {
                 //TODO: change index system
                 if (e.getClickCount() == 2) {
                     int col = e.getX() / dayWidth;
-                    int row = (e.getY() - ((e.getY()/monthHeight+1)*2*monthLabelHeight))/dayHeight;
-                    System.out.println(dayWidth);
                     int monthY = (e.getY()/monthHeight);
+
+                    int row = (e.getY() - ((monthY+1)*2*monthLabelHeight))/dayHeight;
+
                     int monthX = (e.getX()/monthWidth);
                     int dayX = col-(monthX*7);
                     int dayY = row-(monthY*6);
 
-                    int month = monthY*4+monthX;
-                    int index = (dayX+(dayY*7))+(42*month);
+                    int monthIndex = (monthY*4)+monthX;
 
+                    int index = (dayX+(dayY*7))+(42*monthIndex);
                     cal.setTime(yearDateModel.get(index));
                     tbdPnCalendars.setSelectedIndex(0);
                 }
