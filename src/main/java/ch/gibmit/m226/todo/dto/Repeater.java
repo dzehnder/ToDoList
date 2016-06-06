@@ -17,7 +17,7 @@ public class Repeater implements Serializable {
     private int rate;
     private Boolean hasEndDate;
     private Date endDate;
-    private Boolean[] weekDays;
+    private Boolean[] weekDays = {false, false, false, false, false, false, false};
 
 
     public Repeater() {
@@ -58,6 +58,14 @@ public class Repeater implements Serializable {
 
     public Boolean[] getWeekDays() {
         return weekDays;
+    }
+
+    public Boolean getWeekdayAt(int index) {
+            return weekDays[index];
+    }
+
+    public void setWeekdayAt(Boolean weekday, int index) {
+        weekDays[index] = weekday;
     }
 
     public void setWeekDays(Boolean[] weekDays) {

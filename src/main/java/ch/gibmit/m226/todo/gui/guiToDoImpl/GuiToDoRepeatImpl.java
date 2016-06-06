@@ -73,6 +73,9 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
 
         for (int i = 0; i < chbxWeekdays.length; i++) {
             chbxWeekdays[i] = new JCheckBox(WEEKDAYS[i]);
+            if (repeater.getWeekDays() != null) {
+                chbxWeekdays[i].setSelected(repeater.getWeekdayAt(i));
+            }
         }
 
         setUpPanels();
@@ -262,7 +265,16 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
         }
         if (e.getSource() == this.btnDone) {
             repeater.setRecurrence(cmbxRepeatRate.getSelectedItem());
-            repeater.setRate((Integer) spnrTime.getValue());
+            if (cmbxRepeatRate.getSelectedIndex() == 2) {
+                for (int i = 0; i < chbxWeekdays.length; i++) {
+                    JCheckBox checkBox = chbxWeekdays[i];
+                    repeater.setWeekdayAt(checkBox.isSelected(), i);
+                }
+            }
+            else {
+                repeater.setRate((Integer) spnrTime.getValue());
+            }
+
             if (cmbxEndDate.getSelectedIndex() == 0){
                 repeater.setHasEndDate(false);
             }
