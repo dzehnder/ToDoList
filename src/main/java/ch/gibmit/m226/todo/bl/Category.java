@@ -33,10 +33,10 @@ public class Category {
 	public CategoryDAO getCategoryDAO() {
 		return categoryDAO;
 	}
-	
+
 	public void setCategoriyDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
-	
+
 
 }

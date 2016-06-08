@@ -3,6 +3,7 @@ package ch.gibmit.m226.todo.bl;
 import ch.gibmit.m226.todo.data.ToDoDAO;
 import ch.gibmit.m226.todo.data.ToDoDAOImpl;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
+import ch.gibmit.m226.todo.util.ToDoSortType;
 
 import java.util.ArrayList;
 
@@ -37,5 +38,6 @@ public class ToDo {
     public void setToDoDAO(ToDoDAO toDoDAO) {
     	this.toDoDAO = toDoDAO;
     }
-    
+
+    public ArrayList<ToDoDTO> getSortedToDos(final ToDoSortType sortType) { return toDoDAO.getSortedToDos(sortType); }
 }

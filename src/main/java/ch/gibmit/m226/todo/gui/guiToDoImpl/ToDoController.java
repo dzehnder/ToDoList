@@ -5,6 +5,9 @@ import ch.gibmit.m226.todo.data.ToDoDAO;
 import ch.gibmit.m226.todo.data.ToDoDAOImpl;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 import ch.gibmit.m226.todo.gui.interfaces.IToDoController;
+import ch.gibmit.m226.todo.util.ToDoSortType;
+
+import java.util.ArrayList;
 
 /**
  * Created by hecol on 25/04/16.
@@ -58,5 +61,9 @@ public class ToDoController implements IToDoController {
     
     public void setActiveTodo(int activeTodo) {
         this.activeTodo = activeTodo;
+    }
+
+    public void createSortedToDoList(final ToDoSortType sortType) {
+        toDoModel.refreshToDoList(toDo.getSortedToDos(sortType));
     }
 }

@@ -1,6 +1,7 @@
 package ch.gibmit.m226.todo.data;
 
 import ch.gibmit.m226.todo.dto.ToDoDTO;
+import ch.gibmit.m226.todo.util.ToDoSortType;
 
 import java.util.ArrayList;
 
@@ -10,4 +11,5 @@ import java.util.ArrayList;
 public interface ToDoDAO {
 	void addToDo(ToDoDTO toDo);
 	ArrayList<ToDoDTO> getAllToDos();
+	ArrayList<ToDoDTO> getSortedToDos(final ToDoSortType sortType);
 }

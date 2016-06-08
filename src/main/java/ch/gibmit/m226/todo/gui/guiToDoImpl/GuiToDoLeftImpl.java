@@ -15,6 +15,7 @@ import javax.swing.ListSelectionModel;
 
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
+import ch.gibmit.m226.todo.util.ToDoSortType;
 
 public class GuiToDoLeftImpl {
 
@@ -53,6 +54,24 @@ public class GuiToDoLeftImpl {
 
 		listModel = new DefaultListModel<>();
 		lstToDos.setModel(listModel);
+
+		cmbxToDoSort.addActionListener(e -> {
+				switch (cmbxToDoSort.getSelectedIndex()) {
+                    case 0:
+                        controller.createSortedToDoList(ToDoSortType.NAME);
+                        updateList();
+                        break;
+                    case 1:
+                        controller.createSortedToDoList(ToDoSortType.PRIORITY);
+                        updateList();
+                        break;
+                    case 2:
+                        controller.createSortedToDoList(ToDoSortType.CATEGORY);
+                        updateList();
+                        break;
+                }
+		});
+
 	}
 	
 	public void removeLastToDo() {
@@ -100,7 +119,7 @@ public class GuiToDoLeftImpl {
 		cmbxToDoSort = new JComboBox<String>();
 		cmbxToDoSort.addItem("Name");
 		cmbxToDoSort.addItem("Priority");
-		cmbxToDoSort.addItem("Date");
+		cmbxToDoSort.addItem("Category");
 		btnAddToDo = new JButton("+");
 		btnRemoveToDo = new JButton("-");
 		btnRemoveToDo.setEnabled(false);
