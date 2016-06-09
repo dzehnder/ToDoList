@@ -125,7 +125,6 @@ public class GuiCalendarYearComp extends JComponent {
                 //loop through every day
                 for (int d = 0; d < WEEKDAYS.length; d++) {
                     Rectangle dayCell = new Rectangle((int) Math.round(months.get(m).getX()) + (d * (monthWidth / 7)) + ((monthWidth / 7) / 3),(int) Math.round(months.get(m).getY()) + (w * ((monthHeight - monthLabelHeight) / 7)) + monthLabelHeight, dayWidth, dayHeight);
-
                     g.setColor(Color.BLACK);
 
                      // check for last and next month to gray out the date labels
@@ -162,8 +161,7 @@ public class GuiCalendarYearComp extends JComponent {
                 }
             }
         }
-        //demo
-        //g.drawLine(0, (1+1)*2*monthLabelHeight+(6*dayHeight), width,(1+1)*2*monthLabelHeight+(6*dayHeight));
+
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
             @Override
@@ -173,17 +171,28 @@ public class GuiCalendarYearComp extends JComponent {
                     int col = e.getX() / dayWidth;
                     int monthY = (e.getY()/monthHeight);
 
-                    int row = (e.getY() - ((monthY+1)*2*monthLabelHeight))/dayHeight;
-
                     int monthX = (e.getX()/monthWidth);
                     int dayX = col-(monthX*7);
-                    int dayY = row-(monthY*6);
 
                     int monthIndex = (monthY*4)+monthX;
+                    if (monthIndex <= 11) {
+                        int posY = (int) (e.getY() - months.get(monthIndex).getY());
 
-                    int index = (dayX+(dayY*7))+(42*monthIndex);
-                    cal.setTime(yearDateModel.get(index));
-                    tbdPnCalendars.setSelectedIndex(0);
+                        int row = (posY-monthLabelHeight)/dayHeight;
+
+                        int index = (dayX+(row*7))+(42*monthIndex);
+
+                        cal.setTime(yearDateModel.get(index));
+
+                        tbdPnCalendars.setSelectedIndex(3);
+                        tbdPnCalendars.setSelectedIndex(0);
+                    }
+
+
+
+
+
+
                 }
             }
         };
