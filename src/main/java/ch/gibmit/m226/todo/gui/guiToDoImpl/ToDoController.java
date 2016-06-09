@@ -32,13 +32,15 @@ public class ToDoController implements IToDoController {
     @Override
     public void addToDo(ToDoDTO toDoDTO) {
         toDo.add(toDoDTO);
-        getAllToDos();
+        refreshToDosInModel();
     }
 
     @Override
-    public void getAllToDos() {
+    public void refreshToDosInModel() {
     	toDoModel.refreshToDoList(toDo.getToDos());
     }
+    
+    
 
 	@Override
 	public ToDoDTO getLatestToDo() {

@@ -10,7 +10,7 @@ public interface IToDoController {
 
     void addToDo(ToDoDTO toDoDTO);
 
-    void getAllToDos();
+    void refreshToDosInModel();
     
     ToDoDTO getLatestToDo();
     

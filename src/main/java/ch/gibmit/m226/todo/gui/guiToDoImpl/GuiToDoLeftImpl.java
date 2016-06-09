@@ -1,6 +1,7 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.Date;
 
@@ -12,9 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import org.jdesktop.swingx.prompt.PromptSupport;
 
 import ch.gibmit.m226.todo.dto.ToDoDTO;
-import ch.gibmit.m226.todo.gui.interfaces.GuiPanel;
 import ch.gibmit.m226.todo.util.ToDoSortType;
 
 public class GuiToDoLeftImpl {
@@ -56,24 +60,54 @@ public class GuiToDoLeftImpl {
 		lstToDos.setModel(listModel);
 
 		cmbxToDoSort.addActionListener(e -> {
-				switch (cmbxToDoSort.getSelectedIndex()) {
-                    case 0:
-                        controller.createSortedToDoList(ToDoSortType.NAME);
-                        updateList();
-                        break;
-                    case 1:
-                        controller.createSortedToDoList(ToDoSortType.PRIORITY);
-                        updateList();
-                        break;
-                    case 2:
-                        controller.createSortedToDoList(ToDoSortType.CATEGORY);
-                        updateList();
-                        break;
-                }
+			switch (cmbxToDoSort.getSelectedIndex()) {
+			case 0:
+				controller.createSortedToDoList(ToDoSortType.NAME);
+				updateList();
+				break;
+			case 1:
+				controller.createSortedToDoList(ToDoSortType.PRIORITY);
+				updateList();
+				break;
+			case 2:
+				controller.createSortedToDoList(ToDoSortType.CATEGORY);
+				updateList();
+				break;
+			}
 		});
 
+		addSearchFieldListener();
+
 	}
-	
+
+	private void addSearchFieldListener() {
+		txtFldSearchToDo.getDocument().addDocumentListener(new DocumentListener() {
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				updateSearch(txtFldSearchToDo);
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				updateSearch(txtFldSearchToDo);
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				updateSearch(txtFldSearchToDo);
+			}
+		});
+	}
+
+	private void updateSearch(JTextField search) {
+		String stringToSearch = search.getText();
+		for (int i = 0; i < toDoModel.getToDoList().size(); i++) {
+			if (toDoModel.getToDoList().get(i).getName().contains(stringToSearch)) {
+				this.updateListByIndex(i);
+			}
+		}
+	}
+
 	public void removeLastToDo() {
 		this.toDoModel.removeToDo(lstToDos.getVisibleRowCount());
 		updateList();

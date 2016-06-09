@@ -30,7 +30,7 @@ public class ToDoTest {
     @Test
     public void testRemoveToDo() {
     	testAddToDo();
-        toDoController.getAllToDos();
+        toDoController.refreshToDosInModel();
         int size = toDoModel.getToDoList().size();
         System.out.println(size);
         toDoModel.removeToDo(size-1);

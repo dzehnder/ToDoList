@@ -147,7 +147,7 @@ public class GuiToDoMainImpl {
 	}
 
 	public void updateToDosAndCategories() {
-		this.toDoController.getAllToDos();
+		this.toDoController.refreshToDosInModel();
 		GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getAllCategories();
 	}
 
