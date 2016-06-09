@@ -90,7 +90,7 @@ public class GuiToDoLeftImpl {
 	private void updateSearch(JTextField search) {
 		String stringToSearch = search.getText();
 		for (int i = 0; i < toDoModel.getToDoList().size(); i++) {
-			if (toDoModel.getToDoList().get(i).getName().contains(stringToSearch)) {
+			if (toDoModel.getToDoList().get(i).getName().toLowerCase().contains(stringToSearch.toLowerCase())) {
 				this.updateListByIndex(i);
 			}
 		}
