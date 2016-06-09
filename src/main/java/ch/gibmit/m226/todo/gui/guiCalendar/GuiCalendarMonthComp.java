@@ -174,6 +174,11 @@ public class GuiCalendarMonthComp extends JComponent {
         days.forEach(g2d::draw);
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
+
+            /**
+             * calculate the clicked day and switch to the daily calendar view
+             * @param e the action event
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {

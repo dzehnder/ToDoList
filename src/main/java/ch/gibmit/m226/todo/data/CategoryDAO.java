@@ -8,6 +8,15 @@ import java.util.ArrayList;
  * Created by zehnder on 21/04/16.
  */
 public interface CategoryDAO {
+    /**
+     * add a new category to the existing list
+     * @param cateroy the category that should be added
+     */
     void  addCategory(CategoryDTO cateroy);
+
+    /**
+     * get all categories from the list
+     * @return the category list
+     */
     ArrayList<CategoryDTO> getCategories();
 }

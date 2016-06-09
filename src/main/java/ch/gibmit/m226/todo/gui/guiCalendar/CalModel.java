@@ -16,6 +16,9 @@ public class CalModel {
 
     private static CalModel instance = new CalModel();
 
+    /**
+     * constructor creates instance of the calendar
+     */
     private CalModel() {
         cal = Calendar.getInstance(Locale.GERMANY);
     }

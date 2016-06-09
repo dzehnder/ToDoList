@@ -101,6 +101,11 @@ public class GuiCalendarWeekComp extends JComponent {
         }
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
+
+            /**
+             * calculate the clicked day and switch to the daily view of the calendar
+             * @param e the action event
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {

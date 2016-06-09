@@ -164,6 +164,10 @@ public class GuiCalendarYearComp extends JComponent {
 
 
         MouseAdapter mouseAdapter = new MouseAdapter() {
+            /**
+             * calculate the clicked day and change to the daily calendar view
+             * @param e the action event
+             */
             @Override
             public void mouseClicked(MouseEvent e) {
                 //TODO: change index system
@@ -187,11 +191,6 @@ public class GuiCalendarYearComp extends JComponent {
                         tbdPnCalendars.setSelectedIndex(3);
                         tbdPnCalendars.setSelectedIndex(0);
                     }
-
-
-
-
-
 
                 }
             }
