@@ -1,25 +1,13 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
-import java.awt.BorderLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.util.Date;
-
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import org.jdesktop.swingx.prompt.PromptSupport;
-
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 import ch.gibmit.m226.todo.util.ToDoSortType;
+
+import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import java.awt.*;
+import java.util.Date;
 
 public class GuiToDoLeftImpl {
 
@@ -184,6 +172,14 @@ public class GuiToDoLeftImpl {
 			listModel.add(i, toDoModel.getToDoName(i));
 		}
 		this.lstToDos.setSelectedIndex(selected);
+	}
+
+	/**
+	 * todo
+	 * @param toDoName
+     */
+	public void setSelectedToDoName(String toDoName) {
+		lstToDos.setSelectedValue(toDoName, true);
 	}
 
 }

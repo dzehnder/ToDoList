@@ -67,7 +67,7 @@ public class GuiMainImpl extends JFrame {
 		if ((categoryDAO != null) && (toDoDAO != null)) {
 			openToDoList(categoryDAO, toDoDAO);
 		}
-		gtc = new GuiCalendarImpl(gtm.getToDoModel());
+		gtc = new GuiCalendarImpl(gtm.getToDoModel(), mainPane, gtm.getLeftTodo());
 		sr = new Serializor(
 				GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getCategory().getCategoryDAO(),
 				gtm.getToDoController().getToDo().getToDoDAO());

@@ -1,5 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoLeftImpl;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 import ch.gibmit.m226.todo.gui.interfaces.GuiCalendarPanel;
 
@@ -19,14 +20,16 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
      * Constructor creates all week components and adds them to the appropriate tab.
      * It also updates all date-values in the view, after the tab selection has changed.
      * @param toDoModel the todolist-model, containing all todos
+     * @param mainPane
+     * @param leftTodo
      */
-    public GuiCalendarImpl(ToDoModel toDoModel) {
+    public GuiCalendarImpl(ToDoModel toDoModel, JTabbedPane mainPane, GuiToDoLeftImpl leftTodo) {
 
         pnlCalendarMain = new JPanel(new BorderLayout());
 
         tbdPnCalendars = new JTabbedPane();
 
-        DayPanelGuiCalendar day = new DayPanelGuiCalendar(toDoModel);
+        DayPanelGuiCalendar day = new DayPanelGuiCalendar(toDoModel, mainPane, leftTodo);
         WeekPanelGuiCalendar week = new WeekPanelGuiCalendar(toDoModel, tbdPnCalendars);
         MonthPanelGuiCalendar month = new MonthPanelGuiCalendar(toDoModel, tbdPnCalendars);
         YearPanelGuiCalendar year = new YearPanelGuiCalendar(toDoModel, tbdPnCalendars);

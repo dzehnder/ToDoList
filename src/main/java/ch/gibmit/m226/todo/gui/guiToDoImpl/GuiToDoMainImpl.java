@@ -1,13 +1,11 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
-import java.awt.BorderLayout;
-
-import javax.swing.JPanel;
-import javax.swing.JSplitPane;
-
 import ch.gibmit.m226.todo.data.ToDoDAO;
 import ch.gibmit.m226.todo.data.ToDoDAOImpl;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by colin on 24.02.16.
@@ -149,6 +147,10 @@ public class GuiToDoMainImpl {
 	public void updateToDosAndCategories() {
 		this.toDoController.refreshToDosInModel();
 		GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getAllCategories();
+	}
+
+	public GuiToDoLeftImpl getLeftTodo() {
+		return gtl;
 	}
 
 }

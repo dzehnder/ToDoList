@@ -1,5 +1,6 @@
 package ch.gibmit.m226.todo.gui.guiCalendar;
 
+import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoLeftImpl;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.ToDoModel;
 
 import javax.swing.*;
@@ -26,14 +27,16 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
     /**
      * constructor initializes the daily view of the calendar
      * @param toDoModel the todolist-model, containing all todos
+     * @param mainPane
+     * @param leftTodo
      */
-    public DayPanelGuiCalendar(ToDoModel toDoModel) {
+    public DayPanelGuiCalendar(ToDoModel toDoModel, JTabbedPane mainPane, GuiToDoLeftImpl leftTodo) {
 
         this.setLayout(new BorderLayout());
         pnlTools = new JPanel(new BorderLayout());
 
         tlBrCalDay = new JToolBar();
-        dayComp = new GuiCalendarDayComp(toDoModel);
+        dayComp = new GuiCalendarDayComp(toDoModel, mainPane, leftTodo);
         addButtonsToToolBar(tlBrCalDay);
         lblDay = new JLabel();
         lblDay.setBorder(new EmptyBorder(5, 10, 5, 10));
