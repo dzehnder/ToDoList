@@ -110,36 +110,46 @@ public class ToDoDTO implements Serializable {
                 if (repeat.getRecurrence().equals("Daily")) {
 
                     if (repeatRate > 1) {
-                        while (startDate.get(Calendar.DAY_OF_YEAR) < calModel.get(Calendar.DAY_OF_YEAR)) {
-                            startDate.add(Calendar.DAY_OF_YEAR, repeatRate);
+                        while (startDate.get(Calendar.DAY_OF_MONTH) < calModel.get(Calendar.DAY_OF_MONTH)) {
+                            startDate.add(Calendar.DAY_OF_MONTH, repeatRate);
                         }
                         if (!repeat.hasEndDate()) {
-                            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR);
+                            return startDate.get(Calendar.DAY_OF_MONTH) == calModel.get(Calendar.DAY_OF_MONTH);
                         } else {
-                            return startDate.get(Calendar.DAY_OF_YEAR) == calModel.get(Calendar.DAY_OF_YEAR) && calModel.getTimeInMillis() <= endDate.getTimeInMillis();
+                            return startDate.get(Calendar.DAY_OF_MONTH) == calModel.get(Calendar.DAY_OF_MONTH) && calModel.getTimeInMillis() <= endDate.getTimeInMillis();
                         }
                     } else {
                         return !repeat.hasEndDate() || calModel.getTimeInMillis() <= endDate.getTimeInMillis();
                     }
 
                 } else if (repeat.getRecurrence().equals("Weekly")) {
-                    return false;
+                    int dayOfWeek;
+
+                    if (calModel.get(Calendar.DAY_OF_WEEK) == 1) {
+                        dayOfWeek = 6;
+                    } else {
+                        dayOfWeek = calModel.get(Calendar.DAY_OF_WEEK) - 2;
+                    }
+                    return repeat.getWeekDays()[dayOfWeek] && (!repeat.hasEndDate() || calModel.getTimeInMillis() <= endDate.getTimeInMillis());
+
+
                 } else if (repeat.getRecurrence().equals("Monthly")) {
                         if (repeatRate > 1) {
-                            while (startDate.get(Calendar.MONTH) < calModel.get(Calendar.MONTH)) {
+                            while (startDate.getTimeInMillis() < calModel.getTimeInMillis()) {
                                 startDate.add(Calendar.MONTH, repeatRate);
                             }
-                            if (repeat.hasEndDate()) {
-                                return startDate.get(Calendar.MONTH) == calModel.get(Calendar.MONTH) && calModel.get(Calendar.DAY_OF_MONTH) == startDate.get(Calendar.DAY_OF_MONTH)
-                                        && calModel.getTime().getTime() <= endDate.getTime().getTime();
+                            if (!repeat.hasEndDate()) {
+                                return startDate.get(Calendar.MONTH) == calModel.get(Calendar.MONTH) && calModel.get(Calendar.DAY_OF_MONTH) == startDate.get(Calendar.DAY_OF_MONTH);
+
                             }
                             else {
-                                return startDate.get(Calendar.MONTH) == calModel.get(Calendar.MONTH) && calModel.get(Calendar.DAY_OF_MONTH) == startDate.get(Calendar.DAY_OF_MONTH);
+                                return startDate.get(Calendar.MONTH) == calModel.get(Calendar.MONTH) && calModel.getTime().getTime() <= endDate.getTime().getTime() &&
+                                        calModel.get(Calendar.DAY_OF_MONTH) == startDate.get(Calendar.DAY_OF_MONTH);
                             }
                         } else {
                             int dayToCheck = startDate.get(Calendar.DAY_OF_MONTH);
                             if (repeat.hasEndDate()) {
-                                return calModel.get(Calendar.DAY_OF_MONTH) == dayToCheck && calModel.getTimeInMillis() <= endDate.getTimeInMillis();
+                                return calModel.get(Calendar.DAY_OF_MONTH) == dayToCheck && calModel.getTime().getTime() <= endDate.getTime().getTime();
                             } else {
                                 return calModel.get(Calendar.DAY_OF_MONTH) == dayToCheck;
                             }
