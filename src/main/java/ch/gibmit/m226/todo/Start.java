@@ -1,13 +1,13 @@
-package ch.gibmit.m226.todo; /**
-								* Created by zehnder on 27/01/16.
-								*/
+package ch.gibmit.m226.todo;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+/**
+* @author Damian Zehdner
+ *
+*/
 
-import ch.gibmit.m226.todo.data.CategoryDAO;
-import ch.gibmit.m226.todo.data.ToDoDAO;
 import ch.gibmit.m226.todo.gui.GuiMainImpl;
+
+import javax.swing.*;
 
 public class Start {
 

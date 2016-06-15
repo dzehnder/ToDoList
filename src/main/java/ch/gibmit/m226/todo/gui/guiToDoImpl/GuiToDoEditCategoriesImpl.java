@@ -1,6 +1,7 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
 import ch.gibmit.m226.todo.dto.CategoryDTO;
+import org.jdesktop.swingx.util.OS;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -184,10 +185,14 @@ public class GuiToDoEditCategoriesImpl extends JDialog {
         txtFldCatName.setEnabled(false);
 
         btnAdd = new JButton("+");
-        btnAdd.setPreferredSize(new Dimension(30, 30));
+
         btnRem = new JButton("-");
-        btnRem.setPreferredSize(new Dimension(30, 30));
         btnRem.setEnabled(false);
+
+        if (OS.isMacOSX() || OS.isLinux()) {
+            btnAdd.setPreferredSize(new Dimension(30, 30));
+            btnRem.setPreferredSize(new Dimension(30, 30));
+        }
     }
 
     /**

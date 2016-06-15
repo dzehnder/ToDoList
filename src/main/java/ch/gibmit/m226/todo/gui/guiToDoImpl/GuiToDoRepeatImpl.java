@@ -43,7 +43,6 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
     public GuiToDoRepeatImpl(ToDoController controller) {
         this.toDoController = controller;
 
-
     }
 
     public void start() {
@@ -124,9 +123,12 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
             cmbxRepeatRate.setSelectedItem(0);
         }
         lblRepetition = new JLabel("Every: ");
-        spnrTime = new JSpinner();
+        SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, 999, 1);
+        spnrTime = new JSpinner(spinnerModel);
         spnrTime.setPreferredSize(new Dimension(55, 20));
-        spnrTime.setValue(repeater.getRate());
+        if (repeater.getRate() > 0) {
+            spnrTime.setValue(repeater.getRate());
+        }
         lblRate = new JLabel();
         xdpEndDate = new JXDatePicker();
         xdpEndDate.setDate(repeater.getEndDate());

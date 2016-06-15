@@ -53,6 +53,7 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
 
     /**
      * This method catches the action event of the tool bar buttons
+     * it sets the time, according to the input of the navigation buttons in the calendar view.
      * @param e Action Event of the tool bar buttons
      */
     @Override
@@ -70,7 +71,6 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
 
             case "today":
                 cal.setTime(new Date());
-                System.out.println(cal.get(Calendar.DAY_OF_YEAR));
                 updateDateLabel();
                 break;
         }
