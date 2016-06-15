@@ -7,6 +7,8 @@ import ch.gibmit.m226.todo.dto.CategoryDTO;
  */
 public interface ICategoryController {
 
+    //TODO: Comment
+
     void addCategory(CategoryDTO categoryDTO);
     void getAllCategories();
 

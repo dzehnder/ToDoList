@@ -4,28 +4,40 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-
 import org.apache.commons.io.FilenameUtils;
 
 import ch.gibmit.m226.todo.data.CategoryDAO;
 import ch.gibmit.m226.todo.data.ToDoDAO;
 
+/**
+ * @author colinherzog
+ *         this class is the serializes the data to a file
+ */
 public class Serializor {
 
+    /**
+     * The CategoryDAO to save
+     */
     CategoryDAO categoryDAO;
+    /**
+     * The ToDODAO to save
+     */
     ToDoDAO toDoDAO;
 
+    /**
+     * The constructor sets the DAO's to save
+     * @param categoryDAO the categoryDAO to save
+     * @param toDoDAO the ToDoDAO to save
+     */
     public Serializor(CategoryDAO categoryDAO, ToDoDAO toDoDAO) {
         this.categoryDAO = categoryDAO;
         this.toDoDAO = toDoDAO;
     }
 
-    public boolean saveNew() {
-        return saveAs();
-    }
-
+    /**
+     *
+     * @param path
+     */
     public void save(String path) {
         try {
             this.categoryDAO.getCategories();
@@ -40,23 +52,13 @@ public class Serializor {
         }
     }
 
-    public boolean saveAs() {
-        JFrame parentFrame = new JFrame();
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Save ToDoList");
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int userSelection = fileChooser.showSaveDialog(parentFrame);
-        if (userSelection == JFileChooser.APPROVE_OPTION) {
-            File fileToSave = fileChooser.getSelectedFile();
-            if (FilenameUtils.getExtension(fileToSave.getName()).equalsIgnoreCase("tdo")) {
-                // filename is OK as it is
-            } else {
-            	fileToSave = new File(fileToSave.toString() + ".tdo");
-            }
-            this.save(fileToSave.getAbsolutePath());
-            return false;
+    public boolean saveAs(int userSelection, File fileToSave) {
+        if (FilenameUtils.getExtension(fileToSave.getName()).equalsIgnoreCase("tdo")) {
+            // filename is OK as it is
         } else {
-        	return true;
+            fileToSave = new File(fileToSave.toString() + ".tdo");
         }
+        this.save(fileToSave.getAbsolutePath());
+        return false;
     }
 }
