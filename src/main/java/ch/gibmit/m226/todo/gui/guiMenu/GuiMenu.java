@@ -13,7 +13,8 @@ import javax.swing.KeyStroke;
 import ch.gibmit.m226.todo.gui.guiToDoImpl.GuiToDoEditCategoriesImpl;
 
 /**
- * Created by colin on 29.03.16.
+ * @author Colin Herzog
+ * This class creates the menubar for the application
  */
 public class GuiMenu {
 
@@ -35,14 +36,16 @@ public class GuiMenu {
     JRadioButtonMenuItem rbMenuItem;
     JCheckBoxMenuItem cbMenuItem;
 
+    /**
+     * constructor that calls methods to create menubar
+     */
     public GuiMenu() {
         setUpPanels();
-
-        setUpComponents();
-
-        placeComponents();
     }
 
+    /**
+     * This method creates all panels and adds the accelerator (keyboard shortcuts) and adds them to the menu
+     */
     private void setUpPanels() {
 
         //Create the mnuMenu bar.
@@ -97,72 +100,72 @@ public class GuiMenu {
 
         mnuMenu.addSeparator();
 
-        switchWindow = new JMenuItem("Switch");
-        //TODO add keystroke (tab not working as keystroke)
-        //menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
-        mnuMenu.add(switchWindow);
-
         menuBar.add(mnuMenu);
 
 
     }
 
-    private void setUpComponents() {
 
-    }
-
-    private void placeComponents() {
-
-    }
-    
-	public JMenuItem getNewToDo() {
+    /**
+     * Get ToDo-Item to add the Action-listener
+     * @return ToDo-Item
+     */
+    public JMenuItem getNewToDo() {
 		return newToDo;
 	}
 
+    /**
+     * Get Open-Item to add the Action-listener
+     * @return Open-Item
+     */
 	public JMenuItem getOpen() {
 		return open;
 	}
 
+    /**
+     * Get Close-Item to add the Action-listener
+     * @return Close-Item
+     */
 	public JMenuItem getClose() {
 		return close;
 	}
 
+    /**
+     * Get Save-Item to add the Action-listener
+     * @return Save-Item
+     */
 	public JMenuItem getSave() {
 		return save;
 	}
 
+    /**
+     * Get SaveAs-Item to add the Action-listener
+     * @return SaveAs-Item
+     */
 	public JMenuItem getSaveAs() {
 		return saveAs;
 	}
 
-	public JMenuItem getEditCategories() {
-		return editCategories;
-	}
-
-	public JMenuItem getCloseWindow() {
-		return closeWindow;
-	}
-
+    /**
+     * Get Minimize-Item to add the Action-listener
+     * @return Minimize-Item
+     */
 	public JMenuItem getMinimize() {
 		return minimize;
 	}
 
+    /**
+     * Get Zoom-Item to add the Action-listener
+     * @return Zoom-Item
+     */
 	public JMenuItem getZoom() {
 		return zoom;
 	}
 
-	public JMenuItem getSwitchWindow() {
-		return switchWindow;
-	}
-
-	public JRadioButtonMenuItem getRbMenuItem() {
-		return rbMenuItem;
-	}
-
-	public JCheckBoxMenuItem getCbMenuItem() {
-		return cbMenuItem;
-	}
-
+    /**
+     * Get Menu-Item to add the Action-listener
+     * @return Menu-Item
+     */
     public JMenuBar getMenu() {
         return menuBar;
     }

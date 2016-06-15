@@ -11,17 +11,34 @@ import ch.gibmit.m226.todo.dto.ToDoDTO;
 public interface IToDoController {
 
     /**
-     * adds a todo to the
+     * add a todo
      * @param toDoDTO
      */
     void addToDo(ToDoDTO toDoDTO);
 
+    /**
+     * refresh the model, to get all todos in the model
+     */
     void refreshToDosInModel();
-    
+
+    /**
+     * get last todo from the todolist
+     * @return last todo
+     */
     ToDoDTO getLatestToDo();
-    
+
+    /**
+     * get todo by index
+     * @param index
+     * @return
+     */
     ToDoDTO getSingleToDo(int index);
 
+
+    /**
+     * Get the ToDo-Instance (Class from Business-Logic)
+     * @return toDol instance
+     */
 	ToDo getToDo();
 
 }

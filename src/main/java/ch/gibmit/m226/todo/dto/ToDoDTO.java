@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by hecol on 22.04.2016.
+ * @author Damian Zehnder
  */
 public class ToDoDTO implements Serializable {
 	/**

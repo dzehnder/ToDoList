@@ -1,7 +1,8 @@
 package ch.gibmit.m226.todo.util;
 
 /**
- * Created by colinherzog on 08/06/16.
+ * @author Colin Herzog
+ * This enum provides all possible sort types
  */
 public enum ToDoSortType {
 
