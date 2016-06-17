@@ -127,22 +127,33 @@ public class GuiCalendarMonthComp extends JComponent {
                     FontMetrics metrics = g.getFontMetrics();
                     int todoNameWidth = metrics.stringWidth(toDoDTO.getName());
                     int extensionWidth = metrics.stringWidth("...");
-                    // draw the shortened todoname
-                    if (todoNameWidth+10+extensionWidth > dayWidth) {
-                        String changedTodoName = toDoDTO.getName();
-                        while (todoNameWidth+10+extensionWidth > dayWidth) {
-                            changedTodoName = changedTodoName.substring(0, changedTodoName.length()-1);
-                            todoNameWidth = metrics.stringWidth(changedTodoName);
-                        }
-                        g.drawString(changedTodoName+"...", (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
 
-                    }
-                    // draw the original todoname
-                    else {
-                        if (weekHeight > yPos+34) {
+                    // test if the height of all todos are matching into the day cell
+                    if (weekHeight > yPos+34) {
+                        // draw a shortened t^odo, if the length is to long
+                        if (todoNameWidth+10+extensionWidth > dayWidth) {
+                            String changedTodoName = toDoDTO.getName();
+                            while (todoNameWidth+10+extensionWidth > dayWidth) {
+                                changedTodoName = changedTodoName.substring(0, changedTodoName.length()-1);
+                                todoNameWidth = metrics.stringWidth(changedTodoName);
+                            }
+                            g.drawString(changedTodoName+"...", (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
+                        }
+                        // traw original todo
+                        else {
                             g.drawString(toDoDTO.getName(), (int) Math.round(days.get(index).getX())+5, (int) Math.round(days.get(index).getY())+34+yPos);
                         }
+
                     }
+
+
+
+
+
+
+
+
+
 
 
                     todosThisDay++;

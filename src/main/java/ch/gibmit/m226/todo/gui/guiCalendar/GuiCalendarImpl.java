@@ -34,6 +34,12 @@ public class GuiCalendarImpl implements GuiCalendarPanel {
         MonthPanelGuiCalendar month = new MonthPanelGuiCalendar(toDoModel, tbdPnCalendars);
         YearPanelGuiCalendar year = new YearPanelGuiCalendar(toDoModel, tbdPnCalendars);
 
+        mainPane.addChangeListener(e -> {
+            if (mainPane.getSelectedIndex() == 1) {
+                day.updateDateLabel();
+            }
+        });
+
         tbdPnCalendars.addTab("Day", day);
 
         tbdPnCalendars.addTab("Week", week);
