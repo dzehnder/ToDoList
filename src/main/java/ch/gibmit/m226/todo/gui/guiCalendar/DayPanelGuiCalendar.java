@@ -118,7 +118,8 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
     public void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));
 
-            listModel.clear();
+        listModel.clear();
+        dayNameModel.clear();
 
         int todosThisDay = 0;
         for (ToDoDTO toDoDTO : toDoModel.getToDoList()) {
