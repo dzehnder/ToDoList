@@ -6,11 +6,11 @@ import java.util.Date;
 
 /**
  * @author Damian Zehnder
+ * this class is the data access object of the todo.
+ * it contains alldata of a todo
  */
 public class ToDoDTO implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 9162166727252543372L;
 	
 	private String name;
@@ -27,71 +27,131 @@ public class ToDoDTO implements Serializable {
 	 * @param name the default name of the new todo
 	 * @param date the default date of new todo
      */
-	public ToDoDTO(String name, Date date) {
+	public ToDoDTO(String name, Date date, int priority, Object category) {
 		this.name = name;
 		this.dateTime = date;
+        this.priority = priority;
+        this.category = category;
 	}
-	
+
+    /**
+     * this constructor sets only the name as default value
+     * @param name the default name of the new todo
+     */
 	public ToDoDTO(String name) {
 		this.name = name;
 	}
 
+    /**
+     * @return the name of the todo
+     */
 	public String getName() {
 		return name;
 	}
 
+    /**
+     * set a new name
+     * @param name the name to be set
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+    /**
+     * @return the date and the time on which the todo is happening
+     */
 	public Date getDateTime() {
 		return dateTime;
 	}
 
+    /**
+     * set a new date and a new time, on which the todo should happen
+     * @param dateTime the new date
+     */
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
 
+    /**
+     * @return the priority of the todo
+     */
 	public int getPriority() {
 		return priority;
 	}
 
+    /**
+     * set a new priority
+     * @param priority the priority to be set
+     */
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
 
+    /**
+     * @return if the todo is already done
+     */
 	public boolean isDone() {
 		return done;
 	}
 
+    /**
+     * define if the todo is already done
+     * @param done set this to true if the todo is already done
+     */
 	public void setDone(boolean done) {
 		this.done = done;
 	}
 
+    /**
+     * @return the note of the todo
+     */
 	public String getNote() {
 		return note;
 	}
 
+    /**
+     * set a new note to the todo
+     * @param note the note to be set
+     */
 	public void setNote(String note) {
 		this.note = note;
 	}
 
+    /**
+     * @return the repeater settings of the todo
+     */
 	public Repeater getRepeat() {
 		return repeat;
 	}
 
+    /**
+     * set a new repeater setting
+     * @param repeat the repeater object of the new repeater setting
+     */
 	public void setRepeat(Repeater repeat) {
 		this.repeat = repeat;
 	}
 
+    /**
+     * @return the category of the todo
+     */
 	public Object getCategory() {
 		return category;
 	}
 
+    /**
+     * set a new category
+     * @param category the category to be set
+     */
 	public void setCategory(Object category) {
 		this.category = category;
 	}
 
+    /**
+     * Checks if a todo has the same date, as the date given. It also calculates the dates of the repeated todos.
+     * @param calModel the date to check
+     * @return true if the date given, matches to some todos.
+     */
 	public boolean isDateValid(Calendar calModel) {
         Calendar startDate = Calendar.getInstance();
         startDate.setTime(dateTime);

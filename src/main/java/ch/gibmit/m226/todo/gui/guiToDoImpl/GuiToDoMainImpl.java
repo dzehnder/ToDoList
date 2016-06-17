@@ -6,9 +6,11 @@ import ch.gibmit.m226.todo.dto.ToDoDTO;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
- * Created by colin on 24.02.16.
+ * @author Colin Herzog
  */
 public class GuiToDoMainImpl {
 
@@ -30,7 +32,7 @@ public class GuiToDoMainImpl {
 
 		this.gtl = new GuiToDoLeftImpl(toDoModel, toDoController);
 
-		this.gtr = new GuiToDoRightImpl(toDoModel, toDoController);
+		this.gtr = new GuiToDoRightImpl(toDoController);
 
 		this.gtr.disableAll();
 
@@ -40,6 +42,13 @@ public class GuiToDoMainImpl {
 
 		this.placeComponents();
 
+
+		gtr.getRepeaterImpl().getRepeaterWindow().addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				gtr.updateValues(toDoController.getSingleToDo(gtl.getLstToDos().getSelectedIndex()));
+			}
+		});
 	}
 
 	public GuiToDoMainImpl(ToDoDAO toDoDAO) {
@@ -49,7 +58,7 @@ public class GuiToDoMainImpl {
 
 		this.gtl = new GuiToDoLeftImpl(toDoModel, toDoController);
 
-		this.gtr = new GuiToDoRightImpl(toDoModel, toDoController);
+		this.gtr = new GuiToDoRightImpl(toDoController);
 
 		this.gtr.disableAll();
 

@@ -9,6 +9,12 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.util.Date;
 
+/**
+ * @author Colin Herzog
+ * class generates the left side of the split pane.
+ * It contains the todolist, and some controlls to change the todolist
+ */
+
 public class GuiToDoLeftImpl {
 
     private ToDoModel toDoModel;
@@ -29,6 +35,11 @@ public class GuiToDoLeftImpl {
 
     private int test = 0;
 
+    /**
+     * constructor initializes the left side of the split pane
+     * @param toDoModel the todo model
+     * @param controller the todo controller
+     */
     public GuiToDoLeftImpl(ToDoModel toDoModel, ToDoController controller) {
 
         this.toDoModel = toDoModel;
@@ -139,7 +150,7 @@ public class GuiToDoLeftImpl {
      * @return the latest ToDo
      */
     public ToDoDTO addToDo() {
-        ToDoDTO toDoDTO = new ToDoDTO("New ToDo" + test, new Date());
+        ToDoDTO toDoDTO = new ToDoDTO("New ToDo" + test, new Date(), 5, "Work");
         this.controller.addToDo(toDoDTO);
         this.updateList();
         this.lstToDos.setSelectedIndex(lstToDos.getLastVisibleIndex());

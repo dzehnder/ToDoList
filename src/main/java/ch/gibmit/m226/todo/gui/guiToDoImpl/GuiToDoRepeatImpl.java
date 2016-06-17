@@ -42,9 +42,12 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
      */
     public GuiToDoRepeatImpl(ToDoController controller) {
         this.toDoController = controller;
-
+        dlgRepeater = new JDialog();
     }
 
+    /**
+     * initializes the repeater dialog
+     */
     public void start() {
         if (toDoController.getActiveTodo().getRepeat() == null) {
             repeater = new Repeater();
@@ -54,7 +57,7 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
             repeater = toDoController.getActiveTodo().getRepeat();
         }
 
-        dlgRepeater = new JDialog();
+
 
         btnDone = new JButton("Done");
         dlgRepeater.getRootPane().setDefaultButton(btnDone);
@@ -289,10 +292,11 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
 
     }
 
-    public Repeater getRepeater() {
-        if (repeater == null) {
-            repeater = new Repeater();
-        }
-        return repeater;
+    /**
+     * @return the repeater dialog
+     */
+    public JDialog getRepeaterWindow() {
+        return dlgRepeater;
     }
+
 }

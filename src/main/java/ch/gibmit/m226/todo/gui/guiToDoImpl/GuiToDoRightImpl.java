@@ -1,9 +1,12 @@
 package ch.gibmit.m226.todo.gui.guiToDoImpl;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import ch.gibmit.m226.todo.dto.ToDoDTO;
+import org.jdesktop.swingx.JXDatePicker;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.DateFormatter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -12,28 +15,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSlider;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.DateFormatter;
-
-import org.jdesktop.swingx.JXDatePicker;
-
-import ch.gibmit.m226.todo.dto.ToDoDTO;
-
 /**
- * Created by colin on 16.03.16.
+ * @author Colin Herzog
+ * This class generates the right side of the split pane.
+ * It contains all nessecary items to change a todo
  */
 public class GuiToDoRightImpl implements ActionListener {
 
@@ -87,7 +72,11 @@ public class GuiToDoRightImpl implements ActionListener {
 	private static final int MAX_PRIO = 1;
 	private GuiToDoRepeatImpl repeater;
 
-	public GuiToDoRightImpl(ToDoModel toDoModel, ToDoController controller) {
+    /**
+     * constructor sets up the entire right side of the split pane
+     * @param controller the todo controller
+     */
+	public GuiToDoRightImpl(ToDoController controller) {
 
 		this.controller = controller;
 		repeater = new GuiToDoRepeatImpl(this.controller);
@@ -113,6 +102,9 @@ public class GuiToDoRightImpl implements ActionListener {
 		updateCategorySelectBox();
 	}
 
+    /**
+     * set up the different panels from the right side of the split panel
+     */
 	private void setUpPanels() {
 		pnlToDoRight = new JPanel(new BorderLayout());
 		pnlToDoRight.setBorder(new EmptyBorder(30, 30, 30, 30));
@@ -142,6 +134,9 @@ public class GuiToDoRightImpl implements ActionListener {
 		pnlToDoRightCenterBottomRight.setBorder(new EmptyBorder(10, 30, 10, 30));
 	}
 
+    /**
+     * set up the components from the right side of the split pane
+     */
 	private void setUpComponents() {
 		cdrCalendar = Calendar.getInstance();
 		cdrCalendar.set(Calendar.HOUR_OF_DAY, 24); // 24 == 12 PM == 00:00:00
@@ -191,7 +186,7 @@ public class GuiToDoRightImpl implements ActionListener {
 		scrPnNoteArea = new JScrollPane(txtAreaNotes, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-		objects = new ArrayList<JComponent>();
+		objects = new ArrayList<>();
 		objects.add(btnRepeat);
 		objects.add(txtFldTitle);
 		objects.add(xdpDate);
@@ -203,6 +198,9 @@ public class GuiToDoRightImpl implements ActionListener {
 		objects.add(txtAreaNotes);
 	}
 
+    /**
+     * place the components from the right side of the split panel
+     */
 	private void placeComponents() {
 		pnlToDoRightTop.add(lblTitle, BorderLayout.WEST);
 		pnlToDoRightTop.add(txtFldTitle, BorderLayout.CENTER);
@@ -246,6 +244,9 @@ public class GuiToDoRightImpl implements ActionListener {
 		pnlToDoRight.add(pnlToDoRightCenter, BorderLayout.CENTER);
 	}
 
+    /**
+     * clears and updates the category select box
+     */
 	private void updateCategorySelectBox() {
 		cmbxCategory.removeAllItems();
 		CategoryModel categoryModel = GuiToDoEditCategoriesImpl.getInstance().getCategoryModel();
@@ -255,10 +256,17 @@ public class GuiToDoRightImpl implements ActionListener {
 		}
 	}
 
+    /**
+     * @return the panel of the right side of the split pane
+     */
 	public JPanel getPanel() {
 		return pnlToDoRight;
 	}
 
+    /**
+     * if the source of the action event is the repeater button, open the repeater settings
+     * @param e action event
+     */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btnRepeat) {
@@ -269,8 +277,7 @@ public class GuiToDoRightImpl implements ActionListener {
 	/**
 	 * Sets the values from the selected todo to the right panel
 	 * 
-	 * @param dto
-	 *            selected todo
+	 * @param dto selected todo
 	 */
 	public void updateValues(ToDoDTO dto) {
 
@@ -289,7 +296,6 @@ public class GuiToDoRightImpl implements ActionListener {
 			xdpDate.setDate(null);
 			jspTime.setValue(new Date());
 		}
-		// jspTime.setValue(dto.getDateTime());
 		if (dto.getCategory() != null) {
 			cmbxCategory.setSelectedItem(dto.getCategory());
 		} else {
@@ -308,6 +314,9 @@ public class GuiToDoRightImpl implements ActionListener {
 		}
 	}
 
+    /**
+     * disable all elements on the right side of the split pane
+     */
 	public void disableAll() {
 		for (JComponent o : this.objects) {
 			o.setEnabled(false);
@@ -315,12 +324,18 @@ public class GuiToDoRightImpl implements ActionListener {
 		this.clearValues();
 	}
 
+    /**
+     * enable all elements on the right side of the split pane
+     */
 	public void enableAll() {
 		for (JComponent o : this.objects) {
 			o.setEnabled(true);
 		}
 	}
 
+    /**
+     * clear all values from the todo
+     */
 	public void clearValues() {
 		lblRepeat.setText("");
 		txtFldTitle.setText("");
@@ -331,6 +346,11 @@ public class GuiToDoRightImpl implements ActionListener {
 		txtAreaNotes.setText("");
 	}
 
+    /**
+     * get the changed todo values and update it's data access object
+     * @param selected the selected todo
+     * @return the updated todo
+     */
 	@SuppressWarnings("deprecation")
 	public ToDoDTO getChangedToDo(int selected) {
 		if (jspTime.getValue() == null) {
@@ -353,4 +373,11 @@ public class GuiToDoRightImpl implements ActionListener {
 		return toDoDTO;
 
 	}
+
+    /**
+     * @return the repeater window implementation
+     */
+    public GuiToDoRepeatImpl getRepeaterImpl() {
+        return repeater;
+    }
 }
