@@ -25,6 +25,7 @@ public class GuiToDoLeftImpl {
     private JList<String> lstToDos;
     private DefaultListModel<String> listModel;
     private JTextField txtFldSearchToDo;
+    private JScrollPane scrlLstToDos;
 
     private int test = 0;
 
@@ -80,7 +81,6 @@ public class GuiToDoLeftImpl {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 updateSearch(txtFldSearchToDo);
-                System.out.println("insert");
             }
             /**
              * If the user deltes a char this method will call
@@ -89,7 +89,6 @@ public class GuiToDoLeftImpl {
             @Override
             public void removeUpdate(DocumentEvent e) {
                 updateSearch(txtFldSearchToDo);
-                System.out.printf("remove");
             }
             /**
              * If the user changes a char (for instance by marking a char and write another char) this method will call
@@ -98,7 +97,6 @@ public class GuiToDoLeftImpl {
             @Override
             public void changedUpdate(DocumentEvent e) {
                 updateSearch(txtFldSearchToDo);
-                System.out.println("Change");
             }
         });
     }
@@ -174,6 +172,7 @@ public class GuiToDoLeftImpl {
     private void setUpComponents() {
         lstToDos = new JList<String>();
         txtFldSearchToDo = new JTextField();
+        scrlLstToDos = new JScrollPane(lstToDos);
         cmbxToDoSort = new JComboBox<String>();
         cmbxToDoSort.addItem("Name");
         cmbxToDoSort.addItem("Priority");
@@ -195,10 +194,9 @@ public class GuiToDoLeftImpl {
         pnlToDoLeftBottom.add(btnAddToDo);
         pnlToDoLeftBottom.add(btnRemoveToDo);
 
-        pnlToDoLeft.add(new JScrollPane(lstToDos), BorderLayout.CENTER);
+        pnlToDoLeft.add(scrlLstToDos, BorderLayout.CENTER);
         pnlToDoLeft.add(pnlToDoLeftTop, BorderLayout.NORTH);
         pnlToDoLeft.add(pnlToDoLeftBottom, BorderLayout.SOUTH);
-        pnlToDoLeft.add(lstToDos, BorderLayout.CENTER);
     }
 
     /**
