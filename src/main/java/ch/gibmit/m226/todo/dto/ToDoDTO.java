@@ -110,7 +110,7 @@ public class ToDoDTO implements Serializable {
                 if (repeat.getRecurrence().equals("Daily")) {
 
                     if (repeatRate > 1) {
-                        while (startDate.get(Calendar.DAY_OF_MONTH) < calModel.get(Calendar.DAY_OF_MONTH)) {
+                        while (startDate.get(Calendar.DAY_OF_YEAR) < calModel.get(Calendar.DAY_OF_YEAR) || startDate.get(Calendar.YEAR) < calModel.get(Calendar.YEAR)) {
                             startDate.add(Calendar.DAY_OF_MONTH, repeatRate);
                         }
                         if (!repeat.hasEndDate()) {
@@ -135,7 +135,7 @@ public class ToDoDTO implements Serializable {
 
                 } else if (repeat.getRecurrence().equals("Monthly")) {
                         if (repeatRate > 1) {
-                            while (startDate.getTimeInMillis() < calModel.getTimeInMillis()) {
+                            while (startDate.get(Calendar.MONTH) < calModel.get(Calendar.MONTH) || startDate.get(Calendar.YEAR) < calModel.get(Calendar.YEAR)) {
                                 startDate.add(Calendar.MONTH, repeatRate);
                             }
                             if (!repeat.hasEndDate()) {
