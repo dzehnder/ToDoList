@@ -146,21 +146,9 @@ public class GuiCalendarMonthComp extends JComponent {
 
                     }
 
-
-
-
-
-
-
-
-
-
-
                     todosThisDay++;
                 }
             }
-
-
 
             index++;
         }

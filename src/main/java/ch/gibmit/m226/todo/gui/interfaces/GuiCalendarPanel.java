@@ -7,6 +7,9 @@ import javax.swing.*;
  * Interface of the main calendar class
  */
 public interface GuiCalendarPanel {
+    /**
+     * @return the main calendar panel
+     */
     JPanel getCalendarPanel();
 
 }

@@ -6,13 +6,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Created by zehnder on 21/04/16.
+ * @author Damian Zehnder
  */
 public class CategoryDAOImpl implements CategoryDAO, Serializable {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -8477959614797354048L;
 	private ArrayList<CategoryDTO> categoryList;
 

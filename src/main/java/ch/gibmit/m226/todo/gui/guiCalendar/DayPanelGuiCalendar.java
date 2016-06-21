@@ -113,7 +113,7 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
     }
 
     /**
-     * updates the date label of the day and repaints the day-component
+     * updates the date label of the day and rebuilds the list
      */
     public void updateDateLabel() {
         lblDay.setText(sdf.format(cal.getTime()));

@@ -3,13 +3,19 @@ package ch.gibmit.m226.todo.gui.interfaces;
 import ch.gibmit.m226.todo.dto.CategoryDTO;
 
 /**
- * Created by zehnder on 22/04/16.
+ * @author Damian Zehnder
  */
 public interface ICategoryController {
 
-    //TODO: Comment
-
+    /**
+     * give the category that needs to be added to the business logic of the category
+     * @param categoryDTO the category to add
+     */
     void addCategory(CategoryDTO categoryDTO);
+
+    /**
+     * get all Categories from the model
+     */
     void getAllCategories();
 
 }

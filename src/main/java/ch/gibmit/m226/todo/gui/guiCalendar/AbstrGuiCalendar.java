@@ -78,9 +78,5 @@ public abstract class AbstrGuiCalendar extends JPanel implements ActionListener 
         return cal;
     }
 
-    /**
-     * set the selected calendar date in the calendar view
-     * @param cal the selected calendar date in the calendar view
-     */
 
 }
