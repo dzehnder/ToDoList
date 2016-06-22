@@ -49,7 +49,7 @@ public class GuiToDoMainImpl {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				gtr.updateValues(toDoController.getSingleToDo(gtl.getLstToDos().getSelectedIndex()));
-			}
+            }
 		});
 	}
 

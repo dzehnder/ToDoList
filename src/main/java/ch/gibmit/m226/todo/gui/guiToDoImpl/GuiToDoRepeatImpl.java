@@ -49,7 +49,8 @@ public class GuiToDoRepeatImpl extends JFrame implements ActionListener {
      * initializes the repeater dialog
      */
     public void start() {
-        if (toDoController.getActiveTodo().getRepeat() == null) {
+        dlgRepeater = new JDialog();
+            if (toDoController.getActiveTodo().getRepeat() == null) {
             repeater = new Repeater();
             toDoController.getActiveTodo().setRepeat(repeater);
         }

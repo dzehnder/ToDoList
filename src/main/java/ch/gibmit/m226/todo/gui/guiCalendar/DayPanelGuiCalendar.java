@@ -126,7 +126,7 @@ public class DayPanelGuiCalendar extends AbstrGuiCalendar {
             Calendar todoDate = Calendar.getInstance();
             todoDate.setTime(toDoDTO.getDateTime());
             if (toDoDTO.isDateValid(calModel)) {
-                SimpleDateFormat sdf = new SimpleDateFormat("H:m");
+                SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
                 String repeat = "";
                 if (toDoDTO.getRepeat() != null) {
                     repeat = ", Repeat: "+ toDoDTO.getRepeat().getRecurrence();
