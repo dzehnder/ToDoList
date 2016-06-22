@@ -15,10 +15,31 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.DateFormatter;
+
+import org.jdesktop.swingx.JXDatePicker;
+
+import ch.gibmit.m226.todo.dto.ToDoDTO;
+
 /**
  * @author Colin Herzog
- * This class generates the right side of the split pane.
- * It contains all nessecary items to change a todo
+ * This class is all for the right part of the todo-tab.
+ * It has a getPanel() function, that returns the whole panel, to assemble all gui parts.
+ * The actionlistener that only affect this class, are managed in this class.
  */
 public class GuiToDoRightImpl implements ActionListener {
 

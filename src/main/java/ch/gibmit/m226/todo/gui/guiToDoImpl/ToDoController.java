@@ -10,7 +10,8 @@ import ch.gibmit.m226.todo.util.ToDoSortType;
 import java.util.ArrayList;
 
 /**
- * Created by hecol on 25/04/16.
+ * @author Colin Herzog
+ * This class provides methods for the gui, in order to controll the todo
  */
 public class ToDoController implements IToDoController {
 

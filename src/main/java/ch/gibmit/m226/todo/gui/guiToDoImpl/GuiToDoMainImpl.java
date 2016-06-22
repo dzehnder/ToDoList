@@ -11,6 +11,8 @@ import java.awt.event.WindowEvent;
 
 /**
  * @author Colin Herzog
+ * This class assembles all gui parts that are on the todo-tab
+ * It provides a method that returns the assmbled part, to assemble both, the left and the right tab
  */
 public class GuiToDoMainImpl {
 

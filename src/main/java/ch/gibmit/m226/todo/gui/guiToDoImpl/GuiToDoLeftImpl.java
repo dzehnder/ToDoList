@@ -11,10 +11,10 @@ import java.util.Date;
 
 /**
  * @author Colin Herzog
- * class generates the left side of the split pane.
- * It contains the todolist, and some controlls to change the todolist
+ * This class is all for the left part of the todo-tab.
+ * It has a getPanel() function, that returns the whole panel, to assemble all gui parts.
+ * The actionlistener that only affect this class, are managed in this class.
  */
-
 public class GuiToDoLeftImpl {
 
     private ToDoModel toDoModel;
@@ -150,7 +150,7 @@ public class GuiToDoLeftImpl {
      * @return the latest ToDo
      */
     public ToDoDTO addToDo() {
-        ToDoDTO toDoDTO = new ToDoDTO("New ToDo" + test, new Date(), 5, "Work");
+        ToDoDTO toDoDTO = new ToDoDTO("New ToDo" + test, new Date(), 5 , "Work");
         this.controller.addToDo(toDoDTO);
         this.updateList();
         this.lstToDos.setSelectedIndex(lstToDos.getLastVisibleIndex());

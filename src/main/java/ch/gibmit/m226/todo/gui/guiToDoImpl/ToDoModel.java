@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import ch.gibmit.m226.todo.dto.ToDoDTO;
 
 /**
- * Created by hecol on 29/04/16.
+ * @author Colin Herzog
+ * This class provides the cache for the todos
  */
 public class ToDoModel {
     private ArrayList<ToDoDTO> toDoList;
@@ -24,10 +25,6 @@ public class ToDoModel {
 
     public String getToDoName(int index) {
         return toDoList.get(index).getName();
-    }
-
-    public void setToDoName(int index, String name) {
-        toDoList.get(index).setName(name);
     }
 
     public void removeToDo(int index) {
