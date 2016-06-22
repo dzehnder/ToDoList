@@ -35,8 +35,10 @@ public class Serializor {
     }
 
     /**
+     * Saves the DAOs in a file in a chosen path.
+     * The path is given by the file-chooser-dialog.
      *
-     * @param path
+     * @param path is the path where the file should be saved.
      */
     public void save(String path) {
         try {

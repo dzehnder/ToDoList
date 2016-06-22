@@ -20,10 +20,19 @@ public class ToDoController implements IToDoController {
     private int activeTodo;
     private ToDo toDo = null;
 
+    /**
+     * Overload if list is new
+     * @param toDoModel
+     */
     public ToDoController(ToDoModel toDoModel) {
         this(toDoModel, new ToDoDAOImpl());
     }
-    
+
+    /**
+     * Constuctor for a existing controller (or new controller if overloaded)
+     * @param toDoModel
+     * @param toDoDAO
+     */
     public ToDoController(ToDoModel toDoModel, ToDoDAO toDoDAO) {
         this.toDoModel = toDoModel;
         toDo = new ToDo(toDoDAO);
@@ -40,8 +49,6 @@ public class ToDoController implements IToDoController {
     public void refreshToDosInModel() {
     	toDoModel.refreshToDoList(toDo.getToDos());
     }
-    
-    
 
 	@Override
 	public ToDoDTO getLatestToDo() {
@@ -58,14 +65,26 @@ public class ToDoController implements IToDoController {
 		return this.toDo;
 	}
 
+    /**
+     * retruns the todo of the active (selected) tododto
+     * @return selected toDoDTO
+     */
     public ToDoDTO getActiveTodo() {
         return toDo.getToDos().get(activeTodo);
     }
-    
+
+    /**
+     * Set a active todo
+     * @param activeTodo the int for the active todo
+     */
     public void setActiveTodo(int activeTodo) {
         this.activeTodo = activeTodo;
     }
 
+    /**
+     * refreshs the todolist and sort them by the sorttype
+     * @param sortType as ToDoSortType Enum
+     */
     public void createSortedToDoList(final ToDoSortType sortType) {
         toDoModel.refreshToDoList(toDo.getSortedToDos(sortType));
     }

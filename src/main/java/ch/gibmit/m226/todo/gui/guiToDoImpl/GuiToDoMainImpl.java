@@ -125,10 +125,6 @@ public class GuiToDoMainImpl {
 		ToDoDTO toDoDTOforRightPanel = gtl.addToDo();
 		this.updateValuesRight(toDoDTOforRightPanel);
 	}
-	
-	public void removeLastToDo() {
-		gtl.removeLastToDo();
-	}
 
 	private void placeComponents() {
 		this.pnlToDoMain.add(sptPnToDoMain);
@@ -150,11 +146,19 @@ public class GuiToDoMainImpl {
 		}
 	}
 
+	/**
+	 * Update the todo and save the changes
+	 * @param lastSelected the index of the todo that was selected before the changes
+	 * @param lastSelectedToDo the todoDTO that was selected before the changes
+     */
 	public void saveChanges(int lastSelected, ToDoDTO lastSelectedToDo) {
 		this.toDoModel.updateToDo(lastSelected, lastSelectedToDo);
 		this.gtl.updateList();
 	}
 
+	/**
+	 * Updates and refreshes the todos and categories in all lists
+	 */
 	public void updateToDosAndCategories() {
 		this.toDoController.refreshToDosInModel();
 		GuiToDoEditCategoriesImpl.getInstance().getCategoryController().getAllCategories();
